@@ -5,9 +5,9 @@ const userSchema = new Schema(
   {
     email: String,
     password: String,
-    nickname: String,
+    nickname: { type: String },
     isValidated: { type: Boolean, default: false },
-    role: { type: String, enum: ['admin', 'employee'] },
+    role: { type: String, enum: ['admin', 'employee'], default: 'employee' },
   },
   {
     timestamps: true,

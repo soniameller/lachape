@@ -6,7 +6,10 @@ export default function Signup(props) {
     email: '',
     name: '',
     password: '',
+    nickname: '',
+    role: null,
     message: null,
+    isValidated: null,
   })
 
   function handleInputChange(event) {
@@ -22,6 +25,9 @@ export default function Signup(props) {
       email: state.email,
       name: state.name,
       password: state.password,
+      nickname: state.nickname,
+      role: state.role,
+      isValidated: state.isValidated,
     }
     api
       .signup(data)
@@ -48,6 +54,14 @@ export default function Signup(props) {
           type="text"
           value={state.name}
           name="name"
+          onChange={handleInputChange}
+        />{' '}
+        <br />
+        Nickname:{' '}
+        <input
+          type="text"
+          value={state.nickname}
+          name="nickname"
           onChange={handleInputChange}
         />{' '}
         <br />

@@ -14,12 +14,12 @@ router.get('/', (req, res, next) => {
 
 // Route to add a country
 router.post('/', (req, res, next) => {
-  let { name, capitals, area, description } = req.body
-  Country.create({ name, capitals, area, description })
-    .then(country => {
+  let { name, type, price, description } = req.body
+  Country.create({ name, type, price, description })
+    .then(dish => {
       res.json({
         success: true,
-        country,
+        dish,
       })
     })
     .catch(err => next(err))

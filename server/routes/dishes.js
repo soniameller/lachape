@@ -19,4 +19,16 @@ router.get('/:_id', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post('/', (req, res, next) => {
+  let { name, type, price, description } = req.body
+  Dish.create({ name, type, price, description })
+    .then(dish => {
+      res.json({
+        success: true,
+        dish,
+      })
+    })
+    .catch(err => next(err))
+})
+
 module.exports = router
