@@ -3,14 +3,14 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema(
   {
-    username: String,
+    email: String,
     password: String,
+    nickname: String,
+    isValidated: { type: Boolean, default: false },
+    role: { type: String, enum: ['admin', 'employee'] },
   },
   {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
+    timestamps: true,
   }
 )
 

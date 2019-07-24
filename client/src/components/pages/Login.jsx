@@ -8,7 +8,7 @@ export default function Login(props) {
   function handleSubmit(e) {
     e.preventDefault()
     api
-      .login(formValues.username, formValues.password)
+      .login(formValues.email, formValues.password)
       .then(result => {
         console.log('SUCCESS!')
         props.history.push('/') // Redirect to the home page
@@ -22,7 +22,7 @@ export default function Login(props) {
     <div className="Login">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        Username: <input type="text" {...getInputProps('username')} /> <br />
+        email: <input type="text" {...getInputProps('email')} /> <br />
         Password: <input type="password" {...getInputProps('password')} />{' '}
         <br />
         <button>Login</button>
