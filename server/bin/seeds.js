@@ -9,8 +9,8 @@ require('dotenv').config({ path: path.join(__dirname, '../.env') })
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
-const StreetArt = require('../models/StreetArt')
-const Visit = require('../models/Visit')
+const Dish = require('../models/Dish')
+const Table = require('../models/Table')
 
 const bcryptSalt = 10
 
@@ -70,29 +70,41 @@ let tableDocs = [
     ],
   }),
   new Table({
-    _user: userDocs[0]._id,
-    _streetArt: dishDocs[1]._id,
+    clientName: 'Sonia',
+    _creator: userDocs[0]._id,
+    amountOfPeople: 3,
+    tableNb: 12,
+    state: 'closed',
+    orders: [
+      { _dish: dishDocs[1]._id, amount: 2 },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
+    ],
   }),
   new Table({
-    _user: userDocs[1]._id,
-    _streetArt: dishDocs[0]._id,
+    clientName: 'Sonia',
+    _creator: userDocs[0]._id,
+    amountOfPeople: 3,
+    tableNb: 12,
+    state: 'closed',
+    orders: [{ _dish: dishDocs[2]._id, amount: 2 }, { _dish: dishDocs[0]._id }],
   }),
 ]
 
-Promise.all([User.deleteMany(), StreetArt.deleteMany(), Table.deleteMany()])
+Promise.all([User.deleteMany(), Dish.deleteMany(), Table.deleteMany()])
   .then(() => {
-    console.log('All users, street arts and Tables have been deleted')
+    console.log('All users, dishes and tables have been deleted')
 
     return Promise.all([
       User.create(userDocs),
-      StreetArt.create(dishDocs),
+      Dish.create(dishDocs),
       Table.create(tableDocs),
     ])
   })
   .then(() => {
     console.log(`${userDocs.length} users created`)
-    console.log(`${dishDocs.length} street arts created`)
-    console.log(`${tableDocs.length} visits created`)
+    console.log(`${dishDocs.length} dishes created`)
+    console.log(`${tableDocs.length} tables created`)
     mongoose.disconnect()
   })
   .catch(err => {
