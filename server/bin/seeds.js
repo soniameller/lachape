@@ -37,6 +37,7 @@ let dishDocs = [
   new Dish({
     name: 'Chipirones',
     _creator: userDocs[0]._id,
+    active: true,
     price: 290,
     description: 'Chipirones bla bla bla',
     type: 'food',
@@ -44,6 +45,7 @@ let dishDocs = [
   new Dish({
     name: 'Flan De Ines',
     _creator: userDocs[1]._id,
+    active: true,
     price: 170,
     description: 'Flan con crema y dulce de leche de oveja',
     type: 'dessert',
@@ -51,6 +53,7 @@ let dishDocs = [
   new Dish({
     name: 'Cerveza',
     _creator: userDocs[1]._id,
+    active: true,
     price: 120,
     type: 'drink',
   }),

@@ -7,6 +7,8 @@ const dishSchema = new Schema(
     _creator: { type: Schema.Types.ObjectId, ref: 'User' },
     price: Number,
     description: String,
+    active: Boolean,
+    pictureUrl: String,
     type: { type: String, enum: ['drink', 'food', 'dessert'] },
   },
   {
