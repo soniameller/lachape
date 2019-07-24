@@ -57,7 +57,7 @@ let dishDocs = [
 ]
 
 let tableDocs = [
-  new Visit({
+  new Table({
     clientName: 'António',
     _creator: userDocs[1]._id,
     amountOfPeople: 4,
@@ -65,30 +65,28 @@ let tableDocs = [
     state: 'open',
     orders: [
       { _dish: dishDocs[1]._id },
-      {
-        _dish: { type: Schema.Types.ObjectId, ref: 'Dishes' },
-        orderAt: { type: Date, default: Date.now },
-      },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
     ],
   }),
-  new Visit({
+  new Table({
     _user: userDocs[0]._id,
     _streetArt: dishDocs[1]._id,
   }),
-  new Visit({
+  new Table({
     _user: userDocs[1]._id,
     _streetArt: dishDocs[0]._id,
   }),
 ]
 
-Promise.all([User.deleteMany(), StreetArt.deleteMany(), Visit.deleteMany()])
+Promise.all([User.deleteMany(), StreetArt.deleteMany(), Table.deleteMany()])
   .then(() => {
-    console.log('All users, street arts and visits have been deleted')
+    console.log('All users, street arts and Tables have been deleted')
 
     return Promise.all([
       User.create(userDocs),
       StreetArt.create(dishDocs),
-      Visit.create(tableDocs),
+      Table.create(tableDocs),
     ])
   })
   .then(() => {
