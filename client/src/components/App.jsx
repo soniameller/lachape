@@ -2,9 +2,11 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import MainNavbar from './MainNavbar'
 import Home from './pages/Home'
-import Countries from './pages/Countries'
-import AddCountry from './pages/AddCountry'
-import Secret from './pages/Secret'
+import Dishes from './pages/Dishes'
+import Tables from './pages/Tables'
+import History from './pages/History'
+import DishDetail from './pages/DishDetail'
+
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 
@@ -14,11 +16,12 @@ export default function App() {
       <MainNavbar />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/countries" component={Countries} />
-        <Route path="/add-country" component={AddCountry} />
+        <Route path="/dishes" exact component={Dishes} />
+        <Route path="/dishes/:id" exact component={DishDetail} />
+        <Route path="/tables" component={Tables} />
+        <Route path="/history" component={History} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/secret" component={Secret} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
     </div>

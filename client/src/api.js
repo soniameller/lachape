@@ -68,19 +68,19 @@ export default {
 
   // This is an example on how to use this method in a different file
   // api.getCountries().then(countries => { /* ... */ })
-  getCountries() {
+  getDishes() {
     return service
-      .get('/countries')
+      .get('/dishes')
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  addCountry(body) {
-    return service
-      .post('/countries', body)
-      .then(res => res.data)
-      .catch(errHandler)
-  },
+  // getDishes(dishId) {
+  //   return service
+  //     .get('/dishes/' + dishId)
+  //     .then(res => res.data)
+  //     .catch(errHandler)
+  // },
 
   getSecret() {
     return service
