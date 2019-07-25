@@ -4,7 +4,11 @@ const Table = require('../models/Table')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-  Table.find()
+  let filter = {}
+  if (req.query.state) {
+    filter.state = req.query.state
+  }
+  Table.find(filter)
     .then(tables => {
       res.json(tables)
     })

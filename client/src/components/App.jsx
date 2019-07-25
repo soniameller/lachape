@@ -7,6 +7,7 @@ import Tables from './pages/Tables'
 import History from './pages/History'
 import DishDetail from './pages/DishDetail'
 import DishEdit from './pages/DishEdit'
+import TableService from './pages/TableService'
 
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -20,7 +21,8 @@ export default function App() {
         <Route path="/dishes" exact component={Dishes} />
         <Route path="/dishes/:id" exact component={DishDetail} />
         <Route path="/edit-dish/:id" exact component={DishEdit} />
-        <Route path="/tables" component={Tables} />
+        <Route path="/tables" exact component={Tables} />
+        <Route path="/tables/:id" exact component={TableService} />
         <Route path="/history" component={History} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
