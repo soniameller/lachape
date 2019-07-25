@@ -18,6 +18,7 @@ router.get('/', (req, res, next) => {
 router.get('/:_id', (req, res, next) => {
   console.log(req.params._id)
   Table.findById(req.params._id)
+    .populate('_dish')
     .then(tables => {
       res.json(tables)
     })
@@ -25,8 +26,8 @@ router.get('/:_id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  let { clientName, amountOfPeople, tableNb } = req.body
-  Table.create({ clientName, amountOfPeople, tableNb })
+  let { clientName, amountOfPeople, tableNb, orders } = req.body
+  Table.create({ clientName, amountOfPeople, tableNb, orders })
     .then(tables => {
       res.json({
         tables,
