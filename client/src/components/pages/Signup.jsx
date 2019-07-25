@@ -23,7 +23,6 @@ export default function Signup(props) {
     e.preventDefault()
     let data = {
       email: state.email,
-      name: state.name,
       password: state.password,
       nickname: state.nickname,
       role: state.role,

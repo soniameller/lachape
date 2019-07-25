@@ -34,12 +34,18 @@ export default function DishDetail(props) {
       <h3>${dish.price}</h3>
       <p>{dish.description}</p>
       {/* <pre>{JSON.stringify(dish, null, 2)}</pre> */}
-      <Button onClick={handleDelete} outline>
-        Delete
-      </Button>{' '}
-      <Button tag={Link} to={'/edit-dish/' + dish._id} outline>
-        Edit
-      </Button>
+      {api.isLoggedIn() && (
+        <Button onClick={handleDelete} outline>
+          Delete
+        </Button>
+      )}{' '}
+      {api.isLoggedIn() && (
+        <Button tag={Link} to={'/edit-dish/' + dish._id} outline>
+          Edit
+        </Button>
+      )}{' '}
+      <br />
+      <Link to="/dishes">Back to all dishes</Link>
     </div>
   )
 }

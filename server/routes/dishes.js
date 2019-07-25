@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:_id', (req, res, next) => {
-  let { name, type, price, description } = req.body
+  let { name, type, price, description, active } = req.body
   Dish.findByIdAndUpdate(
     req.params._id,
     {
@@ -39,6 +39,7 @@ router.put('/:_id', (req, res, next) => {
       type,
       price,
       description,
+      active,
     },
     { new: true } //this gives as a response the information of the new updated dish
   )

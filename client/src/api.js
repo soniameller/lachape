@@ -96,9 +96,10 @@ export default {
       .catch(errHandler)
   },
 
-  editDish(dishId) {
+  //incorrect route
+  editDish(dishId, body) {
     return service
-      .post('/dishes' + dishId)
+      .put('/dishes/' + dishId, body)
       .then(res => res.data)
       .catch(errHandler)
   },

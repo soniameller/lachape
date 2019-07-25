@@ -3,16 +3,15 @@ const Schema = mongoose.Schema
 
 const dishSchema = new Schema(
   {
-    name: { type: String, default: 'Type name' },
+    name: { type: String },
     _creator: { type: Schema.Types.ObjectId, ref: 'User' },
-    price: { type: Number, default: 0 },
-    description: { type: String, default: 'Type description' },
+    price: { type: Number },
+    description: { type: String },
     active: { type: Boolean, default: true },
     pictureUrl: String,
     type: {
       type: String,
-      enum: ['drink', 'food', 'dessert', 'not defined'],
-      default: 'not defined',
+      enum: ['drink', 'food', 'dessert'],
     },
   },
   {

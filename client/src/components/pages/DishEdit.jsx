@@ -1,29 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from '../../hooks'
 import { Button, Col, Container, Input, Label, Row } from 'reactstrap'
 import api from '../../api'
 
 export default function DishEdit(props) {
   const { formValues, setFormValues, getInputProps } = useForm()
+  const dishId = props.match.params.id
+
+  useEffect(() => {
+    api.getDish(props.match.params.id).then(dish => {
+      // console.log(dish)
+      setFormValues({
+        name: dish.name,
+        price: dish.price,
+        type: dish.type,
+        description: dish.description,
+      })
+    })
+  }, [])
 
   function handleSubmit(event) {
     event.preventDefault()
 
-    const uploadData = new FormData()
-    uploadData.append('price', formValues.price)
-    uploadData.append('type', formValues.type)
-    uploadData.append('name', formValues.name)
-    uploadData.append('picture', formValues.picture)
-
-    api.editDish(uploadData).then(dish => {
+    api.editDish(dishId, formValues).then(dish => {
       console.log(dish)
-      props.history.push('/dishes')
+      props.history.push('/dishes/' + dish.dish._id)
     })
   }
 
   return (
     <Container>
-      <h1>New Dish</h1>
+      {/* <pre>{JSON.stringify(formValues, null, 2)}</pre> */}
       <form onSubmit={handleSubmit}>
         <Row className="my-4">
           <Col sm={3}>
@@ -48,10 +55,13 @@ export default function DishEdit(props) {
             <Label for="type">Type</Label>
           </Col>
           <Col>
-            <Input type="select" placeholder="Type" {...getInputProps('type')}>
-              <option>Food</option>
-              <option>Drink</option>
-              <option>Dessert</option>
+            <Input type="select" {...getInputProps('type')}>
+              <option value="" disabled>
+                ---Choose type---
+              </option>
+              <option value="Food">Food</option>
+              <option value="Drink">Drink</option>
+              <option value="Dessert">Dessert</option>
             </Input>
           </Col>
         </Row>
@@ -73,7 +83,7 @@ export default function DishEdit(props) {
         </Button>
       </form>
 
-      <pre>{JSON.stringify(formValues)}</pre>
+      {/* <pre>{JSON.stringify(formValues)}</pre> */}
     </Container>
   )
 }
