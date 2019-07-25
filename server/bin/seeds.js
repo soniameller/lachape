@@ -92,6 +92,63 @@ let tableDocs = [
     state: 'closed',
     orders: [{ _dish: dishDocs[2]._id, amount: 2 }, { _dish: dishDocs[0]._id }],
   }),
+  new Table({
+    tableNb: 1,
+  }),
+  new Table({
+    tableNb: 2,
+  }),
+  new Table({
+    tableNb: 3,
+  }),
+  new Table({
+    tableNb: 4,
+  }),
+  new Table({
+    tableNb: 5,
+  }),
+  new Table({
+    tableNb: 6,
+  }),
+  new Table({
+    tableNb: 7,
+  }),
+  new Table({
+    tableNb: 8,
+  }),
+  new Table({
+    tableNb: 9,
+  }),
+  new Table({
+    tableNb: 10,
+  }),
+  new Table({
+    tableNb: 11,
+  }),
+  new Table({
+    tableNb: 12,
+  }),
+  new Table({
+    tableNb: 13,
+  }),
+  new Table({
+    tableNb: 14,
+  }),
+  new Table({
+    tableNb: 15,
+  }),
+  new Table({
+    tableNb: 16,
+  }),
+  new Table({
+    tableNb: 17,
+  }),
+  new Table({
+    tableNb: 18,
+  }),
+  new Table({
+    tableNb: 19,
+  }),
 ]
 
 Promise.all([User.deleteMany(), Dish.deleteMany(), Table.deleteMany()])
