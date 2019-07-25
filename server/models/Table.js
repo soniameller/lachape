@@ -3,12 +3,16 @@ const Schema = mongoose.Schema
 
 const tableSchema = new Schema(
   {
-    clientName: String,
+    clientName: { type: String, default: '' },
     _creator: { type: Schema.Types.ObjectId, ref: 'User' },
-    amountOfPeople: Number,
-    tableNb: Number,
-    total: Number,
-    state: { type: String, enum: ['open', 'closed', 'archived'] },
+    amountOfPeople: { type: Number, default: 0 },
+    tableNb: { type: Number },
+    total: { type: Number, default: 0 },
+    state: {
+      type: String,
+      enum: ['open', 'closed', 'archived'],
+      default: 'open',
+    },
     orders: [
       {
         _dish: { type: Schema.Types.ObjectId, ref: 'Dish' },
