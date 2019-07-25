@@ -20,8 +20,7 @@ router.get('/:_id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  let { name, type, price, description } = req.body
-  Dish.create({ name, type, price, description })
+  Dish.create({})
     .then(dish => {
       res.json({
         success: true,
@@ -31,4 +30,38 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.put('/:_id', (req, res, next) => {
+  let { name, type, price, description } = req.body
+  Dish.findByIdAndUpdate(
+    req.params._id,
+    {
+      name,
+      type,
+      price,
+      description,
+    },
+    { new: true } //this gives as a response the information of the new updated dish
+  )
+    .then(dish => {
+      res.json({
+        message: 'The dish has been updated',
+        dish,
+      })
+    })
+    .catch(err => next(err))
+})
+
+router.delete('/:_id', (req, res, next) => {
+  Dish.findById(req.params._id).then(dish => {
+    // console.log('the dish information is', dish)
+    Dish.deleteOne({ _id: dish._id })
+      .then(dish => {
+        res.json({
+          success: true,
+          message: 'Your dish was succesfully deleted',
+        })
+      })
+      .catch(err => next(err))
+  })
+})
 module.exports = router
