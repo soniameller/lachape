@@ -31,4 +31,17 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.delete('/:_id', (req, res, next) => {
+  Dish.findById(req.params._id).then(dish => {
+    // console.log('the dish information is', dish)
+    Dish.deleteOne({ _id: dish._id })
+      .then(dish => {
+        res.json({
+          success: true,
+          message: 'Your dish was succesfully deleted',
+        })
+      })
+      .catch(err => next(err))
+  })
+})
 module.exports = router
