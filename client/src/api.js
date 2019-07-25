@@ -75,6 +75,13 @@ export default {
       .catch(errHandler)
   },
 
+  getTableId(tableId) {
+    return service
+      .get('/tables/' + tableId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getDishes() {
     return service
       .get('/dishes')
