@@ -20,11 +20,31 @@ router.get('/:_id', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  let { name, type, price, description } = req.body
-  Dish.create({ name, type, price, description })
+  Dish.create({})
     .then(dish => {
       res.json({
         success: true,
+        dish,
+      })
+    })
+    .catch(err => next(err))
+})
+
+router.put('/:_id', (req, res, next) => {
+  let { name, type, price, description } = req.body
+  Dish.findByIdAndUpdate(
+    req.params._id,
+    {
+      name,
+      type,
+      price,
+      description,
+    },
+    { new: true } //this gives as a response the information of the new updated dish
+  )
+    .then(dish => {
+      res.json({
+        message: 'The dish has been updated',
         dish,
       })
     })
