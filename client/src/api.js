@@ -75,12 +75,12 @@ export default {
       .catch(errHandler)
   },
 
-  // getDishes(dishId) {
-  //   return service
-  //     .get('/dishes/' + dishId)
-  //     .then(res => res.data)
-  //     .catch(errHandler)
-  // },
+  getDish(dishId) {
+    return service
+      .get('/dishes/' + dishId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
   getSecret() {
     return service
