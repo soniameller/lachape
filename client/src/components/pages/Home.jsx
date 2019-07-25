@@ -17,11 +17,17 @@ export default function Home() {
       )}
       {api.isLoggedIn() && (
         <div>
-          <Button>Dishes</Button>
+          <Button tag={Link} to="/dishes">
+            Dishes
+          </Button>
           <br /> <br />
-          <Button>Tables</Button>
+          <Button tag={Link} to="/tables">
+            Tables
+          </Button>
           <br /> <br />
-          <Button>History</Button>
+          <Button tag={Link} to="/history">
+            History
+          </Button>
         </div>
       )}
     </div>

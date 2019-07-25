@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import api from '../../api'
 
-export default function Dishes() {
+export default function Dishes(props) {
   const [dishes, setDishes] = useState([])
   useEffect(() => {
     api
@@ -15,8 +15,20 @@ export default function Dishes() {
       .catch(err => console.log(err))
   }, [])
 
+  //TODO correct the push route
+  function handleClick() {
+    api
+      .addDish()
+      .then(dish => {
+        console.log('Created dish', dish)
+        props.history.push('/edit-dish/' + dish.dish._id)
+      })
+      .catch(err => console.log(err))
+  }
+
   return (
     <div className="Dishes">
+      <Button onClick={handleClick}>Add New</Button>
       <Table>
         <thead>
           <tr>

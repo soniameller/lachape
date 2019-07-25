@@ -82,6 +82,27 @@ export default {
       .catch(errHandler)
   },
 
+  addDish() {
+    return service
+      .post('/dishes')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editDish(dishId) {
+    return service
+      .post('/dishes' + dishId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteDish(dishId) {
+    return service
+      .delete('/dishes/' + dishId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getSecret() {
     return service
       .get('/secret')
