@@ -68,6 +68,13 @@ export default {
 
   // This is an example on how to use this method in a different file
   // api.getCountries().then(countries => { /* ... */ })
+  getOpenTables() {
+    return service
+      .get('/tables?state=open')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getDishes() {
     return service
       .get('/dishes')
