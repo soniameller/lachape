@@ -88,6 +88,12 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+  getActiveDishes() {
+    return service
+      .get('/dishes?active=true')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
 
   getDish(dishId) {
     return service

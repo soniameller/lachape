@@ -4,7 +4,9 @@ const Dish = require('../models/Dish')
 const router = express.Router()
 
 router.get('/', (req, res, next) => {
-  Dish.find()
+  let filter = {}
+  if (req.query.active) filter.active = true
+  Dish.find(filter)
     .then(dishes => {
       res.json(dishes)
     })

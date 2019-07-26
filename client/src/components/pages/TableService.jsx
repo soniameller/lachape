@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button } from 'reactstrap'
+import { Table, Button, Link, Input } from 'reactstrap'
 import api from '../../api'
 
 export default function TableService(props) {
+  const [dishes, setDishes] = useState([])
+  useEffect(() => {
+    api.getActiveDishes().then(dishes => {
+      setDishes(dishes)
+    })
+  }, [])
+
+  const [state, setState] = useState({
+    search: '',
+  })
+
   const tableId = props.match.params.id
   const [tableSer, setTableSer] = useState(null)
   useEffect(() => {
@@ -28,8 +39,28 @@ export default function TableService(props) {
             <th>b</th>
           </tr>
         </thead>
-        <tbody />
-        <pre>{JSON.stringify(tableSer.orders, null, 2)}</pre>
+        <tbody>
+          <select name="" id="">
+            {dishes.map(d => (
+              <option key={d._id}>{d.name}</option>
+            ))}
+          </select>
+
+          {/* {dishes.map(d => (
+            <Input type="select">
+              <option key={d._id}>{d.name}</option>
+            </Input>
+          ))} */}
+
+          {/* <Button
+            className="btn-sm"
+            tag={Link}
+            to={'/tables-closed/' + d._id}
+            outline
+          >
+            Details
+          </Button> */}
+        </tbody>
       </Table>
     </div>
   )
