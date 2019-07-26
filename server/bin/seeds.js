@@ -31,6 +31,13 @@ let userDocs = [
     nickname: 'b',
     role: 'employee',
   }),
+  new User({
+    email: 'mellersonia@gmail.com',
+    password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
+    isValidated: true,
+    nickname: 'Somi',
+    role: 'admin',
+  }),
 ]
 
 let dishDocs = [
@@ -40,7 +47,7 @@ let dishDocs = [
     active: true,
     price: 290,
     description: 'Chipirones bla bla bla',
-    type: 'food',
+    type: 'Food',
   }),
   new Dish({
     name: 'Flan De Ines',
@@ -48,18 +55,57 @@ let dishDocs = [
     active: true,
     price: 170,
     description: 'Flan con crema y dulce de leche de oveja',
-    type: 'dessert',
+    type: 'Dessert',
   }),
   new Dish({
     name: 'Cerveza',
     _creator: userDocs[1]._id,
     active: true,
     price: 120,
-    type: 'drink',
+    type: 'Drink',
   }),
 ]
 
 let tableDocs = [
+  new Table({
+    clientName: 'Sonia',
+    _creator: userDocs[1]._id,
+    amountOfPeople: 4,
+    tableNb: 12,
+    total: 3270,
+    state: 'archived',
+    orders: [
+      { _dish: dishDocs[1]._id },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
+    ],
+  }),
+  new Table({
+    clientName: 'António',
+    _creator: userDocs[1]._id,
+    amountOfPeople: 7,
+    tableNb: 12,
+    total: 5000,
+    state: 'archived',
+    orders: [
+      { _dish: dishDocs[1]._id },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
+    ],
+  }),
+  new Table({
+    clientName: 'Maxence',
+    _creator: userDocs[1]._id,
+    amountOfPeople: 2,
+    tableNb: 11,
+    total: 4500,
+    state: 'archived',
+    orders: [
+      { _dish: dishDocs[1]._id },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
+    ],
+  }),
   new Table({
     clientName: 'António',
     _creator: userDocs[1]._id,

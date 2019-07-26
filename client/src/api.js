@@ -66,11 +66,29 @@ export default {
     return service.get('/logout')
   },
 
-  // This is an example on how to use this method in a different file
-  // api.getCountries().then(countries => { /* ... */ })
   getOpenTables() {
     return service
       .get('/tables?state=open')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getOpenTable(tableId) {
+    return service
+      .get('/tables/' + tableId + '?state=open')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+  getClosedTable(tableId) {
+    return service
+      .get('/tables/' + tableId + '?state=closed')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getArchivedTables() {
+    return service
+      .get('/tables?state=archived')
       .then(res => res.data)
       .catch(errHandler)
   },
