@@ -40,11 +40,15 @@ export default function TableService(props) {
           </tr>
         </thead>
         <tbody>
-          <select name="" id="">
-            {dishes.map(d => (
-              <option key={d._id}>{d.name}</option>
-            ))}
-          </select>
+          <tr>
+            <th>
+              <select name="" id="">
+                {dishes.map(d => (
+                  <option key={d._id}>{d.name}</option>
+                ))}
+              </select>
+            </th>
+          </tr>
 
           {/* {dishes.map(d => (
             <Input type="select">

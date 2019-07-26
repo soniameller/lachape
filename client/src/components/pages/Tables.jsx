@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../api'
+import { Table } from 'reactstrap'
 
 export default function Tables() {
   const [tables, setTables] = useState([])
@@ -15,11 +16,17 @@ export default function Tables() {
 
   return (
     <div className="openTables">
-      {tables.map(t => (
-        <tr key={t._id}>
-          Table <Link to={'/tables/' + t._id}> {t.tableNb} </Link>
-        </tr>
-      ))}
+      <Table>
+        <tbody>
+          {tables.map(t => (
+            <tr key={t._id}>
+              <th>
+                Table <Link to={'/tables/' + t._id}> {t.tableNb} </Link>
+              </th>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </div>
   )
 }

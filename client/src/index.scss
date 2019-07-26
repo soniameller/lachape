@@ -2,6 +2,10 @@ $primary: #32c3ff;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
+// * {
+//   border: 1px dashed red;
+// }
+
 body {
   margin: 0;
   padding: 0;
@@ -22,4 +26,14 @@ body {
 .Dish-details {
   margin-top: 15px;
   text-align: center;
+}
+
+.Table__darkRow {
+  background-color: $dark;
+  color: white;
+}
+
+.Table__grayRow {
+  background-color: gray;
+  color: darkred;
 }
