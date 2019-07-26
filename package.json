@@ -6,7 +6,8 @@
     "preinstall": "echo --- preinstall --- && cd server && npm install && cd ../client && npm install && npm run build && cd ..",
     "start": "echo --- start --- && cd server && npm start",
     "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run start"
+    "dev:client": "cd client && npm run start",
+    "test": "mocha server/tests/index.js"
   },
   "engines": {
     "node": "8.9.4"
