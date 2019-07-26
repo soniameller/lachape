@@ -111,6 +111,13 @@ export default {
       .catch(errHandler)
   },
 
+  toggleActiveDish(dishId) {
+    return service
+      .put('/dishes/' + dishId + '/toggle-active')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   deleteDish(dishId) {
     return service
       .delete('/dishes/' + dishId)

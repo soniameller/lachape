@@ -11,7 +11,7 @@ const dishSchema = new Schema(
     pictureUrl: String,
     type: {
       type: String,
-      enum: ['drink', 'food', 'dessert'],
+      enum: ['Drink', 'Food', 'Dessert'],
     },
   },
   {

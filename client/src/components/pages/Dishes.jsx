@@ -34,15 +34,13 @@ export default function Dishes(props) {
       .catch(err => console.log(err))
   }
 
-  function handleChange(i, d) {
+  function handleChange(dishId) {
     let copyDishes = [...dishes]
-    copyDishes[i].active = !copyDishes[i].active
+    let dishToModify = copyDishes.find(dish => dish._id === dishId)
+    dishToModify.active = !dishToModify.active
     setDishes(copyDishes)
     // console.log('The new dish is', d)
-    api.editDish(d._id, {
-      ...dishes[i],
-      active: dishes[i].active,
-    })
+    api.toggleActiveDish(dishId)
   }
 
   let filterDishes = dishes.filter(
@@ -89,7 +87,7 @@ export default function Dishes(props) {
             </tr>
           </thead>
           <tbody>
-            {filterDishes
+            {[...filterDishes]
               .sort((a, b) => (a.name > b.name ? 1 : -1))
               .map((d, i) => (
                 <tr key={d._id}>
@@ -99,7 +97,7 @@ export default function Dishes(props) {
                         type="checkbox"
                         name="active"
                         checked={d.active}
-                        onChange={() => handleChange(i, d)}
+                        onChange={() => handleChange(d._id)}
                       />
                     </td>
                   )}

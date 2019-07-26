@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:_id', (req, res, next) => {
-  let { name, type, price, description, active } = req.body
+  let { name, type, price, description } = req.body
   Dish.findByIdAndUpdate(
     req.params._id,
     {
@@ -39,7 +39,6 @@ router.put('/:_id', (req, res, next) => {
       type,
       price,
       description,
-      active,
     },
     { new: true } //this gives as a response the information of the new updated dish
   )
@@ -47,6 +46,20 @@ router.put('/:_id', (req, res, next) => {
       res.json({
         message: 'The dish has been updated',
         dish,
+      })
+    })
+    .catch(err => next(err))
+})
+
+router.put('/:_id/toggle-active', (req, res, next) => {
+  Dish.findById(req.params._id)
+    .then(dish => {
+      dish.active = !dish.active
+      dish.save().then(() => {
+        res.json({
+          message: 'The dish has been updated',
+          dish,
+        })
       })
     })
     .catch(err => next(err))
