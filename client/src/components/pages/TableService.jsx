@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Link, Input } from 'reactstrap'
+import { Table, Container, Button, Row, Col, Input, Label } from 'reactstrap'
 import api from '../../api'
+import { useForm } from '../../hooks'
+import { Link } from 'react-router-dom'
 
 export default function TableService(props) {
   const [dishes, setDishes] = useState([])
@@ -10,9 +12,7 @@ export default function TableService(props) {
     })
   }, [])
 
-  const [state, setState] = useState({
-    search: '',
-  })
+  const { formValues, setFormValues, getInputProps } = useForm()
 
   const tableId = props.match.params.id
   const [tableSer, setTableSer] = useState(null)
@@ -31,41 +31,90 @@ export default function TableService(props) {
   }
 
   return (
-    <div className="TableService">
+    <Container className="TableService mt-3">
+      <Row>
+        <Col>
+          <h1>Table {tableSer.tableNb}</h1>
+        </Col>
+        <Col>
+          <Input
+            type="number"
+            placeholder="Number of people"
+            min="1"
+            max="5"
+            {...getInputProps('number')}
+          />
+        </Col>
+      </Row>
+      <Row className="my-4">
+        <Col>
+          <Button>Start tracking</Button>
+        </Col>
+        <Col>
+          <Input
+            type="text"
+            placeholder="Client's name"
+            {...getInputProps('name')}
+          />
+        </Col>
+      </Row>
+
       <Table>
         <thead>
           <tr>
-            <th>a</th>
-            <th>b</th>
+            <th>Amount</th>
+            <th>Orders</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>
-              <select name="" id="">
-                {dishes.map(d => (
-                  <option key={d._id}>{d.name}</option>
-                ))}
-              </select>
-            </th>
-          </tr>
-
-          {/* {dishes.map(d => (
-            <Input type="select">
-              <option key={d._id}>{d.name}</option>
-            </Input>
-          ))} */}
-
-          {/* <Button
-            className="btn-sm"
-            tag={Link}
-            to={'/tables-closed/' + d._id}
-            outline
-          >
-            Details
-          </Button> */}
+          {tableSer &&
+            tableSer.orders.map(dish => (
+              <tr key={dish._id}>
+                <th>{dish.amount}</th>
+                <th>{dish._dish}</th>
+                <th>
+                  <Button outline>+</Button> <Button outline>-</Button>
+                </th>
+              </tr>
+            ))}
         </tbody>
       </Table>
-    </div>
+
+      <Row className="my-4">
+        <Col>
+          <Input type="select" {...getInputProps('food')}>
+            <option value="" disabled>
+              ---Food---
+            </option>
+            {[...dishes]
+              .filter(dish => dish.type === 'Food' || dish.type === 'Dessert')
+              .map(d => (
+                <option key={d._id} value={d}>
+                  {d.name}
+                </option>
+              ))}
+          </Input>
+        </Col>
+        <Col>
+          <Input type="select" {...getInputProps('drink')}>
+            <option value="" disabled>
+              ---Drink---
+            </option>
+            {[...dishes]
+              .filter(dish => dish.type === 'Drink')
+              .sort((a, b) => (a.name > b.name ? 1 : -1))
+              .map(d => (
+                <option key={d._id} value={d}>
+                  {d.name}
+                </option>
+              ))}
+          </Input>
+        </Col>
+      </Row>
+      <Button tag={Link} to={/*'/tables-closed/' + */ tableSer._id} outline>
+        Close table
+      </Button>
+    </Container>
   )
 }

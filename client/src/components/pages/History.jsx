@@ -58,6 +58,7 @@ export default function History() {
         Time is taken from the chosen day at 13.00hs to the following day of the
         chosen one at 13.00hs
       </pre>
+      <pre style={{ color: 'red' }}>INPUTS ARE NOT WORKING in mobile</pre>
 
       <Table
         hover
