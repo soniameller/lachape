@@ -8,31 +8,26 @@ import { Table, FormGroup, Form, Input, Label, Container } from 'reactstrap'
 export default function History() {
   const [tables, setTables] = useState([])
 
-  function compareDates(date) {
-    let year = date.substring(0, 4)
-    let month = date.substring(5, 7)
-    let day = date.substring(8, 10)
-  }
-
   const { formValues, setFormValues, getInputProps } = useForm({
     from: new Date().toISOString().substring(0, 10),
     to: new Date().toISOString().substring(0, 10),
   })
 
-  // let filteredTables = tables.filter(
-  //   table =>
-  //     formValues.from <= table.createdAt && formValues.to >= table.createdAt
-  // )
+  function addDay(initialDate) {
+    let date = new Date(initialDate)
+    date.setDate(date.getDate() + 1)
+    return date
+  }
 
   let filteredTables = tables.filter(table => {
     return (
-      new Date(formValues.from) <= new Date(table.createdAt) &&
-      new Date(formValues.to) >= new Date(table.createdAt)
+      new Date(formValues.from + ' 13:00:00') <= new Date(table.createdAt) &&
+      addDay(formValues.to + ' 13:00:00') >= new Date(table.createdAt)
     )
   })
 
   function getTablesTotal(value = 'total') {
-    console.log(filteredTables)
+    // console.log(filteredTables)
     return filteredTables.reduce((counter, table) => counter + table[value], 0)
   }
 
@@ -60,10 +55,15 @@ export default function History() {
         </FormGroup>
       </Form>
       <pre style={{ color: 'red' }}>
-        TODO = filter depending in the time of the day and create route to table
-        detail
+        Time is taken from the chosen day at 13.00hs to the following day of the
+        chosen one at 13.00hs
       </pre>
-      <Table hover size="sm" className="mt-3">
+
+      <Table
+        hover
+        size="sm"
+        className="mt-3 table-wrapper-scroll-y my-custom-scrollbar"
+      >
         <thead>
           <tr className="Table__darkRow">
             <th>TABLE</th>
