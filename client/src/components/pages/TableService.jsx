@@ -8,6 +8,11 @@ import ArchivedTables from '../ArchivedTables'
 
 export default function TableService(props) {
   const [dishes, setDishes] = useState([])
+  const [tableSer, setTableSer] = useState(null)
+  const tableId = props.match.params.id
+  const { formValues, setFormValues, getInputProps } = useForm()
+  const [isChange, setIsChange] = useState(null)
+
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
       // console.log('THE DISHES ARE:', dishes)
@@ -15,11 +20,6 @@ export default function TableService(props) {
     })
   }, [])
 
-  const { formValues, setFormValues, getInputProps } = useForm()
-
-  const tableId = props.match.params.id
-
-  const [tableSer, setTableSer] = useState(null)
   useEffect(() => {
     api
       .getTableId(tableId)
@@ -37,6 +37,27 @@ export default function TableService(props) {
     } else if (tableSer.state === 'closed') {
       setTableSer({ ...tableSer, state: 'archived' })
     }
+  }
+
+  function handleChange() {
+    console.log('what is tableSer in handlechange', tableSer)
+    setTableSer({ ...tableSer, order: '' })
+  }
+
+  function handleDishAmount(i, amount) {
+    console.log('what is i', i)
+
+    console.log('to make it clear', tableSer)
+    setTableSer({
+      ...tableSer,
+      orders: tableSer.orders.map(order => {
+        if (order._id !== i) return order
+        return {
+          ...order,
+          amount: order.amount + amount,
+        }
+      }),
+    })
   }
 
   if (!tableSer) {
@@ -86,13 +107,25 @@ export default function TableService(props) {
             </tr>
           </thead>
           <tbody>
+            {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
             {tableSer &&
               tableSer.orders.map(dish => (
                 <tr key={dish._id}>
                   <th>{dish.amount}</th>
                   <th>{dish._dish.name}</th>
                   <th>
-                    <Button outline>+</Button> <Button outline>-</Button>
+                    <Button
+                      onClick={() => handleDishAmount(dish._id, +1)}
+                      outline
+                    >
+                      +
+                    </Button>
+                    <Button
+                      onClick={() => handleDishAmount(dish._id, -1)}
+                      outline
+                    >
+                      -
+                    </Button>
                   </th>
                 </tr>
               ))}
@@ -107,12 +140,16 @@ export default function TableService(props) {
               </option>
               {[...dishes]
                 .filter(dish => dish.type === 'Food' || dish.type === 'Dessert')
+                .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map(d => (
-                  <option key={d._id} value={d}>
+                  <option key={d._id} value={d.name} onClick={handleChange}>
                     {d.name}
                   </option>
                 ))}
             </Input>
+            <Button color="dark" outline>
+              Add Food!
+            </Button>
           </Col>
           <Col>
             <Input type="select" {...getInputProps('drink')}>
@@ -123,17 +160,20 @@ export default function TableService(props) {
                 .filter(dish => dish.type === 'Drink')
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map(d => (
-                  <option key={d._id} value={d}>
+                  <option key={d._id} value={d.name} onChange={handleChange}>
                     {d.name}
                   </option>
                 ))}
             </Input>
+            <Button color="dark" outline>
+              Add Drink!
+            </Button>
           </Col>
         </Row>
         <Button
           tag={Link}
-          onClick={handleClick}
           to={'/tables/' + tableSer._id}
+          onClick={handleClick}
           outline
         >
           Close table
