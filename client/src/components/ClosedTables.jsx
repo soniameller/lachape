@@ -8,12 +8,7 @@ import {
   Table,
   Form,
   Label,
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  CardLink,
+  Jumbotron,
 } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
@@ -23,11 +18,19 @@ export default function ClosedTables({
   tableSer,
   dishes,
 }) {
+  function getTablesTotal() {
+    console.log('Table service ', tableSer)
+    return tableSer.orders.reduce(
+      (counter, table) => counter + table._dish.price,
+      0
+    )
+  }
+
   return (
     <Container className="TableService mt-3">
-      <pre style={{ color: 'red' }}>
+      {/* <pre style={{ color: 'red' }}>
         Populate is not working in server/routes/tables.js
-      </pre>
+      </pre> */}
       <Row>
         <Col>
           <h1>Table {tableSer.tableNb}</h1>
@@ -45,9 +48,9 @@ export default function ClosedTables({
       <Table>
         <thead>
           <tr>
-            <th>Amount</th>
+            <th />
             <th>Orders</th>
-            <th>Actions</th>
+            <th>Total</th>
           </tr>
         </thead>
         <tbody>
@@ -62,7 +65,7 @@ export default function ClosedTables({
           <tr>
             <th />
             <th />
-            <th>Total</th>
+            <th>{tableSer && getTablesTotal()}</th>
           </tr>
           <tr>
             <th>
@@ -82,29 +85,42 @@ export default function ClosedTables({
           </tr>
         </tbody>
       </Table>
-      <Form>
-        <Label>Total paid:</Label>
-        <Input type="number" />
-      </Form>
-      <Card>
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-        </CardBody>
+      <Jumbotron>
+        <Row>
+          <Col>
+            {' '}
+            <h6 className="display-3">Balance</h6>
+          </Col>
+          <Col>
+            {' '}
+            <Form>
+              <Label>Total paid:</Label>
+              <Input type="number" />
+            </Form>
+          </Col>
+        </Row>
+        <hr className="my-2" />
+        <Row>
+          <Col>
+            <p className="lead">Amount per person: $ xxx</p>
+          </Col>
+          <Col>
+            <p>Change/Tips:</p> <p>Tips %:</p>
+          </Col>
+        </Row>
 
-        <CardBody>
-          <CardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </CardText>
-          <CardLink href="#">Card Link</CardLink>
-          <CardLink href="#">Another Link</CardLink>
-        </CardBody>
-      </Card>
-
-      <Button tag={Link} onClick={handleClick} to={'/tables'} outline>
-        Archive
-      </Button>
+        <p className="lead">
+          <Button
+            color="dark"
+            tag={Link}
+            onClick={handleClick}
+            to={'/tables'}
+            outline
+          >
+            Archive
+          </Button>
+        </p>
+      </Jumbotron>
     </Container>
   )
 }

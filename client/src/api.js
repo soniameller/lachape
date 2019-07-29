@@ -100,6 +100,13 @@ export default {
       .catch(errHandler)
   },
 
+  editDish(tableId, body) {
+    return service
+      .put('/tables/' + tableId, body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getDishes() {
     return service
       .get('/dishes')

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Container, Button, Row, Col, Input, Label } from 'reactstrap'
+import { Table, Container, Button, Row, Col, Input, Spinner } from 'reactstrap'
 import api from '../../api'
 import { useForm } from '../../hooks'
 import { Link } from 'react-router-dom'
@@ -40,7 +40,11 @@ export default function TableService(props) {
   }
 
   if (!tableSer) {
-    return <div>Loading...</div>
+    return (
+      <Container className="mt-5">
+        <Spinner color="dark" />
+      </Container>
+    )
   }
 
   if (tableSer.state === 'open') {
@@ -76,7 +80,7 @@ export default function TableService(props) {
         <Table>
           <thead>
             <tr>
-              <th>Amount</th>
+              <th />
               <th>Orders</th>
               <th>Actions</th>
             </tr>

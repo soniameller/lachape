@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../api'
 import {
-  Card,
   CardBody,
   CardSubtitle,
   Button,
   Row,
   Col,
   Container,
+  Spinner,
 } from 'reactstrap'
 
 export default function Tables() {
@@ -21,6 +21,14 @@ export default function Tables() {
       })
       .catch(err => console.log(err))
   }, [])
+
+  if (tables.length === 0) {
+    return (
+      <Container className="mt-5">
+        <Spinner color="dark" />
+      </Container>
+    )
+  }
 
   return (
     <Container className="openTables">
