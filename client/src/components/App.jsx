@@ -8,6 +8,7 @@ import History from './pages/History'
 import DishDetail from './pages/DishDetail'
 import DishEdit from './pages/DishEdit'
 import TableService from './pages/TableService'
+// import TableClosed from './pages/TableClosed'
 
 import Login from './pages/Login'
 import Signup from './pages/Signup'
