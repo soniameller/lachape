@@ -3,11 +3,14 @@ import { Table, Container, Button, Row, Col, Input, Label } from 'reactstrap'
 import api from '../../api'
 import { useForm } from '../../hooks'
 import { Link } from 'react-router-dom'
+import ClosedTables from '../ClosedTables'
+import ArchivedTables from '../ArchivedTables'
 
 export default function TableService(props) {
   const [dishes, setDishes] = useState([])
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
+      console.log('THE DISHES ARE:', dishes)
       setDishes(dishes)
     })
   }, [])
@@ -19,6 +22,7 @@ export default function TableService(props) {
   useEffect(() => {
     api
       .getTableId(tableId)
+
       .then(tableService => {
         console.log('AHAHAHAHAHAHAHHAHAH', tableService)
         setTableSer(tableService)
@@ -27,7 +31,11 @@ export default function TableService(props) {
   }, [tableId])
 
   function handleClick() {
-    setTableSer({ ...tableSer, state: 'closed' })
+    if (tableSer.state === 'open') {
+      setTableSer({ ...tableSer, state: 'closed' })
+    } else if (tableSer.state === 'closed') {
+      setTableSer({ ...tableSer, state: 'archived' })
+    }
   }
 
   function handleChange() {
@@ -82,7 +90,7 @@ export default function TableService(props) {
               tableSer.orders.map(dish => (
                 <tr key={dish._id}>
                   <th>{dish.amount}</th>
-                  <th>{dish._dish}</th>
+                  <th>{dish._dish.name}</th>
                   <th>
                     <Button outline>+</Button> <Button outline>-</Button>
                   </th>
@@ -136,9 +144,17 @@ export default function TableService(props) {
   }
 
   if (tableSer.state === 'closed') {
-    return <div>Closed tables</div>
+    return (
+      <ClosedTables
+        getInputProps={getInputProps}
+        handleClick={handleClick}
+        tableSer={tableSer}
+        dishes={dishes}
+      />
+    )
   }
+
   if (tableSer.state === 'archived') {
-    return <div>Archived Tables</div>
+    return <ArchivedTables />
   }
 }

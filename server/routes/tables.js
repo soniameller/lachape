@@ -18,9 +18,9 @@ router.get('/', (req, res, next) => {
 router.get('/:_id', (req, res, next) => {
   console.log(req.params._id)
   Table.findById(req.params._id)
-    .populate('_dish')
-    .then(tables => {
-      res.json(tables)
+    .populate('orders._dish')
+    .then(table => {
+      res.json(table)
     })
     .catch(err => next(err))
 })
