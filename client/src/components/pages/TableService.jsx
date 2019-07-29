@@ -15,7 +15,6 @@ export default function TableService(props) {
   const { formValues, setFormValues, getInputProps } = useForm()
 
   const tableId = props.match.params.id
-
   const [tableSer, setTableSer] = useState(null)
   useEffect(() => {
     api
@@ -29,6 +28,11 @@ export default function TableService(props) {
 
   function handleClick() {
     setTableSer({ ...tableSer, state: 'closed' })
+  }
+
+  function handleChange() {
+    console.log('aaaaaa')
+    setTableSer({ ...tableSer, order: '' })
   }
 
   if (!tableSer) {
@@ -74,7 +78,7 @@ export default function TableService(props) {
             </tr>
           </thead>
           <tbody>
-            {tableSer &&
+            {/* {tableSer &&
               tableSer.orders.map(dish => (
                 <tr key={dish._id}>
                   <th>{dish.amount}</th>
@@ -83,7 +87,7 @@ export default function TableService(props) {
                     <Button outline>+</Button> <Button outline>-</Button>
                   </th>
                 </tr>
-              ))}
+              ))}*/}
           </tbody>
         </Table>
 
@@ -95,8 +99,9 @@ export default function TableService(props) {
               </option>
               {[...dishes]
                 .filter(dish => dish.type === 'Food' || dish.type === 'Dessert')
+                .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map(d => (
-                  <option key={d._id} value={d}>
+                  <option key={d._id} value={d.name} onChange={handleChange}>
                     {d.name}
                   </option>
                 ))}
@@ -111,7 +116,7 @@ export default function TableService(props) {
                 .filter(dish => dish.type === 'Drink')
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map(d => (
-                  <option key={d._id} value={d}>
+                  <option key={d._id} value={d.name} onChange={handleChange}>
                     {d.name}
                   </option>
                 ))}
@@ -120,8 +125,8 @@ export default function TableService(props) {
         </Row>
         <Button
           tag={Link}
+          to={'/tables-closed/' + tableSer._id}
           onClick={handleClick}
-          to={'/tables/' + tableSer._id}
           outline
         >
           Close table
