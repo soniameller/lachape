@@ -8,6 +8,7 @@ const tableSchema = new Schema(
     amountOfPeople: { type: Number, default: 0 },
     tableNb: { type: Number },
     total: { type: Number, default: 0 },
+    tips: { type: Number, default: 0 },
     state: {
       type: String,
       enum: ['open', 'closed', 'archived'],

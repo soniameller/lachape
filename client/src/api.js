@@ -100,7 +100,8 @@ export default {
       .catch(errHandler)
   },
 
-  editDish(tableId, body) {
+  editTable(tableId, body) {
+    // console.log('EDIT TABLE API', tableId, body)
     return service
       .put('/tables/' + tableId, body)
       .then(res => res.data)

@@ -10,7 +10,7 @@ export default function TableService(props) {
   const [dishes, setDishes] = useState([])
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
-      console.log('THE DISHES ARE:', dishes)
+      // console.log('THE DISHES ARE:', dishes)
       setDishes(dishes)
     })
   }, [])
@@ -25,7 +25,7 @@ export default function TableService(props) {
       .getTableId(tableId)
 
       .then(tableService => {
-        console.log('AHAHAHAHAHAHAHHAHAH', tableService)
+        // console.log('AHAHAHAHAHAHAHHAHAH', tableService)
         setTableSer(tableService)
       })
       .catch(err => console.log(err))
@@ -145,9 +145,12 @@ export default function TableService(props) {
   if (tableSer.state === 'closed') {
     return (
       <ClosedTables
+        //Is it necesary to repeat the names?
         getInputProps={getInputProps}
+        formValues={formValues}
         handleClick={handleClick}
         tableSer={tableSer}
+        setTableSer={setTableSer}
         dishes={dishes}
       />
     )

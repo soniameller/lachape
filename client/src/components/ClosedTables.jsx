@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import api from '../api'
+
 import {
   Container,
   Row,
@@ -17,13 +19,38 @@ export default function ClosedTables({
   handleClick,
   tableSer,
   dishes,
+  formValues,
+  setTableSer,
 }) {
+  useEffect(() => {
+    api.editTable(tableSer._id, tableSer).then(table => {
+      console.log('THE TABLES IS:', table)
+      setTableSer({ ...tableSer, total: totalWithDiscount(), tips: tips() })
+    })
+  }, [formValues])
+
   function getTablesTotal() {
     console.log('Table service ', tableSer)
+
     return tableSer.orders.reduce(
-      (counter, table) => counter + table._dish.price,
+      (counter, table) => counter + table._dish.price * table.amount,
       0
     )
+  }
+  function totalWithDiscount() {
+    if (formValues.discount) return getTablesTotal() * formValues.discount
+    else return getTablesTotal()
+  }
+
+  function amountPerPerson() {
+    return Math.floor(totalWithDiscount() / tableSer.amountOfPeople)
+  }
+
+  function tips() {
+    if (formValues.paid) return formValues.paid - totalWithDiscount()
+  }
+  function tipsPercentage() {
+    if (formValues.paid) return Math.floor((tips() * 100) / totalWithDiscount())
   }
 
   return (
@@ -58,33 +85,30 @@ export default function ClosedTables({
             tableSer.orders.map(dish => (
               <tr key={dish._id}>
                 <th>{dish.amount}</th>
-                <th>{dish._dish.name}</th>
-                <th>$ {dish._dish.price}</th>
+                <td>{dish._dish.name}</td>
+                <td>$ {dish._dish.price * dish.amount}</td>
               </tr>
             ))}
-          <tr>
-            <th />
-            <th />
-            <th>{tableSer && getTablesTotal()}</th>
-          </tr>
+
           <tr>
             <th>
               <Button>Share</Button>
             </th>
             <th>
-              <Input type="select">
-                <option value="" disabled>
-                  ---No discount---
-                </option>
-                <option value="10">10%</option>
-                <option value="15">15%</option>
-                <option value="20">20%</option>
+              <Input type="select" {...getInputProps('discount')}>
+                <option value="1">---No discount---</option>
+                <option value="0.9">10% friend discount</option>
+                <option value="0.85">15% discount</option>
+                <option value="0.8">20% family discount</option>
               </Input>
             </th>
-            <th>Total with discount</th>
+            <th>
+              <p>${tableSer && totalWithDiscount()}</p>{' '}
+            </th>
           </tr>
         </tbody>
       </Table>
+      {/* <pre>{JSON.stringify(formValues)}</pre> */}
       <Jumbotron>
         <Row>
           <Col>
@@ -95,28 +119,24 @@ export default function ClosedTables({
             {' '}
             <Form>
               <Label>Total paid:</Label>
-              <Input type="number" />
+              <Input type="number" {...getInputProps('paid')} />
             </Form>
           </Col>
         </Row>
         <hr className="my-2" />
         <Row>
           <Col>
-            <p className="lead">Amount per person: $ xxx</p>
+            <p className="lead">
+              Amount per person: <strong>$ {amountPerPerson()}</strong>{' '}
+            </p>
           </Col>
           <Col>
-            <p>Change/Tips:</p> <p>Tips %:</p>
+            <p>Change/Tips:$ {tips()}</p> <p>Tips: {tipsPercentage()}%</p>
           </Col>
         </Row>
 
         <p className="lead">
-          <Button
-            color="dark"
-            tag={Link}
-            onClick={handleClick}
-            to={'/tables'}
-            outline
-          >
+          <Button color="dark" onClick={handleClick} outline>
             Archive
           </Button>
         </p>
