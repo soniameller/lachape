@@ -43,6 +43,15 @@ export default function TableService(props) {
     setTableSer({ ...tableSer, order: '' })
   }
 
+  const [isChange, setIsChange] = useState(null)
+  function handleClick2(i) {
+    console.log('working', i)
+
+    let copyIsChange = [...isChange]
+    copyIsChange[i] = +i
+    setIsChange(copyIsChange)
+  }
+
   if (!tableSer) {
     return <div>Loading...</div>
   }
@@ -86,16 +95,21 @@ export default function TableService(props) {
             </tr>
           </thead>
           <tbody>
-            {/* {tableSer &&
+            {tableSer &&
               tableSer.orders.map(dish => (
                 <tr key={dish._id}>
                   <th>{dish.amount}</th>
                   <th>{dish._dish.name}</th>
                   <th>
-                    <Button outline>+</Button> <Button outline>-</Button>
+                    <Button onClick={() => handleClick2(1)} outline>
+                      +
+                    </Button>
+                    <Button onClick={() => handleClick2(-1)} outline>
+                      -
+                    </Button>
                   </th>
                 </tr>
-              ))}*/}
+              ))}
           </tbody>
         </Table>
 
@@ -133,7 +147,7 @@ export default function TableService(props) {
         </Row>
         <Button
           tag={Link}
-          to={'/tables-closed/' + tableSer._id}
+          to={'/tables/' + tableSer._id}
           onClick={handleClick}
           outline
         >
