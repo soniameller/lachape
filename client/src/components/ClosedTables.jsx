@@ -16,7 +16,6 @@ import { Link } from 'react-router-dom'
 
 export default function ClosedTables({
   getInputProps,
-  handleClick,
   tableSer,
   dishes,
   formValues,
@@ -51,6 +50,13 @@ export default function ClosedTables({
   }
   function tipsPercentage() {
     if (formValues.paid) return Math.floor((tips() * 100) / totalWithDiscount())
+  }
+
+  function openTable() {
+    setTableSer({ ...tableSer, state: 'open' })
+  }
+  function archiveTable() {
+    setTableSer({ ...tableSer, state: 'archive' })
   }
 
   return (
@@ -135,11 +141,18 @@ export default function ClosedTables({
           </Col>
         </Row>
 
-        <p className="lead">
-          <Button color="dark" onClick={handleClick} outline>
-            Archive
-          </Button>
-        </p>
+        <Row className="lead">
+          <Col />
+          <Button color="dark" onClick={openTable} outline>
+            Edit
+          </Button>{' '}
+          <Col>
+            <Button color="dark" onClick={archiveTable}>
+              Archive
+            </Button>
+          </Col>
+          <Col />
+        </Row>
       </Jumbotron>
     </Container>
   )

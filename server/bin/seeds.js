@@ -278,41 +278,10 @@ let tableDocs = [
     ],
   }),
   new Table({
-    clientName: 'António',
-    _creator: userDocs[1]._id,
-    amountOfPeople: 4,
-    tableNb: 11,
-    state: 'open',
-    orders: [
-      { _dish: dishDocs[1]._id },
-      { _dish: dishDocs[2]._id },
-      { _dish: dishDocs[0]._id },
-    ],
-  }),
-  new Table({
-    clientName: 'Sonia',
-    _creator: userDocs[0]._id,
-    amountOfPeople: 3,
-    tableNb: 12,
-    state: 'closed',
-    orders: [
-      { _dish: dishDocs[1]._id, amount: 2 },
-      { _dish: dishDocs[2]._id },
-      { _dish: dishDocs[0]._id },
-    ],
-  }),
-  new Table({
-    clientName: 'Sonia',
-    _creator: userDocs[0]._id,
-    amountOfPeople: 3,
-    tableNb: 12,
-    state: 'closed',
-    orders: [{ _dish: dishDocs[2]._id, amount: 2 }, { _dish: dishDocs[0]._id }],
-  }),
-  new Table({
     clientName: 'Sonia',
     amountOfPeople: 3,
     tableNb: 1,
+    state: 'open',
     orders: [
       { _dish: dishDocs[0]._id, amount: 2 },
       { _dish: dishDocs[1]._id, amount: 3 },
@@ -322,6 +291,7 @@ let tableDocs = [
       { _dish: dishDocs[5]._id, amount: 2 },
     ],
   }),
+
   new Table({
     tableNb: 2,
   }),
@@ -350,10 +320,29 @@ let tableDocs = [
     tableNb: 10,
   }),
   new Table({
+    clientName: 'António',
+    _creator: userDocs[1]._id,
+    amountOfPeople: 4,
     tableNb: 11,
+    state: 'open',
+    orders: [
+      { _dish: dishDocs[1]._id },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
+    ],
   }),
+
   new Table({
+    clientName: 'Sonia',
+    _creator: userDocs[0]._id,
+    amountOfPeople: 3,
     tableNb: 12,
+    state: 'closed',
+    orders: [
+      { _dish: dishDocs[1]._id, amount: 2 },
+      { _dish: dishDocs[2]._id },
+      { _dish: dishDocs[0]._id },
+    ],
   }),
   new Table({
     tableNb: 13,

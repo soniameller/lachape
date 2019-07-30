@@ -31,12 +31,8 @@ export default function TableService(props) {
       .catch(err => console.log(err))
   }, [tableId])
 
-  function handleClick() {
-    if (tableSer.state === 'open') {
-      setTableSer({ ...tableSer, state: 'closed' })
-    } else if (tableSer.state === 'closed') {
-      setTableSer({ ...tableSer, state: 'archived' })
-    }
+  function closeTable() {
+    setTableSer({ ...tableSer, state: 'closed' })
   }
 
   function handleChange() {
@@ -173,7 +169,7 @@ export default function TableService(props) {
         <Button
           tag={Link}
           to={'/tables/' + tableSer._id}
-          onClick={handleClick}
+          onClick={closeTable}
           outline
         >
           Close table
@@ -188,7 +184,6 @@ export default function TableService(props) {
         //Is it necesary to repeat the names?
         getInputProps={getInputProps}
         formValues={formValues}
-        handleClick={handleClick}
         tableSer={tableSer}
         setTableSer={setTableSer}
         dishes={dishes}

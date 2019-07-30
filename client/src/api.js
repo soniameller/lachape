@@ -66,6 +66,13 @@ export default {
     return service.get('/logout')
   },
 
+  getTables() {
+    return service
+      .get('/tables')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getOpenTables() {
     return service
       .get('/tables?state=open')

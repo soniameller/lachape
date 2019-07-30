@@ -15,7 +15,7 @@ export default function Tables() {
   const [tables, setTables] = useState([])
   useEffect(() => {
     api
-      .getOpenTables()
+      .getTables()
       .then(tables => {
         setTables(tables)
       })
@@ -34,6 +34,7 @@ export default function Tables() {
     <Container className="openTables">
       <Row>
         {tables
+          .filter(table => table.state === 'open' || table.state === 'closed')
           .sort((a, b) => (a.tableNb > b.tableNb ? 1 : -1))
           .map(t => (
             <Col key={t._id} xs="4" sm="2">
