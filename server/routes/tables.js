@@ -62,6 +62,7 @@ router.put('/:_id', (req, res, next) => {
     },
     { new: true }
   )
+    .populate('orders._dish')
     .then(table => {
       res.json({
         message: 'Table Updated',
