@@ -1,24 +1,46 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import api from '../api'
 import {
   Container,
   Row,
   Col,
-  Input,
   Button,
   Table,
   Jumbotron,
-  Form,
-  Label,
+  ModalHeader,
+  Modal,
+  ModalFooter,
+  ModalBody,
 } from 'reactstrap'
-import api from '../api'
 
-export default function ArchivedTables({ tableSer, formValues, setTableSer }) {
+export default function ArchivedTables({
+  tableSer,
+  formValues,
+  setTableSer,
+  history,
+}) {
   useEffect(() => {
     api.editTable(tableSer._id, tableSer).then(table => {
       console.log('THE TABLES IS:', table)
       setTableSer({ ...tableSer })
     })
   }, [formValues])
+
+  function handleDelete() {
+    console.log('click')
+    api
+      .deleteTable(tableSer._id)
+      .then(table => {
+        console.log('Deleted table', table)
+        history.push('/history')
+      })
+      .catch(err => console.log(err))
+  }
+
+  const [isOpen, setIsOpen] = useState({ modal: false })
+  function toggle() {
+    setIsOpen({ modal: !isOpen.modal })
+  }
 
   function amountPerPerson() {
     return Math.floor(tableSer.total / tableSer.amountOfPeople)
@@ -90,6 +112,27 @@ export default function ArchivedTables({ tableSer, formValues, setTableSer }) {
           <Col>
             <p>Change/Tips:$ {tableSer.tips}</p>
           </Col>
+        </Row>
+        <Row>
+          <Col />
+          <Col>
+            <Button color="danger" outline onClick={toggle}>
+              Delete
+            </Button>
+            <Modal isOpen={isOpen.modal} toggle={toggle}>
+              <ModalHeader toggle={toggle}>⚠️ DELETE ⚠️</ModalHeader>
+              <ModalBody>
+                This action cannot be reverted and the information will be
+                erased from the database
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" onClick={handleDelete}>
+                  Yes! Delete
+                </Button>
+              </ModalFooter>
+            </Modal>
+          </Col>
+          <Col />
         </Row>
       </Jumbotron>
     </Container>

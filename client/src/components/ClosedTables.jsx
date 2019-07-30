@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../api'
+// import { Link } from 'react-router-dom'
 
 import {
   Container,
@@ -23,6 +24,7 @@ export default function ClosedTables({
   dishes,
   formValues,
   setTableSer,
+  history,
 }) {
   function getTablesTotal() {
     console.log('Table service ', tableSer)
@@ -54,20 +56,27 @@ export default function ClosedTables({
   }
   function handleArchive() {
     setTableSer({ ...tableSer, state: 'archived' })
+    api
+      .addTable({ tableNb: tableSer.tableNb })
+      .then(table => {
+        console.log('Created table', table)
+        history.push('/tables')
+      })
+      .catch(err => console.log(err))
   }
 
   useEffect(() => {
     api.editTable(tableSer._id, tableSer).then(table => {
-      console.log('THE TABLES IS:', table)
-      console.log('THE TABLE SERVICE:', tableSer)
+      // console.log('HISTORY:', history)
       setTableSer({
         ...tableSer,
         total: totalWithDiscount(),
         tips: tips(),
         discount: formValues.discount,
+        closedAt: new Date(),
       })
     })
-  }, [formValues])
+  }, [formValues, tableSer.state])
 
   const [isOpen, setIsOpen] = useState({ modal: false })
   function toggle() {
@@ -162,10 +171,6 @@ export default function ClosedTables({
             Edit
           </Button>{' '}
           <Col>
-            {/* <Button color="dark" onClick={handleArchive}>
-              Archive
-            </Button> */}
-
             <Button color="dark" onClick={toggle}>
               Archive
             </Button>
@@ -205,7 +210,6 @@ export default function ClosedTables({
                   </Col>
                 </Row>
               </ModalBody>
-              {/* <ModalBody></ModalBody> */}
               <ModalFooter>
                 {formValues.paid && (
                   <Button color="dark" onClick={handleArchive}>

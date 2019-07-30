@@ -25,6 +25,7 @@ export default function TableService(props) {
       .getTableId(tableId)
       .then(tableService => {
         console.log('AHAHAHAHAHAHAHHAHAH', tableService)
+        console.log('Props', props)
         setTableSer(tableService)
       })
       .catch(err => console.log(err))
@@ -234,6 +235,7 @@ export default function TableService(props) {
         tableSer={tableSer}
         setTableSer={setTableSer}
         dishes={dishes}
+        history={props.history}
       />
     )
   }
@@ -244,6 +246,7 @@ export default function TableService(props) {
         tableSer={tableSer}
         formValues={formValues}
         setTableSer={setTableSer}
+        history={props.history}
       />
     )
   }
