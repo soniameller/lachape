@@ -52,23 +52,41 @@ export default function TableService(props) {
       .then(t => {
         console.log('what coming1', t.table)
         setTableSer(t.table)
-        // props.history.push('/tables/' + dish.dish._id)
       })
   }
 
-  function handleChangeInNumberOfPeople() {
-    console.log(tableSer)
-    api.editTable(tableId, tableSer).then(t => {
-      setFormValues({
-        number: t.amountOfPeople,
-      })
-    })
-    setTableSer({
+  function handleChangeInNumberOfPeople(event) {
+    const number = event.target.value
+    api.editTable(tableId, {
       ...tableSer,
+      amountOfPeople: number,
     })
+    setTableSer({ ...tableSer, amountOfPeople: number })
+    // console.log(tableSer)
+    // api
+    //   .editTable(tableId, {
+    //     ...tableSer,
+    //     amountOfPeople: 'number',
+    //   })
+    //   .then(t => {
+    //     console.log('what is now now now', t)
+    //     setFormValues({
+    //       number: t.amountOfPeople,
+    //     })
+    //   })
+    // setTableSer({
+    //   ...tableSer,
+    // })
   }
 
-  function handleChangeInClientName() {}
+  function handleChangeInClientName(event) {
+    const name = event.target.value
+    api.editTable(tableId, {
+      ...tableSer,
+      clientName: name,
+    })
+    setTableSer({ ...tableSer, clientName: name })
+  }
 
   function handleDishAmount(i, amount) {
     console.log('what is i', i)
@@ -77,6 +95,11 @@ export default function TableService(props) {
       ...tableSer,
       orders: tableSer.orders.map(order => {
         if (order._id !== i) return order
+        // if (amount === 0)
+        //   return {
+        //     ...order,
+        //     amount: 0,
+        //   }
         else
           return {
             ...order,
@@ -101,21 +124,21 @@ export default function TableService(props) {
           <Col>
             <h1>Table {tableSer.tableNb}</h1>
           </Col>
-          <Col>
+          {/* <Col>
             <p>
               <strong>Name: </strong> {tableSer.clientName} <br />
               <strong> Diners: </strong> {tableSer.amountOfPeople}
             </p>
-          </Col>
+          </Col> */}
           <Col>
             <Input
+              name="amountOfPeople"
               type="number"
               placeholder="Number of people"
               min="1"
               max="5"
-              {...getInputProps('number')}
-              onChange={() => handleChangeInNumberOfPeople()}
-              //onChange={handleChangeInNumberOfPeople}
+              // {...getInputProps('number')}
+              onChange={handleChangeInNumberOfPeople}
             />
           </Col>
         </Row>
@@ -125,9 +148,11 @@ export default function TableService(props) {
           </Col>
           <Col>
             <Input
+              name="clientName"
+              value={tableSer.name}
               type="text"
               placeholder="Client's name"
-              {...getInputProps('name')}
+              // {...getInputProps('name')}
               onChange={handleChangeInClientName}
             />
           </Col>
