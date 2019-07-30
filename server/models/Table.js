@@ -9,6 +9,7 @@ const tableSchema = new Schema(
     tableNb: { type: Number },
     total: { type: Number, default: 0 },
     tips: { type: Number, default: 0 },
+    discount: { type: Number, default: 1 },
     state: {
       type: String,
       enum: ['open', 'closed', 'archived'],

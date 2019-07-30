@@ -192,6 +192,12 @@ export default function TableService(props) {
   }
 
   if (tableSer.state === 'archived') {
-    return <ArchivedTables />
+    return (
+      <ArchivedTables
+        tableSer={tableSer}
+        formValues={formValues}
+        setTableSer={setTableSer}
+      />
+    )
   }
 }
