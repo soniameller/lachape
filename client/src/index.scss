@@ -2,10 +2,20 @@ $primary: #32c3ff;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
+@font-face {
+  font-family: laChape;
+  // src: url('/fonts/learning_curve_bold_ot_tt.ttf');
+  src: url('/fonts/BridgetScript.ttf');
+}
+
 // * {
 //   border: 1px dashed red;
 // }
 
+.curvedFont {
+  font-family: laChape;
+  font-size: 40px;
+}
 body {
   margin: 0;
   padding: 0;
@@ -16,13 +26,37 @@ body {
   border: transparent;
 }
 
-.Home {
+.Background-img {
   background-image: url('https://i.imgur.com/QX4PSdJ.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
 }
 
+.Dishes__img {
+  background-image: url('https://i.imgur.com/HpelYCD.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+.History__img {
+  background-image: url('https://i.imgur.com/nKZ0OFH.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+
+.Login {
+  background-image: url('https://i.imgur.com/QX4PSdJ.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.input {
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  border-radius: 20px;
+}
 .Dish-details {
   margin-top: 15px;
   text-align: center;

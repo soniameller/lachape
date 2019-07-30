@@ -19,19 +19,29 @@ function MainNavbar(props) {
   function handleLogoutClick(e) {
     api.logout()
   }
-  const links = [{ to: '/dishes', text: 'Dishes' }]
+  const links = [
+    { to: '/dishes', text: 'Dishes', img: 'https://i.imgur.com/vgBsNTC.png' },
+  ]
   if (!api.isLoggedIn()) {
-    links.push({ to: '/signup', text: 'Signup' })
     links.push({ to: '/login', text: 'Login' })
   }
   if (api.isLoggedIn()) {
-    links.push({ to: '/tables', text: 'Tables' })
-    links.push({ to: '/history', text: 'History' })
+    links.push({
+      to: '/tables',
+      text: 'Tables',
+      img: 'https://i.imgur.com/trMGYda.png',
+    })
+    links.push({
+      to: '/history',
+      text: 'History',
+      img: 'https://i.imgur.com/Yc4odTB.png',
+    })
+    links.push({ to: '/signup', text: 'Signup' })
     links.push({ to: '/', text: 'Logout', onClick: handleLogoutClick })
   }
   return (
     <Navbar color="dark" dark expand="sm">
-      <NavbarBrand tag={Link} to="/">
+      <NavbarBrand tag={Link} className="curvedFont" to="/">
         La chapeña
       </NavbarBrand>
       {api.isLoggedIn() && (
@@ -56,7 +66,7 @@ function MainNavbar(props) {
           {links.map(link => (
             <NavItem key={link.to}>
               <NavLink tag={NLink} to={link.to} exact onClick={link.onClick}>
-                {link.text}
+                <img height="25px" src={link.img} alt="" /> {link.text}
               </NavLink>
             </NavItem>
           ))}

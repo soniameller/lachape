@@ -10,6 +10,7 @@ const logger = require('morgan')
 const nocache = require('nocache')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
+// const isLoggedIn = require('../middlewares')
 
 require('./configs/database')
 
@@ -54,7 +55,6 @@ require('./passport')(app)
 
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
-app.use('/api/countries', require('./routes/countries'))
 app.use('/api/dishes', require('./routes/dishes'))
 app.use('/api/tables', require('./routes/tables'))
 

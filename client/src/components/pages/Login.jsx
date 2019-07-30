@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Form, Container, Button } from 'reactstrap'
 import api from '../../api'
 import { useForm } from '../../hooks'
 
@@ -19,15 +20,35 @@ export default function Login(props) {
   const [message, setMessage] = useState(null)
 
   return (
-    <div className="Login">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        email: <input type="text" {...getInputProps('email')} /> <br />
-        Password: <input type="password" {...getInputProps('password')} />{' '}
-        <br />
-        <button>Login</button>
-      </form>
-      {message && <div className="info info-danger">{message}</div>}
+    <div className="Background-img pt-5">
+      {/* <h2>Login</h2> */}
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <div className="form-group text-white ">
+            <label for="email">Email address</label>
+            <input
+              placeholder="Email"
+              type="text"
+              id="email"
+              className="form-control"
+              {...getInputProps('email')}
+            />
+
+            <label for="password">Password</label>
+            <input
+              className="form-control"
+              placeholder="Password"
+              id="password"
+              type="password"
+              {...getInputProps('password')}
+            />
+            <Button className="btn btn-light mt-3 curvedFont ">login</Button>
+          </div>
+        </Form>
+        {message && (
+          <div className="info text-warning info-danger">{message}</div>
+        )}
+      </Container>
     </div>
   )
 }

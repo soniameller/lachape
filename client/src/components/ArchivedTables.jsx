@@ -99,7 +99,7 @@ export default function ArchivedTables({
         <Row>
           <Col>
             {' '}
-            <h6 className="display-3">Balance</h6>
+            <h6 className="display-3">Totals</h6>
           </Col>
           <Col />
         </Row>

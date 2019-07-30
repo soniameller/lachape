@@ -57,22 +57,25 @@ export default function Dishes(props) {
         {JSON.stringify(formValues, null, 2)}
         {JSON.stringify(dishes[0], null, 2)}
       </pre> */}
-
-      <Container className="mt-5">
-        {api.isLoggedIn() && <Button onClick={handleClick}>Add New</Button>}
-        <Form>
-          <input type="checkbox" {...getInputProps('food')} /> {'  '}
-          <Label className="mr-3" for="food">
-            Food
-          </Label>
-          <input type="checkbox" {...getInputProps('drink')} />
-          {'  '}
-          <Label for="drink">Drink</Label>
-          {'  '}
-          <input type="checkbox" {...getInputProps('dessert')} />
-          {'  '}
-          <Label for="dessert">Dessert</Label>
-        </Form>
+      <div className="Dishes__img">
+        <Container className="pt-5">
+          {api.isLoggedIn() && <Button onClick={handleClick}>Add New</Button>}
+          <Form className="m-3">
+            <input type="checkbox" {...getInputProps('food')} /> {'  '}
+            <Label className="mr-3 " for="food">
+              Food
+            </Label>
+            <input type="checkbox" {...getInputProps('drink')} />
+            {'  '}
+            <Label for="drink">Drink</Label>
+            {'  '}
+            <input type="checkbox" {...getInputProps('dessert')} />
+            {'  '}
+            <Label for="dessert">Dessert</Label>
+          </Form>
+        </Container>
+      </div>
+      <Container>
         <Table>
           <thead>
             <tr>

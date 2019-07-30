@@ -6,16 +6,15 @@ import api from '../../api'
 
 export default function Home() {
   return (
-    <div className="Home">
+    <div className="Background-img">
       {!api.isLoggedIn() && (
         <div>
-          <Button tag={Link} to="/login">
+          {/* <Button tag={Link} to="/login">
             Login
-          </Button>
-          <p>Or Signup</p>
+          </Button> */}
         </div>
       )}
-      {api.isLoggedIn() && (
+      {/* {api.isLoggedIn() && (
         <div>
           <Button tag={Link} to="/dishes">
             Dishes
@@ -29,7 +28,7 @@ export default function Home() {
             History
           </Button>
         </div>
-      )}
+      )} */}
     </div>
   )
 }

@@ -1,9 +1,9 @@
 const express = require('express')
 const Table = require('../models/Table')
-
+const { isLoggedIn } = require('../middlewares')
 const router = express.Router()
 
-router.get('/', (req, res, next) => {
+router.get('/', isLoggedIn, (req, res, next) => {
   let filter = {}
   if (req.query.state) {
     filter.state = req.query.state
@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/:_id', (req, res, next) => {
+router.get('/:_id', isLoggedIn, (req, res, next) => {
   console.log(req.params._id)
   Table.findById(req.params._id)
     .populate('orders._dish')
@@ -25,7 +25,7 @@ router.get('/:_id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
   let { clientName, amountOfPeople, tableNb, orders } = req.body
   Table.create({ clientName, amountOfPeople, tableNb, orders })
     .then(tables => {
@@ -37,7 +37,7 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.put('/:_id', (req, res, next) => {
+router.put('/:_id', isLoggedIn, (req, res, next) => {
   let {
     clientName,
     amountOfPeople,
@@ -74,7 +74,7 @@ router.put('/:_id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.delete('/:_id', (req, res, next) => {
+router.delete('/:_id', isLoggedIn, (req, res, next) => {
   Table.findById(req.params._id).then(table => {
     Table.deleteOne({ _id: table._id })
       .then(table => {

@@ -143,7 +143,7 @@ export default function ClosedTables({
         <Row>
           <Col>
             {' '}
-            <h6 className="display-3">Balance</h6>
+            <h6 className="display-3">Totals</h6>
           </Col>
           <Col>
             {' '}

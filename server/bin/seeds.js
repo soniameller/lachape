@@ -228,7 +228,7 @@ let tableDocs = [
     tableNb: 12,
     total: 3270,
     state: 'archived',
-    createdAt: new Date('2019-07-26T12:59:30.655+00:00'),
+    closedAt: new Date('2019-07-26T12:59:30.655+00:00'),
     orders: [
       { _dish: dishDocs[1]._id },
       { _dish: dishDocs[2]._id },
@@ -242,7 +242,7 @@ let tableDocs = [
     tableNb: 11,
     total: 5000,
     state: 'archived',
-    createdAt: new Date('2019-07-26T13:01:30.655+00:00'),
+    closedAt: new Date('2019-07-26T13:01:30.655+00:00'),
     orders: [
       { _dish: dishDocs[1]._id },
       { _dish: dishDocs[2]._id },
@@ -256,7 +256,7 @@ let tableDocs = [
     tableNb: 10,
     total: 4500,
     state: 'archived',
-    createdAt: new Date('2019-07-26T23:39:30.655+00:00'),
+    closedAt: new Date('2019-07-26T23:39:30.655+00:00'),
     orders: [
       { _dish: dishDocs[1]._id },
       { _dish: dishDocs[2]._id },
@@ -270,7 +270,7 @@ let tableDocs = [
     tableNb: 9,
     total: 4500,
     state: 'archived',
-    createdAt: new Date('2019-07-26T00:30:30.655+00:00'),
+    closedAt: new Date('2019-07-26T00:30:30.655+00:00'),
     orders: [
       { _dish: dishDocs[1]._id },
       { _dish: dishDocs[2]._id },

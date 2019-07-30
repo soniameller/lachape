@@ -3,7 +3,16 @@ import api from '../../api'
 import { useForm } from '../../hooks'
 import { Link } from 'react-router-dom'
 
-import { Table, FormGroup, Form, Input, Label, Container } from 'reactstrap'
+import {
+  Table,
+  FormGroup,
+  Form,
+  Input,
+  Label,
+  Container,
+  Row,
+  Col,
+} from 'reactstrap'
 
 export default function History() {
   const [tables, setTables] = useState([])
@@ -21,8 +30,8 @@ export default function History() {
 
   let filteredTables = tables.filter(table => {
     return (
-      new Date(formValues.from + ' 13:00:00') <= new Date(table.createdAt) &&
-      addDay(formValues.to + ' 13:00:00') >= new Date(table.createdAt)
+      new Date(formValues.from + ' 13:00:00') <= new Date(table.closedAt) &&
+      addDay(formValues.to + ' 13:00:00') >= new Date(table.closedAt)
     )
   })
 
@@ -41,58 +50,69 @@ export default function History() {
   }, [])
 
   return (
-    <Container>
+    <div>
       {/* <pre>{JSON.stringify(formValues)}</pre>
-      <pre>{tables && JSON.stringify(tables)}</pre> */}
-      <Form className="mt-3" inline>
-        <FormGroup>
-          <Label for="from">From</Label>
-          <Input type="date" {...getInputProps('from')} />
-        </FormGroup>
-        <FormGroup>
-          <Label for="to">To</Label>
-          <Input type="date" {...getInputProps('to')} />
-        </FormGroup>
-      </Form>
+  <pre>{tables && JSON.stringify(tables)}</pre> */}
+      <div className="History__img">
+        <Container>
+          <Form className="pt-3 text-white" inline>
+            <Row form>
+              <Col>
+                <FormGroup>
+                  <Label for="from">From</Label>
+                  <Input type="date" {...getInputProps('from')} />
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <Label for="to">To</Label>
+                  <Input type="date" {...getInputProps('to')} />
+                </FormGroup>
+              </Col>
+            </Row>
+          </Form>
+        </Container>
+      </div>
       <pre style={{ color: 'red' }}>
         Time is taken from the chosen day at 13.00hs to the following day of the
         chosen one at 13.00hs
       </pre>
       <pre style={{ color: 'red' }}>INPUTS ARE NOT WORKING in mobile</pre>
-
-      <Table
-        hover
-        size="sm"
-        className="mt-3 table-wrapper-scroll-y my-custom-scrollbar"
-      >
-        <thead>
-          <tr className="Table__darkRow">
-            <th>TABLE</th>
-            <th>DATE</th>
-            <th>TOTAL</th>
-            <th>TIPS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="Table__grayRow">
-            <td>Totals</td>
-            <td />
-            <td>$ {tables[0] && getTablesTotal()}</td>
-            <td>$ {tables[0] && getTablesTotal('tips')}</td>
-          </tr>
-          {[...filteredTables].map(table => (
-            <tr key={table._id}>
-              <td>
-                {' '}
-                <Link to={'/tables/' + table._id}> M{table.tableNb}</Link>
-              </td>
-              <td>{table.createdAt.substring(0, 10)}</td>
-              <td>$ {table.total}</td>
-              <td>$ {table.tips}</td>
+      <Container>
+        <Table
+          hover
+          size="sm"
+          className="mt-3 table-wrapper-scroll-y my-custom-scrollbar"
+        >
+          <thead>
+            <tr className="Table__darkRow">
+              <th>TABLE</th>
+              <th>DATE</th>
+              <th>TOTAL</th>
+              <th>TIPS</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Container>
+          </thead>
+          <tbody>
+            <tr className="Table__grayRow">
+              <td>Totals</td>
+              <td />
+              <td>$ {tables[0] && getTablesTotal()}</td>
+              <td>$ {tables[0] && getTablesTotal('tips')}</td>
+            </tr>
+            {[...filteredTables].map(table => (
+              <tr key={table._id}>
+                <td>
+                  {' '}
+                  <Link to={'/tables/' + table._id}> M{table.tableNb}</Link>
+                </td>
+                <td>{table.closedAt.substring(0, 10)}</td>
+                <td>$ {table.total}</td>
+                <td>$ {table.tips}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Container>
+    </div>
   )
 }
