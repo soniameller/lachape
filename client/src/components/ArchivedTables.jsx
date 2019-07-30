@@ -28,6 +28,7 @@ export default function ArchivedTables({
 
   function handleDelete() {
     console.log('click')
+    console.log('table service id', tableSer._id)
     api
       .deleteTable(tableSer._id)
       .then(table => {

@@ -78,7 +78,7 @@ export default function History() {
             <td>Totals</td>
             <td />
             <td>$ {tables[0] && getTablesTotal()}</td>
-            <td>Tips TODO</td>
+            <td>Tips</td>
           </tr>
           {[...filteredTables].map(table => (
             <tr key={table._id}>

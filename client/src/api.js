@@ -124,7 +124,7 @@ export default {
 
   deleteTable(tableId) {
     return service
-      .delete('/dishes/' + tableId)
+      .delete('/tables/' + tableId)
       .then(res => res.data)
       .catch(errHandler)
   },
