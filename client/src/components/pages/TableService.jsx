@@ -23,9 +23,8 @@ export default function TableService(props) {
   useEffect(() => {
     api
       .getTableId(tableId)
-
       .then(tableService => {
-        // console.log('AHAHAHAHAHAHAHHAHAH', tableService)
+        console.log('AHAHAHAHAHAHAHHAHAH', tableService)
         setTableSer(tableService)
       })
       .catch(err => console.log(err))
@@ -35,23 +34,54 @@ export default function TableService(props) {
     setTableSer({ ...tableSer, state: 'closed' })
   }
 
-  function handleChange() {
+  function handleChangeInTableDishes(event) {
     console.log('what is tableSer in handlechange', tableSer)
-    setTableSer({ ...tableSer, order: '' })
+    const id = event.target.value
+    const _dish = dishes.find(dish => dish._id === id)
+    api
+      .editTable(tableId, {
+        ...tableSer,
+        orders: [
+          ...tableSer.orders,
+          {
+            amount: 1,
+            _dish,
+          },
+        ],
+      })
+      .then(t => {
+        console.log('what coming1', t.table)
+        setTableSer(t.table)
+        // props.history.push('/tables/' + dish.dish._id)
+      })
   }
+
+  function handleChangeInNumberOfPeople() {
+    console.log(tableSer)
+    api.editTable(tableId, tableSer).then(t => {
+      setFormValues({
+        number: t.amountOfPeople,
+      })
+    })
+    setTableSer({
+      ...tableSer,
+    })
+  }
+
+  function handleChangeInClientName() {}
 
   function handleDishAmount(i, amount) {
     console.log('what is i', i)
-
     console.log('to make it clear', tableSer)
     setTableSer({
       ...tableSer,
       orders: tableSer.orders.map(order => {
         if (order._id !== i) return order
-        return {
-          ...order,
-          amount: order.amount + amount,
-        }
+        else
+          return {
+            ...order,
+            amount: order.amount + amount,
+          }
       }),
     })
   }
@@ -72,12 +102,20 @@ export default function TableService(props) {
             <h1>Table {tableSer.tableNb}</h1>
           </Col>
           <Col>
+            <p>
+              <strong>Name: </strong> {tableSer.clientName} <br />
+              <strong> Diners: </strong> {tableSer.amountOfPeople}
+            </p>
+          </Col>
+          <Col>
             <Input
               type="number"
               placeholder="Number of people"
               min="1"
               max="5"
               {...getInputProps('number')}
+              onChange={() => handleChangeInNumberOfPeople()}
+              //onChange={handleChangeInNumberOfPeople}
             />
           </Col>
         </Row>
@@ -90,6 +128,7 @@ export default function TableService(props) {
               type="text"
               placeholder="Client's name"
               {...getInputProps('name')}
+              onChange={handleChangeInClientName}
             />
           </Col>
         </Row>
@@ -97,7 +136,7 @@ export default function TableService(props) {
         <Table>
           <thead>
             <tr>
-              <th />
+              <th>Amount</th>
               <th>Orders</th>
               <th>Actions</th>
             </tr>
@@ -130,7 +169,11 @@ export default function TableService(props) {
 
         <Row className="my-4">
           <Col>
-            <Input type="select" {...getInputProps('food')}>
+            <Input
+              type="select"
+              {...getInputProps('food')}
+              onChange={handleChangeInTableDishes}
+            >
               <option value="" disabled>
                 ---Food---
               </option>
@@ -138,17 +181,21 @@ export default function TableService(props) {
                 .filter(dish => dish.type === 'Food' || dish.type === 'Dessert')
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map(d => (
-                  <option key={d._id} value={d.name} onClick={handleChange}>
+                  <option key={d._id} value={d._id}>
                     {d.name}
                   </option>
                 ))}
             </Input>
-            <Button color="dark" outline>
+            {/* <Button color="dark" outline>
               Add Food!
-            </Button>
+            </Button> */}
           </Col>
           <Col>
-            <Input type="select" {...getInputProps('drink')}>
+            <Input
+              type="select"
+              {...getInputProps('drink')}
+              onChange={handleChangeInTableDishes}
+            >
               <option value="" disabled>
                 ---Drink---
               </option>
@@ -156,14 +203,14 @@ export default function TableService(props) {
                 .filter(dish => dish.type === 'Drink')
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map(d => (
-                  <option key={d._id} value={d.name} onChange={handleChange}>
+                  <option key={d._id} value={d._id}>
                     {d.name}
                   </option>
                 ))}
             </Input>
-            <Button color="dark" outline>
+            {/* <Button color="dark" outline>
               Add Drink!
-            </Button>
+            </Button> */}
           </Col>
         </Row>
         <Button
