@@ -38,7 +38,17 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:_id', (req, res, next) => {
-  let { clientName, amountOfPeople, tableNb, total, state, orders } = req.body
+  let {
+    clientName,
+    amountOfPeople,
+    tableNb,
+    total,
+    state,
+    orders,
+    tips,
+    discount,
+    closedAt,
+  } = req.body
   Table.findByIdAndUpdate(
     req.params._id,
     {
@@ -48,6 +58,9 @@ router.put('/:_id', (req, res, next) => {
       total,
       state,
       orders,
+      tips,
+      discount,
+      closedAt,
     },
     { new: true }
   )

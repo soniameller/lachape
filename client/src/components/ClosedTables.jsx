@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import api from '../api'
+// import { Link } from 'react-router-dom'
 
 import {
   Container,
@@ -11,8 +12,11 @@ import {
   Form,
   Label,
   Jumbotron,
+  ModalHeader,
+  Modal,
+  ModalFooter,
+  ModalBody,
 } from 'reactstrap'
-import { Link } from 'react-router-dom'
 
 export default function ClosedTables({
   getInputProps,
@@ -20,14 +24,8 @@ export default function ClosedTables({
   dishes,
   formValues,
   setTableSer,
+  history,
 }) {
-  useEffect(() => {
-    api.editTable(tableSer._id, tableSer).then(table => {
-      console.log('THE TABLES IS:', table)
-      setTableSer({ ...tableSer, total: totalWithDiscount(), tips: tips() })
-    })
-  }, [formValues])
-
   function getTablesTotal() {
     console.log('Table service ', tableSer)
 
@@ -47,16 +45,42 @@ export default function ClosedTables({
 
   function tips() {
     if (formValues.paid) return formValues.paid - totalWithDiscount()
+    else return 0
   }
   function tipsPercentage() {
     if (formValues.paid) return Math.floor((tips() * 100) / totalWithDiscount())
   }
 
-  function openTable() {
+  function handleOpen() {
     setTableSer({ ...tableSer, state: 'open' })
   }
-  function archiveTable() {
-    setTableSer({ ...tableSer, state: 'archive' })
+  function handleArchive() {
+    setTableSer({ ...tableSer, state: 'archived' })
+    api
+      .addTable({ tableNb: tableSer.tableNb })
+      .then(table => {
+        console.log('Created table', table)
+        history.push('/tables')
+      })
+      .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    api.editTable(tableSer._id, tableSer).then(table => {
+      // console.log('HISTORY:', history)
+      setTableSer({
+        ...tableSer,
+        total: totalWithDiscount(),
+        tips: tips(),
+        discount: formValues.discount,
+        closedAt: new Date(),
+      })
+    })
+  }, [formValues, tableSer.state])
+
+  const [isOpen, setIsOpen] = useState({ modal: false })
+  function toggle() {
+    setIsOpen({ modal: !isOpen.modal })
   }
 
   return (
@@ -143,13 +167,57 @@ export default function ClosedTables({
 
         <Row className="lead">
           <Col />
-          <Button color="dark" onClick={openTable} outline>
+          <Button color="dark" onClick={handleOpen} outline>
             Edit
           </Button>{' '}
           <Col>
-            <Button color="dark" onClick={archiveTable}>
+            <Button color="dark" onClick={toggle}>
               Archive
             </Button>
+            <Modal isOpen={isOpen.modal} toggle={toggle}>
+              {!formValues.paid && (
+                <ModalHeader toggle={toggle}>
+                  Please complete the total paid form!
+                </ModalHeader>
+              )}
+              {formValues.paid && (
+                <ModalHeader toggle={toggle}>
+                  Are you sure you want to archive?
+                </ModalHeader>
+              )}
+              <ModalBody>This action cannot be reverted</ModalBody>
+              <ModalBody>
+                <Row>
+                  <Col>
+                    {' '}
+                    {formValues.paid && (
+                      <p>
+                        <strong>Total paid:</strong> ${formValues.paid}{' '}
+                      </p>
+                    )}
+                  </Col>
+                  <Col>
+                    {formValues.discount && (
+                      <p>
+                        <strong>Discount:</strong> {formValues.discount}{' '}
+                      </p>
+                    )}
+                    {formValues.paid && (
+                      <p>
+                        <strong>Amount per person:</strong> ${amountPerPerson()}{' '}
+                      </p>
+                    )}
+                  </Col>
+                </Row>
+              </ModalBody>
+              <ModalFooter>
+                {formValues.paid && (
+                  <Button color="dark" onClick={handleArchive}>
+                    Yes! Archive
+                  </Button>
+                )}
+              </ModalFooter>
+            </Modal>
           </Col>
           <Col />
         </Row>

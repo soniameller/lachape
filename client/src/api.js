@@ -107,6 +107,13 @@ export default {
       .catch(errHandler)
   },
 
+  addTable(body) {
+    return service
+      .post('/tables', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   editTable(tableId, body) {
     // console.log('EDIT TABLE API', tableId, body)
     return service
@@ -115,6 +122,12 @@ export default {
       .catch(errHandler)
   },
 
+  deleteTable(tableId) {
+    return service
+      .delete('/tables/' + tableId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   getDishes() {
     return service
       .get('/dishes')
