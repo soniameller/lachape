@@ -217,7 +217,7 @@ export default function ClosedTables({
             </Col>
             <WhatsappShareButton
               // beforeOnClick={}
-              url={'http://localhost:3000/tables/' + tableSer._id}
+              url={'https://lachapenia.herokuapp.com/tables/' + tableSer._id}
             >
               <WhatsappIcon
                 round
