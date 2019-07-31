@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../api'
-import { Button } from 'reactstrap'
+import { Button, Jumbotron, Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 export default function DishDetail(props) {
@@ -26,33 +26,35 @@ export default function DishDetail(props) {
   }
 
   return (
-    <div className="Dish-details">
-      <h2>{dish.name}</h2>
-      <p>
-        <i>{dish.type}</i>
-      </p>
-      <h3>${dish.price}</h3>
-      <p>{dish.description}</p>
-      {/* <pre>{JSON.stringify(dish, null, 2)}</pre> */}
-      {api.isLoggedIn() && (
-        <Button className="btn-dark" onClick={handleDelete} outline>
-          Delete
-        </Button>
-      )}{' '}
-      {api.isLoggedIn() && (
-        <Button
-          className="btn-dark"
-          tag={Link}
-          to={'/edit-dish/' + dish._id}
-          outline
-        >
-          Edit
-        </Button>
-      )}{' '}
-      <br /> <br />
-      <Link className="text-dark" to="/dishes">
-         🔙 to all dishes
-      </Link>
-    </div>
+    <Container className="Dish-details p-5">
+      <Jumbotron>
+        <h2>{dish.name}</h2>
+        <p>
+          <i>{dish.type}</i>
+        </p>
+        <h3>${dish.price}</h3>
+        <p>{dish.description}</p>
+        {/* <pre>{JSON.stringify(dish, null, 2)}</pre> */}
+        {api.isLoggedIn() && (
+          <Button className="btn-dark" onClick={handleDelete} outline>
+            Delete
+          </Button>
+        )}{' '}
+        {api.isLoggedIn() && (
+          <Button
+            className="btn-dark"
+            tag={Link}
+            to={'/edit-dish/' + dish._id}
+            outline
+          >
+            Edit
+          </Button>
+        )}{' '}
+        <br /> <br />
+        <Link className="text-dark" to="/dishes">
+           🔙 to all dishes
+        </Link>
+      </Jumbotron>
+    </Container>
   )
 }
