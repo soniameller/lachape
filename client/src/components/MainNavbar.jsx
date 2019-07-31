@@ -63,7 +63,7 @@ function MainNavbar(props) {
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavLink tag={NLink} to="#">
-              Hola {api.getLocalStorageUser().nickname}
+              - {api.getLocalStorageUser().nickname} -
             </NavLink>
           </NavItem>
         </Nav>
