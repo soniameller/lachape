@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Form, Label, Container } from 'reactstrap'
+import { Table, Button, Form, Label, Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks'
 
@@ -47,7 +47,7 @@ export default function Dishes(props) {
     dish =>
       ((formValues.food && dish.type === 'Food') ||
         (formValues.dessert && dish.type === 'Dessert') ||
-        (formValues.drink && dish.type === 'Drink')) &&
+        (api.isLoggedIn() && formValues.drink && dish.type === 'Drink')) &&
       (!formValues.active || dish.active)
   )
 
@@ -65,21 +65,30 @@ export default function Dishes(props) {
             </Button>
           )}
           <Form className="m-3">
-            <input type="checkbox" {...getInputProps('food')} /> {'  '}
-            <Label className="mr-3 text-white" for="food">
-              Food
-            </Label>
-            <input type="checkbox" {...getInputProps('drink')} />
-            {'  '}
-            <Label className="mr-3 text-white" for="drink">
-              Drink
-            </Label>
-            {'  '}
-            <input type="checkbox" {...getInputProps('dessert')} />
-            {'  '}
-            <Label className="mr-3 text-white" for="dessert">
-              Dessert
-            </Label>
+            <Row>
+              <Col>
+                <input type="checkbox" {...getInputProps('food')} /> {'  '}
+                <Label className="mr-3 text-white" for="food">
+                  Food
+                </Label>
+              </Col>
+              <Col>
+                <input type="checkbox" {...getInputProps('dessert')} />
+                {'  '}
+                <Label className="mr-3 text-white" for="dessert">
+                  Dessert
+                </Label>
+              </Col>
+              {api.isLoggedIn() && (
+                <Col>
+                  {' '}
+                  <input type="checkbox" {...getInputProps('drink')} />
+                  <Label className="mr-3 text-white" for="drink">
+                    Drink
+                  </Label>
+                </Col>
+              )}
+            </Row>
           </Form>
         </Container>
       </div>
