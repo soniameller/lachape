@@ -60,7 +60,7 @@ function MainNavbar(props) {
         La chapeña
       </NavbarBrand>
       {api.isLoggedIn() && (
-        <Nav className="ml-auto" navbar>
+        <Nav className="mr-auto" navbar>
           <NavItem>
             <NavLink tag={NLink} to="#">
               Hola {api.getLocalStorageUser().nickname}
