@@ -10,5 +10,9 @@
   },
   "engines": {
     "node": "8.9.4"
+  },
+  "dependencies": {
+    "react-pdf": "^4.1.0",
+    "react-share": "^3.0.0"
   }
 }

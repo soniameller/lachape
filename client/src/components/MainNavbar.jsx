@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import api from '../api'
 import { Link, NavLink as NLink } from 'react-router-dom'
 import { withRouter } from 'react-router'
@@ -39,6 +39,21 @@ function MainNavbar(props) {
     links.push({ to: '/signup', text: 'Signup' })
     links.push({ to: '/', text: 'Logout', onClick: handleLogoutClick })
   }
+
+  const togglerEl = useRef(null)
+
+  useEffect(() => {
+    window.onclick = e => {
+      console.log('window.onClick', e)
+      if (togglerEl.current !== e.target) {
+        setIsOpen(false)
+      }
+    }
+    return () => {
+      window.onclick = null
+    }
+  }, [])
+
   return (
     <Navbar color="dark" dark expand="sm">
       <NavbarBrand tag={Link} className="curvedFont" to="/">
@@ -56,6 +71,7 @@ function MainNavbar(props) {
 
       <button type="button" className="navbar-toggler" onClick={toggle}>
         <img
+          ref={togglerEl}
           src="https://i.imgur.com/h9euwj3.png"
           height="58px"
           alt="logo-chapeña"
