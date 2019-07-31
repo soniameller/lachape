@@ -1,4 +1,5 @@
 $primary: #32c3ff;
+$dark: black;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
@@ -11,6 +12,15 @@ $primary: #32c3ff;
 // * {
 //   border: 1px dashed red;
 // }
+
+//----PICTURES-----
+
+// 'https://i.imgur.com/Y9aOGYG.png'
+// 'https://i.imgur.com/HpelYCD.jpg'
+// 'https://i.imgur.com/QX4PSdJ.png'
+// 'https://i.imgur.com/J2t49kh.png'
+// 'https://i.imgur.com/FrnENBN.jpg'
+// 'https://i.imgur.com/yxCEVlT.png'
 
 .curvedFont {
   font-family: laChape;
@@ -33,8 +43,14 @@ body {
   height: 100vh;
 }
 
+.Tables__img {
+  background-image: url('https://i.imgur.com/qd79Nou.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
 .Dishes__img {
-  background-image: url('https://i.imgur.com/HpelYCD.jpg');
+  background-image: url('https://i.imgur.com/Y9aOGYG.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 150px;
@@ -52,14 +68,18 @@ body {
   background-size: cover;
   height: 100vh;
 }
+.Dish-details {
+  background-image: url('https://i.imgur.com/FrnENBN.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+  padding-top: 20px;
+}
 
 .input {
   background-color: rgba($color: #000000, $alpha: 0.4);
   border-radius: 20px;
-}
-.Dish-details {
-  margin-top: 15px;
-  text-align: center;
 }
 
 .Table__darkRow {

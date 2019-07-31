@@ -84,144 +84,150 @@ export default function ClosedTables({
   }
 
   return (
-    <Container className="TableService mt-3">
-      {/* <pre style={{ color: 'red' }}>
+    <div>
+      <div className="Tables__img text-white">
+        <Container className="TableService pt-3">
+          {/* <pre style={{ color: 'red' }}>
         Populate is not working in server/routes/tables.js
       </pre> */}
-      <Row>
-        <Col>
-          <h1>Table {tableSer.tableNb}</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <p>
-            <strong>Name: </strong> {tableSer.clientName} <br />
-            <strong> Diners: </strong> {tableSer.amountOfPeople}
-          </p>
-        </Col>
-      </Row>
+          <Row>
+            <Col>
+              <h1>Table {tableSer.tableNb}</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <p>
+                <strong>Name: </strong> {tableSer.clientName} <br />
+                <strong> Diners: </strong> {tableSer.amountOfPeople}
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <Container>
+        <Table>
+          <thead>
+            <tr>
+              <th />
+              <th>Orders</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableSer &&
+              tableSer.orders.map(dish => (
+                <tr key={dish._id}>
+                  <th>{dish.amount}</th>
+                  <td>{dish._dish.name}</td>
+                  <td>$ {dish._dish.price * dish.amount}</td>
+                </tr>
+              ))}
 
-      <Table>
-        <thead>
-          <tr>
-            <th />
-            <th>Orders</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableSer &&
-            tableSer.orders.map(dish => (
-              <tr key={dish._id}>
-                <th>{dish.amount}</th>
-                <td>{dish._dish.name}</td>
-                <td>$ {dish._dish.price * dish.amount}</td>
-              </tr>
-            ))}
+            <tr>
+              <th>
+                <Button>Share</Button>
+              </th>
+              <th>
+                <Input type="select" {...getInputProps('discount')}>
+                  <option value="1">---No discount---</option>
+                  <option value="0.9">10% friend discount</option>
+                  <option value="0.85">15% discount</option>
+                  <option value="0.8">20% family discount</option>
+                </Input>
+              </th>
+              <th>
+                <p>${tableSer && totalWithDiscount()}</p>{' '}
+              </th>
+            </tr>
+          </tbody>
+        </Table>
+        {/* <pre>{JSON.stringify(formValues)}</pre> */}
+        <Jumbotron>
+          <Row>
+            <Col>
+              {' '}
+              <h6 className="display-3">Totals</h6>
+            </Col>
+            <Col>
+              {' '}
+              <Form>
+                <Label>Total paid:</Label>
+                <Input type="number" {...getInputProps('paid')} />
+              </Form>
+            </Col>
+          </Row>
+          <hr className="my-2" />
+          <Row>
+            <Col>
+              <p className="lead">
+                Amount per person: <strong>$ {amountPerPerson()}</strong>{' '}
+              </p>
+            </Col>
+            <Col>
+              <p>Change/Tips:$ {tips()}</p> <p>Tips: {tipsPercentage()}%</p>
+            </Col>
+          </Row>
 
-          <tr>
-            <th>
-              <Button>Share</Button>
-            </th>
-            <th>
-              <Input type="select" {...getInputProps('discount')}>
-                <option value="1">---No discount---</option>
-                <option value="0.9">10% friend discount</option>
-                <option value="0.85">15% discount</option>
-                <option value="0.8">20% family discount</option>
-              </Input>
-            </th>
-            <th>
-              <p>${tableSer && totalWithDiscount()}</p>{' '}
-            </th>
-          </tr>
-        </tbody>
-      </Table>
-      {/* <pre>{JSON.stringify(formValues)}</pre> */}
-      <Jumbotron>
-        <Row>
-          <Col>
-            {' '}
-            <h6 className="display-3">Totals</h6>
-          </Col>
-          <Col>
-            {' '}
-            <Form>
-              <Label>Total paid:</Label>
-              <Input type="number" {...getInputProps('paid')} />
-            </Form>
-          </Col>
-        </Row>
-        <hr className="my-2" />
-        <Row>
-          <Col>
-            <p className="lead">
-              Amount per person: <strong>$ {amountPerPerson()}</strong>{' '}
-            </p>
-          </Col>
-          <Col>
-            <p>Change/Tips:$ {tips()}</p> <p>Tips: {tipsPercentage()}%</p>
-          </Col>
-        </Row>
-
-        <Row className="lead">
-          <Col />
-          <Button color="dark" onClick={handleOpen} outline>
-            Edit
-          </Button>{' '}
-          <Col>
-            <Button color="dark" onClick={toggle}>
-              Archive
-            </Button>
-            <Modal isOpen={isOpen.modal} toggle={toggle}>
-              {!formValues.paid && (
-                <ModalHeader toggle={toggle}>
-                  Please complete the total paid form!
-                </ModalHeader>
-              )}
-              {formValues.paid && (
-                <ModalHeader toggle={toggle}>
-                  Are you sure you want to archive?
-                </ModalHeader>
-              )}
-              <ModalBody>This action cannot be reverted</ModalBody>
-              <ModalBody>
-                <Row>
-                  <Col>
-                    {' '}
-                    {formValues.paid && (
-                      <p>
-                        <strong>Total paid:</strong> ${formValues.paid}{' '}
-                      </p>
-                    )}
-                  </Col>
-                  <Col>
-                    {formValues.discount && (
-                      <p>
-                        <strong>Discount:</strong> {formValues.discount}{' '}
-                      </p>
-                    )}
-                    {formValues.paid && (
-                      <p>
-                        <strong>Amount per person:</strong> ${amountPerPerson()}{' '}
-                      </p>
-                    )}
-                  </Col>
-                </Row>
-              </ModalBody>
-              <ModalFooter>
-                {formValues.paid && (
-                  <Button color="dark" onClick={handleArchive}>
-                    Yes! Archive
-                  </Button>
+          <Row className="lead">
+            <Col />
+            <Button color="dark" onClick={handleOpen} outline>
+              Edit
+            </Button>{' '}
+            <Col>
+              <Button color="dark" onClick={toggle}>
+                Archive
+              </Button>
+              <Modal isOpen={isOpen.modal} toggle={toggle}>
+                {!formValues.paid && (
+                  <ModalHeader toggle={toggle}>
+                    Please complete the total paid form!
+                  </ModalHeader>
                 )}
-              </ModalFooter>
-            </Modal>
-          </Col>
-          <Col />
-        </Row>
-      </Jumbotron>
-    </Container>
+                {formValues.paid && (
+                  <ModalHeader toggle={toggle}>
+                    Are you sure you want to archive?
+                  </ModalHeader>
+                )}
+                <ModalBody>This action cannot be reverted</ModalBody>
+                <ModalBody>
+                  <Row>
+                    <Col>
+                      {' '}
+                      {formValues.paid && (
+                        <p>
+                          <strong>Total paid:</strong> ${formValues.paid}{' '}
+                        </p>
+                      )}
+                    </Col>
+                    <Col>
+                      {formValues.discount && (
+                        <p>
+                          <strong>Discount:</strong> {formValues.discount}{' '}
+                        </p>
+                      )}
+                      {formValues.paid && (
+                        <p>
+                          <strong>Amount per person:</strong> $
+                          {amountPerPerson()}{' '}
+                        </p>
+                      )}
+                    </Col>
+                  </Row>
+                </ModalBody>
+                <ModalFooter>
+                  {formValues.paid && (
+                    <Button color="dark" onClick={handleArchive}>
+                      Yes! Archive
+                    </Button>
+                  )}
+                </ModalFooter>
+              </Modal>
+            </Col>
+            <Col />
+          </Row>
+        </Jumbotron>
+      </Container>
+    </div>
   )
 }

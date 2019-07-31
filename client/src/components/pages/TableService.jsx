@@ -120,134 +120,141 @@ export default function TableService(props) {
 
   if (tableSer.state === 'open') {
     return (
-      <Container className="TableService mt-3">
-        <Row>
-          <Col>
-            <h1>Table {tableSer.tableNb}</h1>
-          </Col>
-          {/* <Col>
+      <div>
+        <div className="Tables__img text-white">
+          <Container className="TableService pt-3">
+            <Row>
+              <Col>
+                <h1>Table {tableSer.tableNb}</h1>
+              </Col>
+              {/* <Col>
             <p>
               <strong>Name: </strong> {tableSer.clientName} <br />
               <strong> Diners: </strong> {tableSer.amountOfPeople}
             </p>
           </Col> */}
-          <Col>
-            <Input
-              name="amountOfPeople"
-              type="number"
-              placeholder="Number of people"
-              min="1"
-              max="5"
-              // {...getInputProps('number')}
-              onChange={handleChangeInNumberOfPeople}
-            />
-          </Col>
-        </Row>
-        <Row className="my-4">
-          <Col>
-            <Button>Start tracking</Button>
-          </Col>
-          <Col>
-            <Input
-              name="clientName"
-              value={tableSer.name}
-              type="text"
-              placeholder="Client's name"
-              // {...getInputProps('name')}
-              onChange={handleChangeInClientName}
-            />
-          </Col>
-        </Row>
-
-        <Table>
-          <thead>
-            <tr>
-              <th>Amount</th>
-              <th>Orders</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
-            {tableSer &&
-              tableSer.orders.map(dish => (
-                <tr key={dish._id}>
-                  <th>{dish.amount}</th>
-                  <th>{dish._dish.name}</th>
-                  <th>
-                    <Button
-                      onClick={() => handleDishAmount(dish._id, +1)}
-                      outline
-                    >
-                      +
-                    </Button>
-                    <Button
-                      onClick={() => handleDishAmount(dish._id, -1)}
-                      outline
-                    >
-                      -
-                    </Button>
-                  </th>
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-
-        <Row className="my-4">
-          <Col>
-            <Input
-              type="select"
-              {...getInputProps('food')}
-              onChange={handleChangeInTableDishes}
-            >
-              <option value="" disabled>
-                ---Food---
-              </option>
-              {[...dishes]
-                .filter(dish => dish.type === 'Food' || dish.type === 'Dessert')
-                .sort((a, b) => (a.name > b.name ? 1 : -1))
-                .map(d => (
-                  <option key={d._id} value={d._id}>
-                    {d.name}
-                  </option>
+              <Col>
+                <Input
+                  name="amountOfPeople"
+                  type="number"
+                  placeholder="Number of people"
+                  min="1"
+                  max="5"
+                  // {...getInputProps('number')}
+                  onChange={handleChangeInNumberOfPeople}
+                />
+              </Col>
+            </Row>
+            <Row className="my-4">
+              <Col>
+                <Button>Start tracking</Button>
+              </Col>
+              <Col>
+                <Input
+                  name="clientName"
+                  value={tableSer.name}
+                  type="text"
+                  placeholder="Client's name"
+                  // {...getInputProps('name')}
+                  onChange={handleChangeInClientName}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <Container>
+          <Table>
+            <thead>
+              <tr>
+                <th>Amount</th>
+                <th>Orders</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
+              {tableSer &&
+                tableSer.orders.map(dish => (
+                  <tr key={dish._id}>
+                    <th>{dish.amount}</th>
+                    <th>{dish._dish.name}</th>
+                    <th>
+                      <Button
+                        onClick={() => handleDishAmount(dish._id, +1)}
+                        outline
+                      >
+                        +
+                      </Button>
+                      <Button
+                        onClick={() => handleDishAmount(dish._id, -1)}
+                        outline
+                      >
+                        -
+                      </Button>
+                    </th>
+                  </tr>
                 ))}
-            </Input>
-            {/* <Button color="dark" outline>
+            </tbody>
+          </Table>
+
+          <Row className="my-4">
+            <Col>
+              <Input
+                type="select"
+                {...getInputProps('food')}
+                onChange={handleChangeInTableDishes}
+              >
+                <option value="" disabled>
+                  ---Food---
+                </option>
+                {[...dishes]
+                  .filter(
+                    dish => dish.type === 'Food' || dish.type === 'Dessert'
+                  )
+                  .sort((a, b) => (a.name > b.name ? 1 : -1))
+                  .map(d => (
+                    <option key={d._id} value={d._id}>
+                      {d.name}
+                    </option>
+                  ))}
+              </Input>
+              {/* <Button color="dark" outline>
               Add Food!
             </Button> */}
-          </Col>
-          <Col>
-            <Input
-              type="select"
-              {...getInputProps('drink')}
-              onChange={handleChangeInTableDishes}
-            >
-              <option value="" disabled>
-                ---Drink---
-              </option>
-              {[...dishes]
-                .filter(dish => dish.type === 'Drink')
-                .sort((a, b) => (a.name > b.name ? 1 : -1))
-                .map(d => (
-                  <option key={d._id} value={d._id}>
-                    {d.name}
-                  </option>
-                ))}
-            </Input>
-            {/* <Button color="dark" outline>
+            </Col>
+            <Col>
+              <Input
+                type="select"
+                {...getInputProps('drink')}
+                onChange={handleChangeInTableDishes}
+              >
+                <option value="" disabled>
+                  ---Drink---
+                </option>
+                {[...dishes]
+                  .filter(dish => dish.type === 'Drink')
+                  .sort((a, b) => (a.name > b.name ? 1 : -1))
+                  .map(d => (
+                    <option key={d._id} value={d._id}>
+                      {d.name}
+                    </option>
+                  ))}
+              </Input>
+              {/* <Button color="dark" outline>
               Add Drink!
             </Button> */}
-          </Col>
-        </Row>
-        <Button
-          tag={Link}
-          to={'/tables/' + tableSer._id}
-          onClick={closeTable}
-          outline
-        >
-          Close table
-        </Button>
-      </Container>
+            </Col>
+          </Row>
+          <Button
+            tag={Link}
+            to={'/tables/' + tableSer._id}
+            onClick={closeTable}
+            outline
+          >
+            Close table
+          </Button>
+        </Container>
+      </div>
     )
   }
 

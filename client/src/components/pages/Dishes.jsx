@@ -59,19 +59,27 @@ export default function Dishes(props) {
       </pre> */}
       <div className="Dishes__img">
         <Container className="pt-5">
-          {api.isLoggedIn() && <Button onClick={handleClick}>Add New</Button>}
+          {api.isLoggedIn() && (
+            <Button className="btn-dark" onClick={handleClick}>
+              Add New
+            </Button>
+          )}
           <Form className="m-3">
             <input type="checkbox" {...getInputProps('food')} /> {'  '}
-            <Label className="mr-3 " for="food">
+            <Label className="mr-3 text-white" for="food">
               Food
             </Label>
             <input type="checkbox" {...getInputProps('drink')} />
             {'  '}
-            <Label for="drink">Drink</Label>
+            <Label className="mr-3 text-white" for="drink">
+              Drink
+            </Label>
             {'  '}
             <input type="checkbox" {...getInputProps('dessert')} />
             {'  '}
-            <Label for="dessert">Dessert</Label>
+            <Label className="mr-3 text-white" for="dessert">
+              Dessert
+            </Label>
           </Form>
         </Container>
       </div>
@@ -84,8 +92,8 @@ export default function Dishes(props) {
                   <input type="checkbox" {...getInputProps('active')} />
                 </th>
               )}
-              <th>Dish</th>
-              <th>Price</th>
+              <th>Active</th>
+              <th />
               <th />
             </tr>
           </thead>
