@@ -118,7 +118,7 @@ export default function TableService(props) {
     )
   }
 
-  if (tableSer.state === 'open') {
+  if (tableSer.state === 'open' && api.isLoggedIn()) {
     return (
       <div>
         <div className="Tables__img text-white">
@@ -281,5 +281,5 @@ export default function TableService(props) {
         history={props.history}
       />
     )
-  }
+  } else return <Container>This content is not further available</Container>
 }

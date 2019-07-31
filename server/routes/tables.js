@@ -15,7 +15,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/:_id', isLoggedIn, (req, res, next) => {
+router.get('/:_id', (req, res, next) => {
   console.log(req.params._id)
   Table.findById(req.params._id)
     .populate('orders._dish')
@@ -35,6 +35,23 @@ router.post('/', isLoggedIn, (req, res, next) => {
       })
     })
     .catch(err => next(err))
+})
+
+router.post('/archive-and-add-table', isLoggedIn, (req, res, next) => {
+  let { tableNb } = req.body
+  Table.updateMany(
+    { tableNb },
+    { state: 'archived', closedAt: new Date() }
+  ).then(() => {
+    Table.create({ tableNb })
+      .then(table => {
+        res.json({
+          table,
+          success: true,
+        })
+      })
+      .catch(err => next(err))
+  })
 })
 
 router.put('/:_id', isLoggedIn, (req, res, next) => {

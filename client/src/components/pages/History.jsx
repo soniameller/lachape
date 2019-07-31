@@ -22,6 +22,15 @@ export default function History() {
     to: new Date().toISOString().substring(0, 10),
   })
 
+  function strToDateAt1300(str) {
+    let date = new Date(str)
+    date.setHours(13)
+    date.setMinutes(0)
+    date.setSeconds(0)
+    date.setMilliseconds(0)
+    return date
+  }
+
   function addDay(initialDate) {
     let date = new Date(initialDate)
     date.setDate(date.getDate() + 1)
@@ -30,8 +39,8 @@ export default function History() {
 
   let filteredTables = tables.filter(table => {
     return (
-      new Date(formValues.from + ' 13:00:00') <= new Date(table.closedAt) &&
-      addDay(formValues.to + ' 13:00:00') >= new Date(table.closedAt)
+      strToDateAt1300(formValues.from) <= new Date(table.closedAt) &&
+      addDay(strToDateAt1300(formValues.to)) >= new Date(table.closedAt)
     )
   })
 
@@ -51,8 +60,8 @@ export default function History() {
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(formValues)}</pre>
-  <pre>{tables && JSON.stringify(tables)}</pre> */}
+      <pre>{JSON.stringify(formValues)}</pre>
+      {/* <pre>{tables && JSON.stringify(tables, null, 2)}</pre> */}
       <div className="History__img">
         <Container>
           <Form className="pt-3 text-white" inline>

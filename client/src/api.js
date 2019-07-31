@@ -114,6 +114,13 @@ export default {
       .catch(errHandler)
   },
 
+  archiveAndAddTable(body) {
+    return service
+      .post('/tables/archive-and-add-table', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   editTable(tableId, body) {
     // console.log('EDIT TABLE API', tableId, body)
     return service
