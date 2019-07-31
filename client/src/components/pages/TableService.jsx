@@ -84,6 +84,21 @@ export default function TableService(props) {
   function handleDishAmount(i, amount) {
     console.log('what is i', i)
     console.log('to make it clear', tableSer)
+
+    api.editTable(tableId, {
+      ...tableSer,
+      orders: tableSer.orders
+        .map(order => {
+          if (order._id !== i) return order
+
+          return {
+            ...order,
+            amount: order.amount + amount,
+          }
+        })
+        .filter(order => order.amount > 0),
+    })
+
     setTableSer({
       ...tableSer,
       orders: tableSer.orders
