@@ -1,11 +1,31 @@
 $primary: #32c3ff;
+$dark: black;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+@font-face {
+  font-family: laChape;
+  // src: url('/fonts/learning_curve_bold_ot_tt.ttf');
+  src: url('/fonts/BridgetScript.ttf');
+}
 
 // * {
 //   border: 1px dashed red;
 // }
 
+//----PICTURES-----
+
+// 'https://i.imgur.com/Y9aOGYG.png'
+// 'https://i.imgur.com/HpelYCD.jpg'
+// 'https://i.imgur.com/QX4PSdJ.png'
+// 'https://i.imgur.com/J2t49kh.png'
+// 'https://i.imgur.com/FrnENBN.jpg'
+// 'https://i.imgur.com/yxCEVlT.png'
+
+.curvedFont {
+  font-family: laChape;
+  font-size: 40px;
+}
 body {
   margin: 0;
   padding: 0;
@@ -16,16 +36,50 @@ body {
   border: transparent;
 }
 
-.Home {
+.Background-img {
   background-image: url('https://i.imgur.com/QX4PSdJ.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
 }
 
+.Tables__img {
+  background-image: url('https://i.imgur.com/qd79Nou.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+.Dishes__img {
+  background-image: url('https://i.imgur.com/Y9aOGYG.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+.History__img {
+  background-image: url('https://i.imgur.com/nKZ0OFH.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+
+.Login {
+  background-image: url('https://i.imgur.com/QX4PSdJ.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
 .Dish-details {
-  margin-top: 15px;
+  background-image: url('https://i.imgur.com/FrnENBN.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
   text-align: center;
+  padding-top: 20px;
+}
+
+.input {
+  background-color: rgba($color: #000000, $alpha: 0.4);
+  border-radius: 20px;
 }
 
 .Table__darkRow {

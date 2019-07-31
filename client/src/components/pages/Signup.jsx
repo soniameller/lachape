@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import api from '../../api'
+import { Form, Container, Button } from 'reactstrap'
 
 export default function Signup(props) {
   const [state, setState] = useState({
@@ -37,44 +38,69 @@ export default function Signup(props) {
       .catch(err => setState({ message: err.toString() }))
   }
   return (
-    <div className="Signup">
-      <h2>Signup</h2>
-      <form>
-        email:{' '}
-        <input
-          type="text"
-          value={state.email}
-          name="email"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        Name:{' '}
-        <input
-          type="text"
-          value={state.name}
-          name="name"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        Nickname:{' '}
-        <input
-          type="text"
-          value={state.nickname}
-          name="nickname"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        Password:{' '}
-        <input
-          type="password"
-          value={state.password}
-          name="password"
-          onChange={handleInputChange}
-        />{' '}
-        <br />
-        <button onClick={e => handleClick(e)}>Signup</button>
-      </form>
-      {state.message && <div className="info info-danger">{state.message}</div>}
+    <div className="Background-img pt-5">
+      <Container>
+        <h2 className="text-white">Signup</h2>
+        <Form className=" text-white">
+          <div className="form-group ">
+            <label for="email">Email address</label>
+            <input
+              type="text"
+              placeholder="Email"
+              value={state.email}
+              id="email"
+              name="email"
+              className="form-control"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="form-group ">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              placeholder="Name"
+              className="form-control"
+              id="name"
+              value={state.name}
+              name="name"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="form-group ">
+            <label for="name">Nickname</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Nickname"
+              value={state.nickname}
+              id="nickname"
+              name="nickname"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="form-group ">
+            <label for="name">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              className="form-control"
+              value={state.password}
+              id="password"
+              name="password"
+              onChange={handleInputChange}
+            />
+          </div>
+          <Button
+            className="btn btn-light mt-3 curvedFont "
+            onClick={e => handleClick(e)}
+          >
+            signup
+          </Button>
+        </Form>
+        {state.message && (
+          <div className="info info-danger">{state.message}</div>
+        )}
+      </Container>
     </div>
   )
 }
