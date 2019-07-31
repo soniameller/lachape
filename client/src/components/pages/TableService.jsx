@@ -40,17 +40,24 @@ export default function TableService(props) {
     console.log('what is tableSer in handlechange', tableSer)
     const id = event.target.value
     const _dish = dishes.find(dish => dish._id === id)
+    console.log('kkkkkkk', _dish._id)
+    // if (id !== _dish._id) return
+    let newOrders = [...tableSer.orders]
+    let indexOfOrder = tableSer.orders.findIndex(o => o._dish._id === id)
+    if (indexOfOrder === -1) {
+      newOrders.push({
+        amount: 1,
+        _dish,
+      })
+    } else {
+      newOrders[indexOfOrder].amount++
+    }
     api
       .editTable(tableId, {
         ...tableSer,
-        orders: [
-          ...tableSer.orders,
-          {
-            amount: 1,
-            _dish,
-          },
-        ],
+        orders: newOrders,
       })
+      // .filter(_id => _id !==  )
       .then(t => {
         console.log('what coming1', t.table)
         setTableSer(t.table)
@@ -64,21 +71,6 @@ export default function TableService(props) {
       amountOfPeople: number,
     })
     setTableSer({ ...tableSer, amountOfPeople: number })
-    // console.log(tableSer)
-    // api
-    //   .editTable(tableId, {
-    //     ...tableSer,
-    //     amountOfPeople: 'number',
-    //   })
-    //   .then(t => {
-    //     console.log('what is now now now', t)
-    //     setFormValues({
-    //       number: t.amountOfPeople,
-    //     })
-    //   })
-    // setTableSer({
-    //   ...tableSer,
-    // })
   }
 
   function handleChangeInClientName(event) {
@@ -93,24 +85,37 @@ export default function TableService(props) {
   function handleDishAmount(i, amount) {
     console.log('what is i', i)
     console.log('to make it clear', tableSer)
-    setTableSer({
+
+    api.editTable(tableId, {
       ...tableSer,
-      orders: tableSer.orders.map(order => {
-        if (order._id !== i) return order
-        // if (amount === 0)
-        //   return {
-        //     ...order,
-        //     amount: 0,
-        //   }
-        else
+      orders: tableSer.orders
+        .map(order => {
+          if (order._id !== i) return order
+
           return {
             ...order,
             amount: order.amount + amount,
           }
-      }),
+        })
+        .filter(order => order.amount > 0),
+    })
+
+    setTableSer({
+      ...tableSer,
+      orders: tableSer.orders
+        .map(order => {
+          if (order._id !== i) return order
+
+          return {
+            ...order,
+            amount: order.amount + amount,
+          }
+        })
+        .filter(order => order.amount > 0),
     })
   }
 
+<<<<<<< HEAD
   function totalWithDiscount() {
     let total = tableSer.orders.reduce(
       (counter, table) => counter + table._dish.price * table.amount,
@@ -118,6 +123,10 @@ export default function TableService(props) {
     )
     if (formValues.discount) return total * formValues.discount
     else return total
+=======
+  function handleTimeTracker() {
+    console.log('lets track time')
+>>>>>>> 43705b3e2ecfa4318946b920a5149f3486e662c1
   }
 
   if (!tableSer) {
@@ -157,7 +166,7 @@ export default function TableService(props) {
             </Row>
             <Row className="my-4">
               <Col>
-                <Button>Start tracking</Button>
+                <Button onClick={handleTimeTracker}>Start tracking</Button>
               </Col>
               <Col>
                 <Input

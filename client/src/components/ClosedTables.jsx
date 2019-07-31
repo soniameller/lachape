@@ -19,7 +19,7 @@ import {
   ModalBody,
 } from 'reactstrap'
 
-import { Document, Page } from 'react-pdf'
+// import { Document, Page } from 'react-pdf'
 
 import { WhatsappShareButton, WhatsappIcon } from 'react-share'
 
