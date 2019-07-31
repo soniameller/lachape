@@ -63,21 +63,6 @@ export default function TableService(props) {
       amountOfPeople: number,
     })
     setTableSer({ ...tableSer, amountOfPeople: number })
-    // console.log(tableSer)
-    // api
-    //   .editTable(tableId, {
-    //     ...tableSer,
-    //     amountOfPeople: 'number',
-    //   })
-    //   .then(t => {
-    //     console.log('what is now now now', t)
-    //     setFormValues({
-    //       number: t.amountOfPeople,
-    //     })
-    //   })
-    // setTableSer({
-    //   ...tableSer,
-    // })
   }
 
   function handleChangeInClientName(event) {
@@ -96,11 +81,11 @@ export default function TableService(props) {
       ...tableSer,
       orders: tableSer.orders.map(order => {
         if (order._id !== i) return order
-        // if (amount === 0)
-        //   return {
-        //     ...order,
-        //     amount: 0,
-        //   }
+        // if (amount < 1) return { amount: order.amount }
+        // return {
+        //   ...order,
+        //   amount: 0,
+        // }
         else
           return {
             ...order,
@@ -137,7 +122,7 @@ export default function TableService(props) {
               type="number"
               placeholder="Number of people"
               min="1"
-              max="5"
+              max="8"
               // {...getInputProps('number')}
               onChange={handleChangeInNumberOfPeople}
             />
