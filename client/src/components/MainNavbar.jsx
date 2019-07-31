@@ -44,7 +44,7 @@ function MainNavbar(props) {
 
   useEffect(() => {
     window.onclick = e => {
-      console.log('window.onClick', e)
+      // console.log('window.onClick', e)
       if (togglerEl.current !== e.target) {
         setIsOpen(false)
       }

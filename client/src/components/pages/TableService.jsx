@@ -5,6 +5,7 @@ import { useForm } from '../../hooks'
 import { Link } from 'react-router-dom'
 import ClosedTables from '../ClosedTables'
 import ArchivedTables from '../ArchivedTables'
+import ClientCheck from '../ClientCheck'
 
 export default function TableService(props) {
   const [dishes, setDishes] = useState([])
@@ -108,6 +109,15 @@ export default function TableService(props) {
           }
       }),
     })
+  }
+
+  function totalWithDiscount() {
+    let total = tableSer.orders.reduce(
+      (counter, table) => counter + table._dish.price * table.amount,
+      0
+    )
+    if (formValues.discount) return total * formValues.discount
+    else return total
   }
 
   if (!tableSer) {
@@ -258,7 +268,7 @@ export default function TableService(props) {
     )
   }
 
-  if (tableSer.state === 'closed') {
+  if (tableSer.state === 'closed' && api.isLoggedIn()) {
     return (
       <ClosedTables
         //Is it necesary to repeat the names?
@@ -268,11 +278,12 @@ export default function TableService(props) {
         setTableSer={setTableSer}
         dishes={dishes}
         history={props.history}
+        totalWithDiscount={totalWithDiscount}
       />
     )
   }
 
-  if (tableSer.state === 'archived') {
+  if (tableSer.state === 'archived' && api.isLoggedIn()) {
     return (
       <ArchivedTables
         tableSer={tableSer}
@@ -281,5 +292,12 @@ export default function TableService(props) {
         history={props.history}
       />
     )
-  } else return <Container>This content is not further available</Container>
+  } else
+    return (
+      <ClientCheck
+        totalWithDiscount={totalWithDiscount}
+        tableSer={tableSer}
+        formValues={formValues}
+      />
+    )
 }

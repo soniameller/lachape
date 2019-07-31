@@ -45,7 +45,7 @@ export default function History() {
   })
 
   function getTablesTotal(value = 'total') {
-    console.log(filteredTables)
+    // console.log(filteredTables)
     return filteredTables.reduce((counter, table) => counter + table[value], 0)
   }
 
@@ -60,7 +60,7 @@ export default function History() {
 
   return (
     <div>
-      <pre>{JSON.stringify(formValues)}</pre>
+      {/* <pre>{JSON.stringify(formValues)}</pre> */}
       {/* <pre>{tables && JSON.stringify(tables, null, 2)}</pre> */}
       <div className="History__img">
         <Container>
@@ -82,11 +82,6 @@ export default function History() {
           </Form>
         </Container>
       </div>
-      <pre style={{ color: 'red' }}>
-        Time is taken from the chosen day at 13.00hs to the following day of the
-        chosen one at 13.00hs
-      </pre>
-      <pre style={{ color: 'red' }}>INPUTS ARE NOT WORKING in mobile</pre>
       <Container>
         <Table
           hover
@@ -94,7 +89,7 @@ export default function History() {
           className="mt-3 table-wrapper-scroll-y my-custom-scrollbar"
         >
           <thead>
-            <tr className="Table__darkRow">
+            <tr className="Table__darkRow text-center">
               <th>TABLE</th>
               <th>DATE</th>
               <th>TOTAL</th>
@@ -102,17 +97,20 @@ export default function History() {
             </tr>
           </thead>
           <tbody>
-            <tr className="Table__grayRow">
-              <td>Totals</td>
+            <tr>
+              <th>Totals</th>
               <td />
-              <td>$ {tables[0] && getTablesTotal()}</td>
-              <td>$ {tables[0] && getTablesTotal('tips')}</td>
+              <th>$ {tables[0] && getTablesTotal()}</th>
+              <th>$ {tables[0] && getTablesTotal('tips')}</th>
             </tr>
             {[...filteredTables].map(table => (
               <tr key={table._id}>
                 <td>
                   {' '}
-                  <Link to={'/tables/' + table._id}> M{table.tableNb}</Link>
+                  <Link className="text-dark" to={'/tables/' + table._id}>
+                    {' '}
+                    M{table.tableNb}
+                  </Link>
                 </td>
                 <td>{table.closedAt.substring(0, 10)}</td>
                 <td>$ {table.total}</td>

@@ -1,5 +1,6 @@
 $primary: #32c3ff;
 $dark: black;
+$jumbotron-bg: rgba(233, 236, 239, 0.8);
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
@@ -21,6 +22,10 @@ $dark: black;
 // 'https://i.imgur.com/J2t49kh.png'
 // 'https://i.imgur.com/FrnENBN.jpg'
 // 'https://i.imgur.com/yxCEVlT.png'
+// Black and white fire
+// 'https://i.imgur.com/OSMKT84.png'
+//Los chicos
+// 'https://i.imgur.com/kUpKDar.png'
 
 .curvedFont {
   font-family: laChape;
@@ -42,6 +47,12 @@ body {
   background-size: cover;
   height: 100vh;
 }
+.Background-img--cooks {
+  background-image: url('https://i.imgur.com/PJWfJRz.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
 
 .Tables__img {
   background-image: url('https://i.imgur.com/qd79Nou.png');
@@ -50,7 +61,7 @@ body {
   height: 150px;
 }
 .Dishes__img {
-  background-image: url('https://i.imgur.com/Y9aOGYG.png');
+  background-image: url('https://i.imgur.com/cBkvasU.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 150px;

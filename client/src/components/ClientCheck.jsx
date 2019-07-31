@@ -1,26 +1,13 @@
 import React from 'react'
-import {
-  Jumbotron,
-  Row,
-  Col,
-  Form,
-  Label,
-  Input,
-  Container,
-  Table,
-} from 'reactstrap'
+import { Jumbotron, Row, Col, Container, Table } from 'reactstrap'
 
 export default function ClientCheck({
-  getInputProps,
-  amountPerPerson,
-  tipsPercentage,
-  tips,
   tableSer,
   totalWithDiscount,
   formValues,
 }) {
   return (
-    <div className="Background-img">
+    <div className="Background-img--cooks">
       <Container className="pt-5">
         <Row className="text-white">
           <Col>
@@ -36,13 +23,13 @@ export default function ClientCheck({
         </Row>
         <Jumbotron className="">
           <Table>
-            <thead>
+            {/* <thead>
               <tr>
                 <th />
                 <th>Orders</th>
                 <th>Total</th>
               </tr>
-            </thead>
+            </thead> */}
             <tbody>
               {tableSer &&
                 tableSer.orders.map(dish => (
@@ -55,19 +42,22 @@ export default function ClientCheck({
 
               <tr>
                 <th />
-                <th>
-                  <pre>{formValues.discount}</pre>
-                </th>
+                <th>{formValues.discount}</th>
                 <th>
                   <p>${tableSer && totalWithDiscount()}</p>{' '}
                 </th>
               </tr>
             </tbody>
           </Table>
-          <div className="ml-auto">
-            <h6>Gracias por venir, </h6>
-            <h1 className="curvedFont">La Chape</h1>
-          </div>
+          <Row>
+            <Col xs="4">
+              <img src="https://i.imgur.com/nJXlbMc.png" height="70px" alt="" />
+            </Col>
+            <Col xs="8">
+              <h6> Thank you!</h6>
+              <h1 className="curvedFont">La Chapeña</h1>
+            </Col>
+          </Row>
         </Jumbotron>
       </Container>
     </div>
