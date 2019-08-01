@@ -12,6 +12,7 @@ import {
   Container,
   Row,
   Col,
+  Button,
 } from 'reactstrap'
 
 export default function History() {
@@ -66,13 +67,13 @@ export default function History() {
         <Container>
           <Form className="pt-3 text-white" inline>
             <Row form>
-              <Col>
+              <Col xs={6}>
                 <FormGroup>
                   <Label for="from">From</Label>
                   <Input type="date" {...getInputProps('from')} />
                 </FormGroup>
               </Col>
-              <Col>
+              <Col xs={6}>
                 <FormGroup>
                   <Label for="to">To</Label>
                   <Input type="date" {...getInputProps('to')} />
@@ -106,11 +107,19 @@ export default function History() {
             {[...filteredTables].map(table => (
               <tr key={table._id}>
                 <td>
-                  {' '}
-                  <Link className="text-dark" to={'/tables/' + table._id}>
+                  <Button
+                    color="dark"
+                    size="sm"
+                    outline
+                    tag={Link}
+                    to={'/tables/' + table._id}
+                  >
+                    M{table.tableNb}
+                  </Button>
+                  {/* <Link className="text-dark" to={'/tables/' + table._id}>
                     {' '}
                     M{table.tableNb}
-                  </Link>
+                  </Link> */}
                 </td>
                 <td>{table.closedAt.substring(0, 10)}</td>
                 <td>$ {table.total}</td>
