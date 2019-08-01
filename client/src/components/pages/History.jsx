@@ -65,21 +65,15 @@ export default function History() {
       {/* <pre>{tables && JSON.stringify(tables, null, 2)}</pre> */}
       <div className="History__img">
         <Container>
-          <Form className="pt-3 text-white" inline>
-            <Row form>
-              <Col xs={6}>
-                <FormGroup>
-                  <Label for="from">From</Label>
-                  <Input type="date" {...getInputProps('from')} />
-                </FormGroup>
-              </Col>
-              <Col xs={6}>
-                <FormGroup>
-                  <Label for="to">To</Label>
-                  <Input type="date" {...getInputProps('to')} />
-                </FormGroup>
-              </Col>
-            </Row>
+          <Form className="pt-3 text-center text-white" inline>
+            <FormGroup>
+              <Label for="from">From</Label>
+              <Input type="date" {...getInputProps('from')} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="to">To</Label>
+              <Input type="date" {...getInputProps('to')} />
+            </FormGroup>
           </Form>
         </Container>
       </div>

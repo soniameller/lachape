@@ -1,9 +1,11 @@
 import React from 'react'
-import { Button } from 'reactstrap'
-import { Link } from 'react-router-dom'
-
-import api from '../../api'
+import Example from '../Carousel.jsx'
 
 export default function Home() {
-  return <div className="Background-img" />
+  return (
+    // <div className="Background-img">
+    <div>
+      <Example />
+    </div>
+  )
 }
