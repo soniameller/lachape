@@ -33,6 +33,16 @@ const items = [
     altText: 'Slide 3',
     caption: 'Slide 3',
   },
+  {
+    src: 'https://i.imgur.com/jazw6pj.png',
+    altText: 'Slide 3',
+    caption: 'Slide 3',
+  },
+  {
+    src: 'https://i.imgur.com/n7NvGlz.png',
+    altText: 'Slide 3',
+    caption: 'Slide 3',
+  },
 ]
 
 class Example extends Component {
