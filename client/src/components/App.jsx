@@ -4,6 +4,7 @@ import MainNavbar from './MainNavbar'
 import Home from './pages/Home'
 import Dishes from './pages/Dishes'
 import Tables from './pages/Tables'
+import Tables2 from './pages/Tables2'
 import History from './pages/History'
 import DishDetail from './pages/DishDetail'
 import DishEdit from './pages/DishEdit'
@@ -23,7 +24,7 @@ export default function App() {
         <Route path="/dishes" exact component={Dishes} />
         <Route path="/dishes/:id" exact component={DishDetail} />
         <Route path="/edit-dish/:id" exact component={DishEdit} />
-        <Route path="/tables" exact component={Tables} />
+        <Route path="/tables" exact component={Tables2} />
         <Route path="/tables/:id" exact component={TableService} />
         <Route path="/tables/:id/check" exact component={TableCheck} />
         {/* <Route path="/tables-closed/:id" exact component={TableClosed} /> */}

@@ -51,6 +51,7 @@ body {
   background-size: cover;
   height: 100vh;
 }
+
 .Background-img--cooks {
   background-image: url('https://i.imgur.com/PJWfJRz.png');
   background-repeat: no-repeat;
@@ -105,4 +106,122 @@ body {
 .Table__grayRow {
   background-color: gray;
   color: darkred;
+}
+
+.Tables2 {
+  display: flex;
+  justify-content: center;
+}
+.background-plan {
+  // background-image: url('https://i.imgur.com/umXG8ST.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center;
+  // max-height: 100vw;
+  // max-width: 100vh;
+  // max-height: calc(100vh);
+  // max-width: calc(414 / 657 * 100vh);
+
+  position: relative;
+  // border: 2px solid red;
+}
+.background-plan__img {
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+.tables {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6%;
+  width: calc(6% * 657 / 414);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  // color: white;
+  // background-color: rgba(255, 0, 0, 0.5);
+}
+.table-1 {
+  top: 22.5%;
+  left: 15%;
+}
+.table-2 {
+  top: 31.5%;
+  left: 23%;
+}
+.table-3 {
+  top: 18%;
+  left: 26%;
+}
+.table-4 {
+  top: 27.5%;
+  left: 34%;
+}
+.table-5 {
+  top: 14%;
+  left: 37%;
+}
+.table-6 {
+  top: 23%;
+  left: 46%;
+}
+.table-7 {
+  top: 9.5%;
+  left: 48.5%;
+}
+.table-8 {
+  top: 19%;
+  left: 57.5%;
+}
+.table-9 {
+  top: 5.5%;
+  left: 59.5%;
+}
+.table-10 {
+  top: 15%;
+  left: 67.5%;
+}
+.table-11 {
+  top: 74%;
+  left: 68%;
+}
+.table-12 {
+  top: 78%;
+  left: 30%;
+}
+.table-13 {
+  top: 64.5%;
+  left: 16.5%;
+}
+.table-14 {
+  top: 53.5%;
+  left: 53%;
+}
+.table-15 {
+  top: 46.5%;
+  left: 17.5%;
+}
+.table-16 {
+  top: 44.5%;
+  left: 31.5%;
+}
+.table-17 {
+  top: 37.5%;
+  left: 33.5%;
+}
+.table-18 {
+  top: 36.5%;
+  left: 55.5%;
+}
+.table-19 {
+  top: 30%;
+  left: 67%;
+}
+.table-20 {
+  top: 23%;
+  left: 77%;
 }
