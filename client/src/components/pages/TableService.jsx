@@ -12,11 +12,9 @@ export default function TableService(props) {
   const [tableSer, setTableSer] = useState(null)
   const tableId = props.match.params.id
   const { formValues, setFormValues, getInputProps } = useForm()
-  const [isChange, setIsChange] = useState(null)
 
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
-      // console.log('THE DISHES ARE:', dishes)
       setDishes(dishes)
     })
   }, [])
@@ -25,8 +23,6 @@ export default function TableService(props) {
     api
       .getTableId(tableId)
       .then(tableService => {
-        console.log('AHAHAHAHAHAHAHHAHAH', tableService)
-        console.log('Props', props)
         setTableSer(tableService)
       })
       .catch(err => console.log(err))
@@ -37,11 +33,8 @@ export default function TableService(props) {
   }
 
   function handleChangeInTableDishes(event) {
-    console.log('what is tableSer in handlechange', tableSer)
     const id = event.target.value
     const _dish = dishes.find(dish => dish._id === id)
-    console.log('kkkkkkk', _dish._id)
-    // if (id !== _dish._id) return
     let newOrders = [...tableSer.orders]
     let indexOfOrder = tableSer.orders.findIndex(o => o._dish._id === id)
     if (indexOfOrder === -1) {
@@ -57,9 +50,7 @@ export default function TableService(props) {
         ...tableSer,
         orders: newOrders,
       })
-      // .filter(_id => _id !==  )
       .then(t => {
-        console.log('what coming1', t.table)
         setTableSer(t.table)
       })
   }
@@ -115,8 +106,18 @@ export default function TableService(props) {
     })
   }
 
-  function handleTimeTracker() {
-    console.log('lets track time')
+  function handleTimeTracking() {
+    if (!tableSer.waitingSince) {
+      api.startTrackingTable(tableId).then(data => {
+        setTableSer({ ...tableSer, waitingSince: data.table.waitingSince })
+        console.log('table Service', tableSer)
+      })
+    } else {
+      api.stopTrackingTable(tableId).then(data => {
+        setTableSer({ ...tableSer, waitingSince: null })
+        console.log('table Service', tableSer)
+      })
+    }
   }
 
   if (!tableSer) {
@@ -136,12 +137,6 @@ export default function TableService(props) {
               <Col>
                 <h1>Table {tableSer.tableNb}</h1>
               </Col>
-              {/* <Col>
-            <p>
-              <strong>Name: </strong> {tableSer.clientName} <br />
-              <strong> Diners: </strong> {tableSer.amountOfPeople}
-            </p>
-          </Col> */}
               <Col>
                 <Input
                   name="amountOfPeople"
@@ -149,14 +144,21 @@ export default function TableService(props) {
                   placeholder="Number of people"
                   min="1"
                   max="5"
-                  // {...getInputProps('number')}
                   onChange={handleChangeInNumberOfPeople}
                 />
               </Col>
             </Row>
             <Row className="my-4">
               <Col>
-                <Button onClick={handleTimeTracker}>Start tracking</Button>
+                <Button onClick={handleTimeTracking}>
+                  {tableSer.waitingSince ? 'Stop' : 'Start'} tracking
+                </Button>
+                {/* {tableSer && tableSer.waitingSince && (
+                  <Button onClick={handleTimeTracking}>Stop tracking</Button>
+                )}
+                {tableSer && !tableSer.waitingSince && (
+                  <Button onClick={handleTimeTracking}>Start tracking</Button>
+                )} */}
               </Col>
               <Col>
                 <Input
@@ -164,7 +166,6 @@ export default function TableService(props) {
                   value={tableSer.name}
                   type="text"
                   placeholder="Client's name"
-                  // {...getInputProps('name')}
                   onChange={handleChangeInClientName}
                 />
               </Col>
@@ -227,9 +228,6 @@ export default function TableService(props) {
                     </option>
                   ))}
               </Input>
-              {/* <Button color="dark" outline>
-              Add Food!
-            </Button> */}
             </Col>
             <Col>
               <Input
@@ -249,9 +247,6 @@ export default function TableService(props) {
                     </option>
                   ))}
               </Input>
-              {/* <Button color="dark" outline>
-              Add Drink!
-            </Button> */}
             </Col>
           </Row>
           <Button

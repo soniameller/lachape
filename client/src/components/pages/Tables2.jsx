@@ -5,6 +5,17 @@ import { Container, Spinner } from 'reactstrap'
 
 export default function Tables() {
   const [tables, setTables] = useState([])
+  const [currentDate, setCurrentDate] = useState(new Date())
+
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      setCurrentDate(new Date())
+    }, 10000)
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [])
+
   useEffect(() => {
     api
       .getTables()
@@ -12,7 +23,7 @@ export default function Tables() {
         setTables(tables)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [currentDate])
 
   let filteredTables = tables.filter(
     table => table.state === 'open' || table.state === 'closed'
@@ -24,6 +35,10 @@ export default function Tables() {
         <Spinner color="dark" />
       </Container>
     )
+  }
+
+  function getStrWaitingTime(dateStr) {
+    return Math.round((currentDate - new Date(dateStr)) / 1000) + 'seg'
   }
 
   return (
@@ -38,6 +53,9 @@ export default function Tables() {
           <div key={table._id} className={'tables table-' + table.tableNb}>
             <Link className="text-dark" to={'/tables/' + table._id}>
               <strong>{table.tableNb} </strong>
+              <span className="table__waitingTime">
+                {table.waitingSince && getStrWaitingTime(table.waitingSince)}
+              </span>
             </Link>
           </div>
         ))}

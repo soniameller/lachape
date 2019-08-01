@@ -140,6 +140,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   cursor: pointer;
   transform: translate(-50%, -50%);
   // color: white;
@@ -224,4 +225,8 @@ body {
 .table-20 {
   top: 23%;
   left: 77%;
+}
+
+.table__waitingTime {
+  color: red;
 }

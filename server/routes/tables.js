@@ -91,6 +91,39 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.put('/:_id/startTracking', isLoggedIn, (req, res, next) => {
+  Table.findByIdAndUpdate(
+    req.params._id,
+    {
+      waitingSince: new Date(),
+    },
+    { new: true }
+  )
+    .then(table => {
+      res.json({
+        message: 'Table Updated',
+        table,
+      })
+    })
+    .catch(err => next(err))
+})
+router.put('/:_id/stopTracking', isLoggedIn, (req, res, next) => {
+  Table.findByIdAndUpdate(
+    req.params._id,
+    {
+      waitingSince: null,
+    },
+    { new: true }
+  )
+    .then(table => {
+      res.json({
+        message: 'Table Updated',
+        table,
+      })
+    })
+    .catch(err => next(err))
+})
+
 router.delete('/:_id', isLoggedIn, (req, res, next) => {
   Table.findById(req.params._id).then(table => {
     Table.deleteOne({ _id: table._id })
