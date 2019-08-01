@@ -64,6 +64,7 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
     orders,
     tips,
     discount,
+    waitingSince,
     closedAt,
   } = req.body
   Table.findByIdAndUpdate(
@@ -77,6 +78,7 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
       orders,
       tips,
       discount,
+      waitingSince,
       closedAt,
     },
     { new: true }

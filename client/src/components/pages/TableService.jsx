@@ -13,6 +13,8 @@ export default function TableService(props) {
   const tableId = props.match.params.id
   const { formValues, setFormValues, getInputProps } = useForm()
   const [isChange, setIsChange] = useState(null)
+  const [displayClock, setDisplayClock] = useState(false)
+  const [date, setDate] = useState(new Date())
 
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
@@ -123,9 +125,34 @@ export default function TableService(props) {
     if (formValues.discount) return total * formValues.discount
     else return total
   }
+
   function handleTimeTracker() {
     console.log('lets track time')
+    api.editTable(tableId, {
+      ...tableSer,
+      clientName: name,
+    })
   }
+
+  // function Clock() {
+  //   console.log('Clock rendered')
+
+  //   // useEffect triggers the function after each render of the component
+  //   useEffect(() => {
+  //     console.log('Clock useEffect')
+  //     let intervalId = setInterval(() => {
+  //       console.log('interval')
+  //       setDate(new Date()) // Change the state date and rerender the component
+  //     }, 1000)
+
+  //     // The following function is executed
+  //     return () => {
+  //       console.log('Clock clean up')
+  //       clearTimeout(intervalId)
+  //     }
+  //   }, []) // With `[]`, useEffect is called only once
+  //   return <div>It is {date.toLocaleTimeString()}</div>
+  // }
 
   if (!tableSer) {
     return (
@@ -164,7 +191,10 @@ export default function TableService(props) {
             </Row>
             <Row className="my-4">
               <Col>
-                <Button onClick={handleTimeTracker}>Start tracking</Button>
+                <Button onClick={() => setDisplayClock(!displayClock)}>
+                  Track Time
+                </Button>
+                {/* {displayClock && <Clock />} */}
               </Col>
               <Col>
                 <Input
