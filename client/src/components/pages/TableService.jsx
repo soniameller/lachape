@@ -115,14 +115,6 @@ export default function TableService(props) {
     })
   }
 
-  function totalWithDiscount() {
-    let total = tableSer.orders.reduce(
-      (counter, table) => counter + table._dish.price * table.amount,
-      0
-    )
-    if (formValues.discount) return total * formValues.discount
-    else return total
-  }
   function handleTimeTracker() {
     console.log('lets track time')
   }
@@ -285,7 +277,6 @@ export default function TableService(props) {
         setTableSer={setTableSer}
         dishes={dishes}
         history={props.history}
-        totalWithDiscount={totalWithDiscount}
       />
     )
   }
@@ -299,12 +290,5 @@ export default function TableService(props) {
         history={props.history}
       />
     )
-  } else
-    return (
-      <ClientCheck
-        totalWithDiscount={totalWithDiscount}
-        tableSer={tableSer}
-        formValues={formValues}
-      />
-    )
+  } else return <ClientCheck tableSer={tableSer} formValues={formValues} />
 }

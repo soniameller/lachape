@@ -92,7 +92,9 @@ export default function ArchivedTables({
             <tr>
               <th />
               <th>
-                <pre style={{ color: 'red' }}>Discount {tableSer.discount}</pre>
+                <pre style={{ color: 'red' }}>
+                  Discount {tableSer.discount * 100 - 100}%
+                </pre>
               </th>
               <th>
                 <p>${tableSer.total}</p>{' '}

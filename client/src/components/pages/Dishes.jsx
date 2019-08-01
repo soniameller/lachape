@@ -43,12 +43,13 @@ export default function Dishes(props) {
     api.toggleActiveDish(dishId)
   }
 
-  let filterDishes = dishes.filter(
+  let filterDishesUser = dishes.filter(
     dish =>
       ((formValues.food && dish.type === 'Food') ||
         (formValues.dessert && dish.type === 'Dessert') ||
         (api.isLoggedIn() && formValues.drink && dish.type === 'Drink')) &&
-      (!formValues.active || dish.active)
+      (!formValues.active || dish.active) &&
+      (api.isLoggedIn() || dish.active)
   )
 
   return (
@@ -59,37 +60,39 @@ export default function Dishes(props) {
       </pre> */}
       <div className="Dishes__img">
         <Container className="pt-5">
-          {api.isLoggedIn() && (
-            <Button className="btn-dark" onClick={handleClick}>
-              Add New
-            </Button>
-          )}
-          <Form className="m-3">
-            <Row>
-              <Col>
-                <input type="checkbox" {...getInputProps('food')} /> {'  '}
-                <Label className="mr-3 text-white" for="food">
-                  Food
-                </Label>
-              </Col>
-              <Col>
-                <input type="checkbox" {...getInputProps('dessert')} />
-                {'  '}
-                <Label className="mr-3 text-white" for="dessert">
-                  Dessert
-                </Label>
-              </Col>
+          <Row>
+            <Col>
               {api.isLoggedIn() && (
-                <Col>
-                  {' '}
-                  <input type="checkbox" {...getInputProps('drink')} />
-                  <Label className="mr-3 text-white" for="drink">
-                    Drink
-                  </Label>
-                </Col>
+                <Button className="btn-dark" onClick={handleClick}>
+                  Add New
+                </Button>
               )}
-            </Row>
-          </Form>
+            </Col>
+            <Col>
+              <Form>
+                <Row>
+                  <input type="checkbox" {...getInputProps('food')} />
+                  <Label className="mr-3 text-white" for="food">
+                    Food
+                  </Label>
+                </Row>
+                <Row>
+                  <input type="checkbox" {...getInputProps('dessert')} />
+                  <Label className="mr-3 text-white" for="dessert">
+                    Dessert
+                  </Label>
+                </Row>
+                {api.isLoggedIn() && (
+                  <Row>
+                    <input type="checkbox" {...getInputProps('drink')} />
+                    <Label className="mr-3 text-white" for="drink">
+                      Drink
+                    </Label>
+                  </Row>
+                )}
+              </Form>
+            </Col>
+          </Row>
         </Container>
       </div>
       <Container>
@@ -107,7 +110,7 @@ export default function Dishes(props) {
             </tr>
           </thead>
           <tbody>
-            {[...filterDishes]
+            {[...filterDishesUser]
               .sort((a, b) => (a.name > b.name ? 1 : -1))
               .map((d, i) => (
                 <tr key={d._id}>
@@ -121,8 +124,12 @@ export default function Dishes(props) {
                       />
                     </td>
                   )}
-                  <td>{d.name}</td>
-                  <td>$ {d.price}</td>
+                  <td>
+                    <small>{d.name}</small>
+                  </td>
+                  <td>
+                    <small>$ {d.price}</small>
+                  </td>
                   <td>
                     <Button
                       className="btn-sm"

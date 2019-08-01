@@ -30,7 +30,6 @@ export default function ClosedTables({
   formValues,
   setTableSer,
   history,
-  totalWithDiscount,
 }) {
   function amountPerPerson() {
     return Math.floor(totalWithDiscount() / tableSer.amountOfPeople)
@@ -44,11 +43,20 @@ export default function ClosedTables({
     if (formValues.paid) return Math.floor((tips() * 100) / totalWithDiscount())
   }
 
+  function totalWithDiscount() {
+    let total = tableSer.orders.reduce(
+      (counter, table) => counter + table._dish.price * table.amount,
+      0
+    )
+    if (formValues.discount) return total * formValues.discount
+    else return total
+  }
+
   function handleOpen() {
     setTableSer({ ...tableSer, state: 'open' })
   }
+
   function handleArchive() {
-    // setTableSer({ ...tableSer, state: 'archived' })
     api
       .archiveAndAddTable({ tableNb: tableSer.tableNb })
       .then(table => {
@@ -59,15 +67,17 @@ export default function ClosedTables({
   }
 
   useEffect(() => {
-    api.editTable(tableSer._id, tableSer).then(table => {
-      // console.log('HISTORY:', history)
-      setTableSer({
-        ...tableSer,
-        total: totalWithDiscount(),
-        tips: tips(),
-        discount: formValues.discount,
-        closedAt: new Date(),
-      })
+    let newTableSer = {
+      ...tableSer,
+      total: totalWithDiscount(),
+      tips: tips(),
+      discount: formValues.discount,
+      closedAt: new Date(),
+    }
+    api.editTable(tableSer._id, newTableSer).then(table => {
+      console.log('total with discount:', totalWithDiscount())
+      console.log('HISTORY:', newTableSer)
+      setTableSer(newTableSer)
     })
   }, [formValues, tableSer.state])
 
@@ -217,7 +227,11 @@ export default function ClosedTables({
             </Col>
             <WhatsappShareButton
               // beforeOnClick={}
-              url={'https://lachapenia.herokuapp.com/tables/' + tableSer._id}
+              url={
+                'https://lachapenia.herokuapp.com/tables/' +
+                tableSer._id +
+                '/check'
+              }
             >
               <WhatsappIcon
                 round
