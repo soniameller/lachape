@@ -172,7 +172,7 @@ export default function TableService(props) {
           <Table>
             <thead>
               <tr>
-                <th>Amount</th>
+                <th />
                 <th>Orders</th>
                 <th>Actions</th>
               </tr>

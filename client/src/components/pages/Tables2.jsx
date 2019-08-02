@@ -62,7 +62,9 @@ export default function Tables() {
             <Link className="text-dark" to={'/tables/' + table._id}>
               <strong>{table.tableNb} </strong>
               <span className="table__waitingTime">
-                {table.waitingSince && getStrWaitingTime(table.waitingSince)}
+                <small>
+                  {table.waitingSince && getStrWaitingTime(table.waitingSince)}
+                </small>
               </span>
             </Link>
           </div>
