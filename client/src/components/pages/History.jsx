@@ -12,6 +12,7 @@ import {
   Container,
   Row,
   Col,
+  Button,
 } from 'reactstrap'
 
 export default function History() {
@@ -64,21 +65,15 @@ export default function History() {
       {/* <pre>{tables && JSON.stringify(tables, null, 2)}</pre> */}
       <div className="History__img">
         <Container>
-          <Form className="pt-3 text-white" inline>
-            <Row form>
-              <Col>
-                <FormGroup>
-                  <Label for="from">From</Label>
-                  <Input type="date" {...getInputProps('from')} />
-                </FormGroup>
-              </Col>
-              <Col>
-                <FormGroup>
-                  <Label for="to">To</Label>
-                  <Input type="date" {...getInputProps('to')} />
-                </FormGroup>
-              </Col>
-            </Row>
+          <Form className="pt-3 text-center text-white" inline>
+            <FormGroup>
+              <Label for="from">From</Label>
+              <Input type="date" {...getInputProps('from')} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="to">To</Label>
+              <Input type="date" {...getInputProps('to')} />
+            </FormGroup>
           </Form>
         </Container>
       </div>
@@ -106,11 +101,19 @@ export default function History() {
             {[...filteredTables].map(table => (
               <tr key={table._id}>
                 <td>
-                  {' '}
-                  <Link className="text-dark" to={'/tables/' + table._id}>
+                  <Button
+                    color="dark"
+                    size="sm"
+                    outline
+                    tag={Link}
+                    to={'/tables/' + table._id}
+                  >
+                    M{table.tableNb}
+                  </Button>
+                  {/* <Link className="text-dark" to={'/tables/' + table._id}>
                     {' '}
                     M{table.tableNb}
-                  </Link>
+                  </Link> */}
                 </td>
                 <td>{table.closedAt.substring(0, 10)}</td>
                 <td>$ {table.total}</td>

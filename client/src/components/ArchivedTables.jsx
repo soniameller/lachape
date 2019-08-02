@@ -51,9 +51,6 @@ export default function ArchivedTables({
     <div>
       <div className="Tables__img text-white">
         <Container className="TableService pt-3">
-          {/* <pre style={{ color: 'red' }}>
-        Populate is not working in server/routes/tables.js
-      </pre> */}
           <Row>
             <Col>
               <h1>Table {tableSer.tableNb}</h1>
@@ -92,7 +89,11 @@ export default function ArchivedTables({
             <tr>
               <th />
               <th>
-                <pre style={{ color: 'red' }}>Discount {tableSer.discount}</pre>
+                {tableSer && tableSer.discount && (
+                  <pre style={{ color: 'red' }}>
+                    Discount {tableSer.discount * 100 - 100}%
+                  </pre>
+                )}
               </th>
               <th>
                 <p>${tableSer.total}</p>{' '}

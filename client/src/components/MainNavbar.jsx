@@ -56,19 +56,6 @@ function MainNavbar(props) {
 
   return (
     <Navbar color="dark" dark expand="sm">
-      <NavbarBrand tag={Link} className="curvedFont" to="/">
-        La chapeña
-      </NavbarBrand>
-      {api.isLoggedIn() && (
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <NavLink tag={NLink} to="#">
-              - {api.getLocalStorageUser().nickname} -
-            </NavLink>
-          </NavItem>
-        </Nav>
-      )}
-
       <button type="button" className="navbar-toggler" onClick={toggle}>
         <img
           ref={togglerEl}
@@ -77,8 +64,18 @@ function MainNavbar(props) {
           alt="logo-chapeña"
         />
       </button>
+      <NavbarBrand tag={Link} className="curvedFont mr-auto" to="/">
+        La chapeña
+      </NavbarBrand>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink tag={NLink} to="#">
+              -{' '}
+              {api.getLocalStorageUser() && api.getLocalStorageUser().nickname}{' '}
+              -
+            </NavLink>
+          </NavItem>
           {links.map(link => (
             <NavItem key={link.to}>
               <NavLink tag={NLink} to={link.to} exact onClick={link.onClick}>

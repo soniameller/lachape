@@ -12,14 +12,9 @@ export default function TableService(props) {
   const [tableSer, setTableSer] = useState(null)
   const tableId = props.match.params.id
   const { formValues, setFormValues, getInputProps } = useForm()
-  const [isChange, setIsChange] = useState(null)
-  const [displayClock, setDisplayClock] = useState(false)
-  const [date, setDate] = useState(new Date())
-  const dateNow = new Date()
 
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
-      // console.log('THE DISHES ARE:', dishes)
       setDishes(dishes)
     })
   }, [])
@@ -28,8 +23,6 @@ export default function TableService(props) {
     api
       .getTableId(tableId)
       .then(tableService => {
-        console.log('AHAHAHAHAHAHAHHAHAH', tableService)
-        console.log('Props', props)
         setTableSer(tableService)
       })
       .catch(err => console.log(err))
@@ -40,11 +33,8 @@ export default function TableService(props) {
   }
 
   function handleChangeInTableDishes(event) {
-    console.log('what is tableSer in handlechange', tableSer)
     const id = event.target.value
     const _dish = dishes.find(dish => dish._id === id)
-    console.log('kkkkkkk', _dish._id)
-    // if (id !== _dish._id) return
     let newOrders = [...tableSer.orders]
     let indexOfOrder = tableSer.orders.findIndex(o => o._dish._id === id)
     if (indexOfOrder === -1) {
@@ -60,9 +50,7 @@ export default function TableService(props) {
         ...tableSer,
         orders: newOrders,
       })
-      // .filter(_id => _id !==  )
       .then(t => {
-        console.log('what coming1', t.table)
         setTableSer(t.table)
       })
   }
@@ -118,43 +106,19 @@ export default function TableService(props) {
     })
   }
 
-  function totalWithDiscount() {
-    let total = tableSer.orders.reduce(
-      (counter, table) => counter + table._dish.price * table.amount,
-      0
-    )
-    if (formValues.discount) return total * formValues.discount
-    else return total
+  function handleTimeTracking() {
+    if (!tableSer.waitingSince) {
+      api.startTrackingTable(tableId).then(data => {
+        setTableSer({ ...tableSer, waitingSince: data.table.waitingSince })
+        console.log('table Service', tableSer)
+      })
+    } else {
+      api.stopTrackingTable(tableId).then(data => {
+        setTableSer({ ...tableSer, waitingSince: null })
+        console.log('table Service', tableSer)
+      })
+    }
   }
-
-  function handleTimeTracker() {
-    console.log('lets track time', tableSer)
-    api.editTable(tableId, {
-      ...tableSer,
-      waitingSince: dateNow - new Date(),
-    })
-    setTableSer({ ...tableSer, waitingSince: new Date() })
-  }
-
-  // function Clock() {
-  //   console.log('Clock rendered')
-
-  //   // useEffect triggers the function after each render of the component
-  //   useEffect(() => {
-  //     console.log('Clock useEffect')
-  //     let intervalId = setInterval(() => {
-  //       console.log('interval')
-  //       setDate(new Date()  ) // Change the state date and rerender the component
-  //     }, 1000)
-
-  //     // The following function is executed
-  //     return () => {
-  //       console.log('Clock clean up')
-  //       clearTimeout(intervalId)
-  //     }
-  //   }, []) // With `[]`, useEffect is called only once
-  //   return <div>It is {date.toLocaleTimeString()}</div>
-  // }
 
   if (!tableSer) {
     return (
@@ -167,6 +131,7 @@ export default function TableService(props) {
   if (tableSer.state === 'open' && api.isLoggedIn()) {
     return (
       <div>
+        {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
         <div className="Tables__img text-white">
           <Container className="TableService pt-3">
             <Row>
@@ -179,31 +144,24 @@ export default function TableService(props) {
                   type="number"
                   placeholder="Number of people"
                   min="1"
-                  max="5"
-                  // {...getInputProps('number')}
+                  max="8"
                   onChange={handleChangeInNumberOfPeople}
+                  value={tableSer.amountOfPeople}
                 />
               </Col>
             </Row>
             <Row className="my-4">
               <Col>
-                <Button onClick={() => setDisplayClock(!displayClock)}>
-                  Track Time
+                <Button onClick={handleTimeTracking}>
+                  {tableSer.waitingSince ? 'Stop' : 'Start'} tracking
                 </Button>
-                {/* {displayClock && <Clock />} */}
-              </Col>
-              <Col>
-                <Button onClick={handleTimeTracker}>SOMETHING</Button>
-                <p>{dateNow - tableSer.waitingSince}</p>
-                {/* <pre>{JSON.stringify(tableSer.waitingSince)}</pre> */}
               </Col>
               <Col>
                 <Input
                   name="clientName"
-                  value={tableSer.name}
+                  value={tableSer.clientName}
                   type="text"
                   placeholder="Client's name"
-                  // {...getInputProps('name')}
                   onChange={handleChangeInClientName}
                 />
               </Col>
@@ -214,7 +172,7 @@ export default function TableService(props) {
           <Table>
             <thead>
               <tr>
-                <th>Amount</th>
+                <th />
                 <th>Orders</th>
                 <th>Actions</th>
               </tr>
@@ -228,6 +186,21 @@ export default function TableService(props) {
                     <th>{dish._dish.name}</th>
                     <th>
                       <Button
+                        className="btn btn-default btn-circle"
+                        onClick={() => handleDishAmount(dish._id, +1)}
+                        outline
+                      >
+                        +
+                      </Button>
+                      <Button
+                        className="btn btn-default btn-circle"
+                        onClick={() => handleDishAmount(dish._id, -1)}
+                        outline
+                      >
+                        -
+                      </Button>
+                      {/* <Button
+                        class="btn btn-square"
                         onClick={() => handleDishAmount(dish._id, +1)}
                         outline
                       >
@@ -238,7 +211,7 @@ export default function TableService(props) {
                         outline
                       >
                         -
-                      </Button>
+                      </Button> */}
                     </th>
                   </tr>
                 ))}
@@ -266,9 +239,6 @@ export default function TableService(props) {
                     </option>
                   ))}
               </Input>
-              {/* <Button color="dark" outline>
-              Add Food!
-            </Button> */}
             </Col>
             <Col>
               <Input
@@ -288,9 +258,6 @@ export default function TableService(props) {
                     </option>
                   ))}
               </Input>
-              {/* <Button color="dark" outline>
-              Add Drink!
-            </Button> */}
             </Col>
           </Row>
           <Button
@@ -316,7 +283,6 @@ export default function TableService(props) {
         setTableSer={setTableSer}
         dishes={dishes}
         history={props.history}
-        totalWithDiscount={totalWithDiscount}
       />
     )
   }
@@ -330,12 +296,5 @@ export default function TableService(props) {
         history={props.history}
       />
     )
-  } else
-    return (
-      <ClientCheck
-        totalWithDiscount={totalWithDiscount}
-        tableSer={tableSer}
-        formValues={formValues}
-      />
-    )
+  } else return <ClientCheck tableSer={tableSer} formValues={formValues} />
 }

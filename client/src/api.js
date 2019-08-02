@@ -129,6 +129,22 @@ export default {
       .catch(errHandler)
   },
 
+  startTrackingTable(tableId, body) {
+    // console.log('EDIT TABLE API', tableId, body)
+    return service
+      .put('/tables/' + tableId + '/startTracking', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  stopTrackingTable(tableId, body) {
+    // console.log('EDIT TABLE API', tableId, body)
+    return service
+      .put('/tables/' + tableId + '/stopTracking', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   deleteTable(tableId) {
     return service
       .delete('/tables/' + tableId)
