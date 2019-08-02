@@ -47,13 +47,41 @@ body {
 
 .Menu {
   position: relative;
-  margin-top: 35px;
-  // display: flex;
-  // align-items: center;
-  width: 315px;
-  height: 492px;
-
+  margin: 35px;
+  height: 100%;
   background: rgba(196, 196, 196, 0.67);
+}
+
+.Menu__description {
+  font-size: 9px;
+  margin-bottom: 5px;
+}
+.Menu__foodName {
+  margin: 0;
+}
+.Menu__dishes {
+  border-top: 1px solid white;
+  padding: 10px 0px 0px 0px;
+  margin: 10px 15px;
+}
+.Menu__img {
+  position: absolute;
+  transform: translate(-60%, -60%);
+
+  left: 100%;
+  // right: 100px;
+  top: 100%;
+  // bottom: 64.67%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
 }
 
 .Background-img {
@@ -67,7 +95,8 @@ body {
   background-image: url('https://i.imgur.com/PJWfJRz.png');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .Tables__img {
