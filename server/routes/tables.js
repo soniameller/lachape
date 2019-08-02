@@ -62,9 +62,9 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
     total,
     state,
     orders,
+    waitingSince,
     tips,
     discount,
-    waitingSince,
     closedAt,
   } = req.body
   Table.findByIdAndUpdate(
@@ -76,9 +76,10 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
       total,
       state,
       orders,
+      waitingSince,
       tips,
       discount,
-      waitingSince,
+
       closedAt,
     },
     { new: true }
@@ -92,6 +93,11 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
     })
     .catch(err => next(err))
 })
+
+// router.put('/:_id', isLoggedIn, (req, res, next) => {
+//   let waitingSince = req.body
+
+// })
 
 router.delete('/:_id', isLoggedIn, (req, res, next) => {
   Table.findById(req.params._id).then(table => {

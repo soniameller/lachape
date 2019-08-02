@@ -15,6 +15,7 @@ export default function TableService(props) {
   const [isChange, setIsChange] = useState(null)
   const [displayClock, setDisplayClock] = useState(false)
   const [date, setDate] = useState(new Date())
+  const dateNow = new Date()
 
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
@@ -127,11 +128,12 @@ export default function TableService(props) {
   }
 
   function handleTimeTracker() {
-    console.log('lets track time')
+    console.log('lets track time', tableSer)
     api.editTable(tableId, {
       ...tableSer,
-      clientName: name,
+      waitingSince: dateNow - new Date(),
     })
+    setTableSer({ ...tableSer, waitingSince: new Date() })
   }
 
   // function Clock() {
@@ -142,7 +144,7 @@ export default function TableService(props) {
   //     console.log('Clock useEffect')
   //     let intervalId = setInterval(() => {
   //       console.log('interval')
-  //       setDate(new Date()) // Change the state date and rerender the component
+  //       setDate(new Date()  ) // Change the state date and rerender the component
   //     }, 1000)
 
   //     // The following function is executed
@@ -171,12 +173,6 @@ export default function TableService(props) {
               <Col>
                 <h1>Table {tableSer.tableNb}</h1>
               </Col>
-              {/* <Col>
-            <p>
-              <strong>Name: </strong> {tableSer.clientName} <br />
-              <strong> Diners: </strong> {tableSer.amountOfPeople}
-            </p>
-          </Col> */}
               <Col>
                 <Input
                   name="amountOfPeople"
@@ -195,6 +191,11 @@ export default function TableService(props) {
                   Track Time
                 </Button>
                 {/* {displayClock && <Clock />} */}
+              </Col>
+              <Col>
+                <Button onClick={handleTimeTracker}>SOMETHING</Button>
+                <p>{dateNow - tableSer.waitingSince}</p>
+                {/* <pre>{JSON.stringify(tableSer.waitingSince)}</pre> */}
               </Col>
               <Col>
                 <Input
