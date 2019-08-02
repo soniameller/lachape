@@ -23,6 +23,11 @@ function MainNavbar(props) {
     { to: '/dishes', text: 'Dishes', img: 'https://i.imgur.com/vgBsNTC.png' },
   ]
   if (!api.isLoggedIn()) {
+    links.push({
+      to: '/drinks',
+      img: 'https://i.imgur.com/z0HVjnR.png',
+      text: 'Drinks',
+    })
     links.push({ to: '/login', text: 'Login' })
   }
   if (api.isLoggedIn()) {
@@ -69,13 +74,16 @@ function MainNavbar(props) {
       </NavbarBrand>
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink tag={NLink} to="#">
-              -{' '}
-              {api.getLocalStorageUser() && api.getLocalStorageUser().nickname}{' '}
-              -
-            </NavLink>
-          </NavItem>
+          {api.isLoggedIn() && (
+            <NavItem>
+              <NavLink tag={NLink} to="#">
+                -{' '}
+                {api.getLocalStorageUser() &&
+                  api.getLocalStorageUser().nickname}{' '}
+                -
+              </NavLink>
+            </NavItem>
+          )}
           {links.map(link => (
             <NavItem key={link.to}>
               <NavLink tag={NLink} to={link.to} exact onClick={link.onClick}>

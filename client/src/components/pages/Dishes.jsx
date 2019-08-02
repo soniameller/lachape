@@ -48,9 +48,8 @@ export default function Dishes(props) {
     dish =>
       ((formValues.food && dish.type === 'Food') ||
         (formValues.dessert && dish.type === 'Dessert') ||
-        (api.isLoggedIn() && formValues.drink && dish.type === 'Drink')) &&
-      (!formValues.active || dish.active) &&
-      (api.isLoggedIn() || dish.active)
+        (formValues.drink && dish.type === 'Drink')) &&
+      (!formValues.active || dish.active)
   )
 
   if (api.isLoggedIn())
@@ -101,11 +100,9 @@ export default function Dishes(props) {
           <Table>
             <thead>
               <tr>
-                {api.isLoggedIn() && (
-                  <th>
-                    <input type="checkbox" {...getInputProps('active')} />
-                  </th>
-                )}
+                <th>
+                  <input type="checkbox" {...getInputProps('active')} />
+                </th>
                 <th>Active</th>
                 <th />
                 <th />
@@ -116,16 +113,14 @@ export default function Dishes(props) {
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
                 .map((d, i) => (
                   <tr key={d._id}>
-                    {api.isLoggedIn() && (
-                      <td>
-                        <input
-                          type="checkbox"
-                          name="active"
-                          checked={d.active}
-                          onChange={() => handleChange(d._id)}
-                        />
-                      </td>
-                    )}
+                    <td>
+                      <input
+                        type="checkbox"
+                        name="active"
+                        checked={d.active}
+                        onChange={() => handleChange(d._id)}
+                      />
+                    </td>
                     <td>
                       <small>{d.name}</small>
                     </td>

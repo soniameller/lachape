@@ -119,6 +119,7 @@ let dishDocs = [
     active: true,
     price: 120,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Cerveza ipa',
@@ -126,6 +127,7 @@ let dishDocs = [
     active: true,
     price: 120,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Botella azul tinto',
@@ -133,6 +135,7 @@ let dishDocs = [
     active: true,
     price: 360,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Botella vacas',
@@ -140,6 +143,7 @@ let dishDocs = [
     active: true,
     price: 340,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Botella piedras tinto',
@@ -147,6 +151,7 @@ let dishDocs = [
     active: true,
     price: 380,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Botella piedras blanco',
@@ -154,6 +159,7 @@ let dishDocs = [
     active: true,
     price: 380,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Descorche',
@@ -161,6 +167,7 @@ let dishDocs = [
     active: true,
     price: 180,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Gin tonic',
@@ -168,6 +175,7 @@ let dishDocs = [
     active: true,
     price: 170,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Botella azul blanco',
@@ -175,6 +183,7 @@ let dishDocs = [
     active: true,
     price: 360,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Copa azul blanco',
@@ -182,6 +191,7 @@ let dishDocs = [
     active: true,
     price: 100,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Copa azul tinto',
@@ -189,6 +199,7 @@ let dishDocs = [
     active: true,
     price: 100,
     type: 'Drink',
+    description: 'alcohol',
   }),
   new Dish({
     name: 'Agua mineral',
