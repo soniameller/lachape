@@ -105,6 +105,20 @@ export default function Dishes(props) {
             <tbody>
               <tr>
                 <th>
+                  {formValues.food && (
+                    <img
+                      height="30px"
+                      src="https://i.imgur.com/iUCHOCt.png"
+                      alt=""
+                    />
+                  )}
+                  {!formValues.food && (
+                    <img
+                      height="30px"
+                      src="https://i.imgur.com/pBKElae.png"
+                      alt=""
+                    />
+                  )}
                   <input
                     style={{ opacity: 0 }}
                     type="checkbox"
@@ -152,6 +166,20 @@ export default function Dishes(props) {
                 ))}
               <tr>
                 <th>
+                  {formValues.dessert && (
+                    <img
+                      height="30px"
+                      src="https://i.imgur.com/T3hXJAs.png"
+                      alt=""
+                    />
+                  )}
+                  {!formValues.dessert && (
+                    <img
+                      height="30px"
+                      src="https://i.imgur.com/9rKMbxy.png"
+                      alt=""
+                    />
+                  )}
                   <input
                     type="checkbox"
                     id="dessert"
@@ -199,6 +227,20 @@ export default function Dishes(props) {
                 ))}
               <tr>
                 <th>
+                  {formValues.drink && (
+                    <img
+                      height="25px"
+                      src="https://i.imgur.com/h7OESb9.png"
+                      alt=""
+                    />
+                  )}
+                  {!formValues.drink && (
+                    <img
+                      height="25px"
+                      src="https://i.imgur.com/xxIzDap.png"
+                      alt=""
+                    />
+                  )}
                   <input
                     type="checkbox"
                     id="drink"
