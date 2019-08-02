@@ -10,7 +10,7 @@ export default function Tables() {
   useEffect(() => {
     let intervalId = setInterval(() => {
       setCurrentDate(new Date())
-    }, 10000)
+    }, 1000)
     return () => {
       clearInterval(intervalId)
     }
@@ -37,8 +37,16 @@ export default function Tables() {
     )
   }
 
+  function numberToStringWith2Digits(n) {
+    if (n < 10) return '0' + n
+    else return '' + n
+  }
+
   function getStrWaitingTime(dateStr) {
-    return Math.round((currentDate - new Date(dateStr)) / 1000) + 'seg'
+    let nbOfSeconds = Math.round((currentDate - new Date(dateStr)) / 1000)
+    let mm = numberToStringWith2Digits(Math.floor(nbOfSeconds / 60))
+    let ss = numberToStringWith2Digits(nbOfSeconds % 60)
+    return mm + ':' + ss
   }
 
   return (

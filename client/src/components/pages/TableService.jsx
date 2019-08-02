@@ -131,6 +131,7 @@ export default function TableService(props) {
   if (tableSer.state === 'open' && api.isLoggedIn()) {
     return (
       <div>
+        {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
         <div className="Tables__img text-white">
           <Container className="TableService pt-3">
             <Row>
@@ -145,6 +146,7 @@ export default function TableService(props) {
                   min="1"
                   max="5"
                   onChange={handleChangeInNumberOfPeople}
+                  value={tableSer.amountOfPeople}
                 />
               </Col>
             </Row>
@@ -163,7 +165,7 @@ export default function TableService(props) {
               <Col>
                 <Input
                   name="clientName"
-                  value={tableSer.name}
+                  value={tableSer.clientName}
                   type="text"
                   placeholder="Client's name"
                   onChange={handleChangeInClientName}

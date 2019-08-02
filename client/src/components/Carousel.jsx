@@ -10,38 +10,38 @@ import {
 const items = [
   {
     src: 'https://i.imgur.com/Ak43mr4.png',
-    altText: 'Slide 2',
-    caption: 'Slide 2',
+    // altText: 'Slide 2',
+    // caption: 'Slide 2',
   },
   {
     src: 'https://i.imgur.com/jKhEseV.png',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
+    // altText: 'Slide 3',
+    // caption: 'Slide 3',
   },
   {
     src: 'https://i.imgur.com/XPb8MuW.png',
-    altText: 'Slide 1',
-    caption: 'Slide 1',
+    // altText: 'Slide 1',
+    // caption: 'Slide 1',
   },
   {
     src: 'https://i.imgur.com/2fmtRUb.png',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
+    // altText: 'Slide 3',
+    // caption: 'Slide 3',
   },
   {
     src: 'https://i.imgur.com/F0hwInG.png',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
+    // altText: 'Slide 3',
+    // caption: 'Slide 3',
   },
   {
     src: 'https://i.imgur.com/jazw6pj.png',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
+    // altText: 'Slide 3',
+    // caption: 'Slide 3',
   },
   {
     src: 'https://i.imgur.com/n7NvGlz.png',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
+    // altText: 'Slide 3',
+    // caption: 'Slide 3',
   },
 ]
 
