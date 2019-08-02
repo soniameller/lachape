@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Button, Form, Label, Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks'
+import Menu from '../Menu'
 
 import api from '../../api'
 
@@ -52,99 +53,101 @@ export default function Dishes(props) {
       (api.isLoggedIn() || dish.active)
   )
 
-  return (
-    <div className="Dishes">
-      {/* <pre>
+  if (api.isLoggedIn())
+    return (
+      <div className="Dishes">
+        {/* <pre>
         {JSON.stringify(formValues, null, 2)}
         {JSON.stringify(dishes[0], null, 2)}
       </pre> */}
-      <div className="Dishes__img">
-        <Container className="pt-5">
-          <Row>
-            <Col>
-              {api.isLoggedIn() && (
-                <Button className="btn-dark" onClick={handleClick}>
-                  Add New
-                </Button>
-              )}
-            </Col>
-            <Col>
-              <Form>
-                <Row>
-                  <input type="checkbox" {...getInputProps('food')} />
-                  <Label className="mr-3 text-white" for="food">
-                    Food
-                  </Label>
-                </Row>
-                <Row>
-                  <input type="checkbox" {...getInputProps('dessert')} />
-                  <Label className="mr-3 text-white" for="dessert">
-                    Dessert
-                  </Label>
-                </Row>
+        <div className="Dishes__img">
+          <Container className="pt-5">
+            <Row>
+              <Col>
                 {api.isLoggedIn() && (
+                  <Button className="btn-dark" onClick={handleClick}>
+                    Add New
+                  </Button>
+                )}
+              </Col>
+              <Col>
+                <Form>
                   <Row>
-                    <input type="checkbox" {...getInputProps('drink')} />
-                    <Label className="mr-3 text-white" for="drink">
-                      Drink
+                    <input type="checkbox" {...getInputProps('food')} />
+                    <Label className="mr-3 text-white" for="food">
+                      Food
                     </Label>
                   </Row>
+                  <Row>
+                    <input type="checkbox" {...getInputProps('dessert')} />
+                    <Label className="mr-3 text-white" for="dessert">
+                      Dessert
+                    </Label>
+                  </Row>
+                  {api.isLoggedIn() && (
+                    <Row>
+                      <input type="checkbox" {...getInputProps('drink')} />
+                      <Label className="mr-3 text-white" for="drink">
+                        Drink
+                      </Label>
+                    </Row>
+                  )}
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <Container>
+          <Table>
+            <thead>
+              <tr>
+                {api.isLoggedIn() && (
+                  <th>
+                    <input type="checkbox" {...getInputProps('active')} />
+                  </th>
                 )}
-              </Form>
-            </Col>
-          </Row>
+                <th>Active</th>
+                <th />
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {[...filterDishesUser]
+                .sort((a, b) => (a.name > b.name ? 1 : -1))
+                .map((d, i) => (
+                  <tr key={d._id}>
+                    {api.isLoggedIn() && (
+                      <td>
+                        <input
+                          type="checkbox"
+                          name="active"
+                          checked={d.active}
+                          onChange={() => handleChange(d._id)}
+                        />
+                      </td>
+                    )}
+                    <td>
+                      <small>{d.name}</small>
+                    </td>
+                    <td>
+                      <small>$ {d.price}</small>
+                    </td>
+                    <td>
+                      <Button
+                        className="btn-sm"
+                        tag={Link}
+                        to={'/dishes/' + d._id}
+                        outline
+                      >
+                        Details
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </Table>
         </Container>
       </div>
-      <Container>
-        <Table>
-          <thead>
-            <tr>
-              {api.isLoggedIn() && (
-                <th>
-                  <input type="checkbox" {...getInputProps('active')} />
-                </th>
-              )}
-              <th>Active</th>
-              <th />
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {[...filterDishesUser]
-              .sort((a, b) => (a.name > b.name ? 1 : -1))
-              .map((d, i) => (
-                <tr key={d._id}>
-                  {api.isLoggedIn() && (
-                    <td>
-                      <input
-                        type="checkbox"
-                        name="active"
-                        checked={d.active}
-                        onChange={() => handleChange(d._id)}
-                      />
-                    </td>
-                  )}
-                  <td>
-                    <small>{d.name}</small>
-                  </td>
-                  <td>
-                    <small>$ {d.price}</small>
-                  </td>
-                  <td>
-                    <Button
-                      className="btn-sm"
-                      tag={Link}
-                      to={'/dishes/' + d._id}
-                      outline
-                    >
-                      Details
-                    </Button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-      </Container>
-    </div>
-  )
+    )
+  if (!api.isLoggedIn()) return <Menu dishes={dishes} />
 }

@@ -155,12 +155,6 @@ export default function TableService(props) {
                 <Button onClick={handleTimeTracking}>
                   {tableSer.waitingSince ? 'Stop' : 'Start'} tracking
                 </Button>
-                {/* {tableSer && tableSer.waitingSince && (
-                  <Button onClick={handleTimeTracking}>Stop tracking</Button>
-                )}
-                {tableSer && !tableSer.waitingSince && (
-                  <Button onClick={handleTimeTracking}>Start tracking</Button>
-                )} */}
               </Col>
               <Col>
                 <Input

@@ -45,14 +45,22 @@ body {
   border: transparent;
 }
 
+.Menu {
+  position: relative;
+  margin-top: 35px;
+  // display: flex;
+  // align-items: center;
+  width: 315px;
+  height: 492px;
+
+  background: rgba(196, 196, 196, 0.67);
+}
+
 .Background-img {
   background-image: url('https://i.imgur.com/n7NvGlz.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-}
-.black-bg {
-  background-color: #000000;
 }
 
 .Background-img--cooks {
