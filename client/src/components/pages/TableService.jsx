@@ -144,7 +144,7 @@ export default function TableService(props) {
                   type="number"
                   placeholder="Number of people"
                   min="1"
-                  max="5"
+                  max="8"
                   onChange={handleChangeInNumberOfPeople}
                   value={tableSer.amountOfPeople}
                 />
@@ -186,6 +186,21 @@ export default function TableService(props) {
                     <th>{dish._dish.name}</th>
                     <th>
                       <Button
+                        className="btn btn-default btn-circle"
+                        onClick={() => handleDishAmount(dish._id, +1)}
+                        outline
+                      >
+                        +
+                      </Button>
+                      <Button
+                        className="btn btn-default btn-circle"
+                        onClick={() => handleDishAmount(dish._id, -1)}
+                        outline
+                      >
+                        -
+                      </Button>
+                      {/* <Button
+                        class="btn btn-square"
                         onClick={() => handleDishAmount(dish._id, +1)}
                         outline
                       >
@@ -196,7 +211,7 @@ export default function TableService(props) {
                         outline
                       >
                         -
-                      </Button>
+                      </Button> */}
                     </th>
                   </tr>
                 ))}

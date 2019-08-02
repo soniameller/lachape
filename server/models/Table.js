@@ -12,6 +12,7 @@ const tableSchema = new Schema(
     tips: { type: Number, default: 0 },
     discount: { type: Number, default: 1 },
     closedAt: { type: Date },
+    waitingSince: { type: Date },
     state: {
       type: String,
       enum: ['open', 'closed', 'archived'],

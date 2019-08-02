@@ -62,6 +62,7 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
     total,
     state,
     orders,
+    waitingSince,
     tips,
     discount,
     closedAt,
@@ -75,8 +76,10 @@ router.put('/:_id', isLoggedIn, (req, res, next) => {
       total,
       state,
       orders,
+      waitingSince,
       tips,
       discount,
+
       closedAt,
     },
     { new: true }
