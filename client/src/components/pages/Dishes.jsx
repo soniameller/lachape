@@ -78,25 +78,25 @@ export default function Dishes(props) {
         {JSON.stringify(formValues, null, 2)}
         {JSON.stringify(dishes[0], null, 2)}
       </pre> */}
-        <div className="Dishes__img">
-          <Container className="pt-5">
+        <div className="Dishes__img p-5">
+          <Container>
             <Row>
-              {api.isLoggedIn() && (
+              <Col>
                 <Button className="btn-dark" onClick={handleClick}>
                   Add New
                 </Button>
-              )}
-            </Row>
-            <Row>
-              <input
-                type="checkbox"
-                id="active"
-                className="text-white mt-3"
-                {...getInputProps('active')}
-              />
-              <Label className="ml-3 mt-2 text-white" for="active">
-                ACTIVE
-              </Label>
+              </Col>
+              <Col>
+                <input
+                  type="checkbox"
+                  id="active"
+                  className="text-white mt-3"
+                  {...getInputProps('active')}
+                />
+                <Label className="ml-3 mt-2 text-white" for="active">
+                  ACTIVE
+                </Label>
+              </Col>
             </Row>
           </Container>
         </div>
@@ -105,7 +105,12 @@ export default function Dishes(props) {
             <tbody>
               <tr>
                 <th>
-                  <input type="checkbox" id="food" {...getInputProps('food')} />
+                  <input
+                    style={{ opacity: 0 }}
+                    type="checkbox"
+                    id="food"
+                    {...getInputProps('food')}
+                  />
                 </th>
                 <th>
                   <Label className="mr-3" for="food">
@@ -151,6 +156,7 @@ export default function Dishes(props) {
                     type="checkbox"
                     id="dessert"
                     {...getInputProps('dessert')}
+                    style={{ opacity: 0 }}
                   />
                 </th>
                 <th>
@@ -197,11 +203,12 @@ export default function Dishes(props) {
                     type="checkbox"
                     id="drink"
                     {...getInputProps('drink')}
+                    style={{ opacity: 0 }}
                   />
                 </th>
                 <th>
                   <Label className="mr-3 " for="drink">
-                    DRINK
+                    DRINKS
                   </Label>
                 </th>
                 <th />
