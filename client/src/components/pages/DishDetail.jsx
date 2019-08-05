@@ -38,7 +38,7 @@ export default function DishDetail(props) {
           {/* <pre>{JSON.stringify(dish, null, 2)}</pre> */}
           {api.isLoggedIn() && (
             <Button className="btn-dark" onClick={handleDelete} outline>
-              Delete
+              Borrar
             </Button>
           )}{' '}
           {api.isLoggedIn() && (
@@ -48,12 +48,12 @@ export default function DishDetail(props) {
               to={'/edit-dish/' + dish._id}
               outline
             >
-              Edit
+              Editar
             </Button>
           )}{' '}
           <br /> <br />
           <Link className="text-dark" to="/dishes">
-             🔙 to all dishes
+             🔙
           </Link>
         </Jumbotron>
       </Container>

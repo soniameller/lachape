@@ -21,13 +21,13 @@ export default function TableCheck(props) {
     <div className="Background-img--cooks">
       <Container className="pt-5">
         <Row className="text-white">
-          <Col>{tableSer && <h1>Table {tableSer.tableNb}</h1>}</Col>
+          <Col>{tableSer && <h1>Mesa {tableSer.tableNb}</h1>}</Col>
         </Row>
         <Row className="text-white">
           <Col>
             {tableSer && (
               <p>
-                <strong>Name: </strong> {tableSer.clientName} <br />
+                {tableSer.clientName} <br />
               </p>
             )}
           </Col>
@@ -47,12 +47,12 @@ export default function TableCheck(props) {
               <tr>
                 <th />
                 {tableSer &&
-                  (tableSer.discount && (
+                  (tableSer.discount !== 1 && (
                     <th className="curvedFont--sm">
                       {tableSer.discount * 100 - 100}% friend discount ♥︎{' '}
                     </th>
                   ))}
-                {tableSer && (!tableSer.discount && <th />)}
+                {tableSer && (tableSer.discount === 1 && <th />)}
 
                 <th>
                   <p>${tableSer && tableSer.total}</p>{' '}
@@ -65,7 +65,7 @@ export default function TableCheck(props) {
               <img src="https://i.imgur.com/nJXlbMc.png" height="70px" alt="" />
             </Col>
             <Col xs="8">
-              <h6> Thank you!</h6>
+              <h6> Muchas gracias!</h6>
               <h1 className="curvedFont">La Chapeña</h1>
             </Col>
           </Row>

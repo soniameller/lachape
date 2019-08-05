@@ -83,7 +83,7 @@ export default function Dishes(props) {
             <Row>
               <Col>
                 <Button className="btn-dark" onClick={handleClick}>
-                  Add New
+                  + Nuevo
                 </Button>
               </Col>
               <Col>
@@ -94,7 +94,7 @@ export default function Dishes(props) {
                   {...getInputProps('active')}
                 />
                 <Label className="ml-3 mt-2 text-white" for="active">
-                  ACTIVE
+                  ACTIVO
                 </Label>
               </Col>
             </Row>
@@ -128,7 +128,7 @@ export default function Dishes(props) {
                 </th>
                 <th>
                   <Label className="mr-3" for="food">
-                    FOOD
+                    COMIDA
                   </Label>
                 </th>
                 <th />
@@ -159,7 +159,7 @@ export default function Dishes(props) {
                         to={'/dishes/' + d._id}
                         outline
                       >
-                        Details
+                        Detalles
                       </Button>
                     </td>
                   </tr>
@@ -189,7 +189,7 @@ export default function Dishes(props) {
                 </th>
                 <th>
                   <Label className="mr-3 " for="dessert">
-                    DESSERT
+                    POSTRES
                   </Label>
                 </th>
                 <th />
@@ -220,7 +220,7 @@ export default function Dishes(props) {
                         to={'/dishes/' + d._id}
                         outline
                       >
-                        Details
+                        Detalles
                       </Button>
                     </td>
                   </tr>
@@ -250,7 +250,7 @@ export default function Dishes(props) {
                 </th>
                 <th>
                   <Label className="mr-3 " for="drink">
-                    DRINKS
+                    BEBIDAS
                   </Label>
                 </th>
                 <th />
@@ -281,7 +281,7 @@ export default function Dishes(props) {
                         to={'/dishes/' + d._id}
                         outline
                       >
-                        Details
+                        Detalles
                       </Button>
                     </td>
                   </tr>

@@ -136,15 +136,15 @@ export default function TableService(props) {
           <Container className="TableService pt-3">
             <Row>
               <Col>
-                <h1>Table {tableSer.tableNb}</h1>
+                <h1>Mesa {tableSer.tableNb}</h1>
               </Col>
               <Col>
                 <Input
                   name="amountOfPeople"
                   type="number"
-                  placeholder="Number of people"
+                  placeholder="Personas"
                   min="1"
-                  max="8"
+                  max="10"
                   onChange={handleChangeInNumberOfPeople}
                   value={tableSer.amountOfPeople}
                 />
@@ -161,7 +161,7 @@ export default function TableService(props) {
                   name="clientName"
                   value={tableSer.clientName}
                   type="text"
-                  placeholder="Client's name"
+                  placeholder="Cliente"
                   onChange={handleChangeInClientName}
                 />
               </Col>
@@ -170,13 +170,13 @@ export default function TableService(props) {
         </div>
         <Container>
           <Table>
-            <thead>
+            {/* <thead>
               <tr>
                 <th />
-                <th>Orders</th>
+                <th>Pedidos</th>
                 <th>Actions</th>
               </tr>
-            </thead>
+            </thead> */}
             <tbody>
               {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
               {tableSer &&
@@ -226,7 +226,7 @@ export default function TableService(props) {
                 onChange={handleChangeInTableDishes}
               >
                 <option value="" disabled>
-                  ---Food---
+                  ---Platos---
                 </option>
                 {[...dishes]
                   .filter(
@@ -247,7 +247,7 @@ export default function TableService(props) {
                 onChange={handleChangeInTableDishes}
               >
                 <option value="" disabled>
-                  ---Drink---
+                  ---Bebidas---
                 </option>
                 {[...dishes]
                   .filter(dish => dish.type === 'Drink')
@@ -260,14 +260,22 @@ export default function TableService(props) {
               </Input>
             </Col>
           </Row>
-          <Button
-            tag={Link}
-            to={'/tables/' + tableSer._id}
-            onClick={closeTable}
-            outline
-          >
-            Close table
-          </Button>
+          <Row>
+            <Col />
+            <Col xs={5}>
+              {' '}
+              <Button
+                className="mb-5 btn-dark"
+                tag={Link}
+                to={'/tables/' + tableSer._id}
+                onClick={closeTable}
+                // outline
+              >
+                Cerrar mesa
+              </Button>
+            </Col>
+            <Col />
+          </Row>
         </Container>
       </div>
     )

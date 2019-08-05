@@ -20,25 +20,25 @@ function MainNavbar(props) {
     api.logout()
   }
   const links = [
-    { to: '/dishes', text: 'Dishes', img: 'https://i.imgur.com/vgBsNTC.png' },
+    { to: '/dishes', text: 'Platos', img: 'https://i.imgur.com/vgBsNTC.png' },
   ]
   if (!api.isLoggedIn()) {
     links.push({
       to: '/drinks',
       img: 'https://i.imgur.com/z0HVjnR.png',
-      text: 'Drinks',
+      text: 'Bebidas',
     })
     links.push({ to: '/login', text: 'Login' })
   }
   if (api.isLoggedIn()) {
     links.push({
       to: '/tables',
-      text: 'Tables',
+      text: 'Servicio',
       img: 'https://i.imgur.com/trMGYda.png',
     })
     links.push({
       to: '/history',
-      text: 'History',
+      text: 'Historial',
       img: 'https://i.imgur.com/Yc4odTB.png',
     })
     links.push({ to: '/signup', text: 'Signup' })

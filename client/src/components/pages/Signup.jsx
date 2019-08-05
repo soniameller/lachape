@@ -43,7 +43,7 @@ export default function Signup(props) {
         <h2 className="text-white">Signup</h2>
         <Form className=" text-white">
           <div className="form-group ">
-            <label for="email">Email address</label>
+            <label for="email">Email </label>
             <input
               type="text"
               placeholder="Email"
@@ -55,7 +55,7 @@ export default function Signup(props) {
             />
           </div>
           <div className="form-group ">
-            <label for="name">Name</label>
+            <label for="name">Nombre</label>
             <input
               type="text"
               placeholder="Name"
@@ -67,7 +67,7 @@ export default function Signup(props) {
             />
           </div>
           <div className="form-group ">
-            <label for="name">Nickname</label>
+            <label for="name">Nombre visible</label>
             <input
               type="text"
               className="form-control"
@@ -79,7 +79,7 @@ export default function Signup(props) {
             />
           </div>
           <div className="form-group ">
-            <label for="name">Password</label>
+            <label for="name">Contraseña</label>
             <input
               type="password"
               placeholder="Password"

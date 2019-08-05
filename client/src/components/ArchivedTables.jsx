@@ -53,14 +53,14 @@ export default function ArchivedTables({
         <Container className="TableService pt-3">
           <Row>
             <Col>
-              <h1>Table {tableSer.tableNb}</h1>
+              <h1>Mesa {tableSer.tableNb}</h1>
             </Col>
           </Row>
           <Row>
             <Col>
               <p>
-                <strong>Name: </strong> {tableSer.clientName} <br />
-                <strong> Diners: </strong> {tableSer.amountOfPeople}
+                <strong>Nombre: </strong> {tableSer.clientName} <br />
+                <strong> Personas: </strong> {tableSer.amountOfPeople}
               </p>
             </Col>
           </Row>
@@ -72,7 +72,7 @@ export default function ArchivedTables({
           <thead>
             <tr>
               <th />
-              <th>Orders</th>
+              <th>Pedidos</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -91,7 +91,7 @@ export default function ArchivedTables({
               <th>
                 {tableSer && tableSer.discount && (
                   <pre style={{ color: 'red' }}>
-                    Discount {tableSer.discount * 100 - 100}%
+                    Descuento {tableSer.discount * 100 - 100}%
                   </pre>
                 )}
               </th>
@@ -113,28 +113,25 @@ export default function ArchivedTables({
           <Row>
             <Col>
               <p className="lead">
-                Amount per person: <strong>${amountPerPerson()} </strong>{' '}
+                Cantidad de personas: <strong>${amountPerPerson()} </strong>{' '}
               </p>
             </Col>
             <Col>
-              <p>Change/Tips:$ {tableSer.tips}</p>
+              <p>Cambio/Propinas:$ {tableSer.tips}</p>
             </Col>
           </Row>
           <Row>
             <Col />
             <Col>
               <Button color="danger" outline onClick={toggle}>
-                Delete
+                Borrar
               </Button>
               <Modal isOpen={isOpen.modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>⚠️ DELETE ⚠️</ModalHeader>
-                <ModalBody>
-                  This action cannot be reverted and the information will be
-                  erased from the database
-                </ModalBody>
+                <ModalHeader toggle={toggle}>⚠️ BORRAR ⚠️</ModalHeader>
+                <ModalBody>Una vez borrado no vuelve amigues</ModalBody>
                 <ModalFooter>
                   <Button color="danger" onClick={handleDelete}>
-                    Yes! Delete
+                    Borrar
                   </Button>
                 </ModalFooter>
               </Modal>

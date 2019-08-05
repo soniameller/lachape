@@ -25,7 +25,7 @@ export default function Login(props) {
       <Container>
         <Form onSubmit={handleSubmit}>
           <div className="form-group text-white ">
-            <label for="email">Email address</label>
+            <label for="email">Email </label>
             <input
               placeholder="Email"
               type="text"
@@ -34,7 +34,7 @@ export default function Login(props) {
               {...getInputProps('email')}
             />
 
-            <label for="password">Password</label>
+            <label for="password">Contraseña</label>
             <input
               className="form-control"
               placeholder="Password"

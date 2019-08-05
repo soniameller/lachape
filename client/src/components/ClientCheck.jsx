@@ -11,13 +11,13 @@ export default function ClientCheck({
       <Container className="pt-5">
         <Row className="text-white">
           <Col>
-            <h1>Table {tableSer.tableNb}</h1>
+            <h1>Mesa {tableSer.tableNb}</h1>
           </Col>
         </Row>
         <Row className="text-white">
           <Col>
             <p>
-              <strong>Name: </strong> {tableSer.clientName} <br />
+              <strong /> {tableSer.clientName} <br />
             </p>
           </Col>
         </Row>
@@ -54,7 +54,7 @@ export default function ClientCheck({
               <img src="https://i.imgur.com/nJXlbMc.png" height="70px" alt="" />
             </Col>
             <Col xs="8">
-              <h6> Thank you!</h6>
+              <h6> Muchas gracias!</h6>
               <h1 className="curvedFont">La Chapeña</h1>
             </Col>
           </Row>

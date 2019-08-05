@@ -21,7 +21,7 @@ export default function Menu({ dishes }) {
         <Row className="curvedFont d-flex justify-content-center m-2">Menu</Row>
         <Row>
           <Col className="Menu__dishes">
-            <h5>Dishes</h5>
+            <h5>Platos</h5>
             <ul>
               {activefood.map(food => (
                 <li key={food._id}>
@@ -36,7 +36,7 @@ export default function Menu({ dishes }) {
         </Row>
         <Row>
           <Col className="Menu__dishes">
-            <h5>Dessert</h5>
+            <h5>Postres</h5>
             <ul>
               {activeDessert.map(food => (
                 <li key={food._id}>

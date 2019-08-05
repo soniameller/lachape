@@ -28,7 +28,7 @@ export default function Menu() {
           alt=""
         />
         <Row className="curvedFont d-flex justify-content-center m-2">
-          Drink Menu
+          - Bebidas -
         </Row>
         <Row>
           <Col className="Menu__dishes">

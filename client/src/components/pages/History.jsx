@@ -67,11 +67,11 @@ export default function History() {
         <Container>
           <Form className="pt-3 text-center text-white" inline>
             <FormGroup>
-              <Label for="from">From</Label>
+              <Label for="from">Desde</Label>
               <Input type="date" {...getInputProps('from')} />
             </FormGroup>
             <FormGroup>
-              <Label for="to">To</Label>
+              <Label for="to">Hasta</Label>
               <Input type="date" {...getInputProps('to')} />
             </FormGroup>
           </Form>
@@ -85,15 +85,15 @@ export default function History() {
         >
           <thead>
             <tr className="Table__darkRow text-center">
-              <th>TABLE</th>
-              <th>DATE</th>
+              <th />
+              <th>FECHA</th>
               <th>TOTAL</th>
               <th>TIPS</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>Totals</th>
+              <th>Totales</th>
               <td />
               <th>$ {tables[0] && getTablesTotal()}</th>
               <th>$ {tables[0] && getTablesTotal('tips')}</th>

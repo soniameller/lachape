@@ -95,14 +95,15 @@ export default function ClosedTables({
       </pre> */}
           <Row>
             <Col>
-              <h1>Table {tableSer.tableNb}</h1>
+              <h1>Mesa {tableSer.tableNb}</h1>
             </Col>
           </Row>
           <Row>
             <Col>
               <p>
-                <strong>Name: </strong> {tableSer.clientName} <br />
-                <strong> Diners: </strong> {tableSer.amountOfPeople}
+                <strong>Nombre: </strong> {tableSer.clientName} <br />
+                <strong> Cantidad de personas: </strong>{' '}
+                {tableSer.amountOfPeople}
               </p>
             </Col>
           </Row>
@@ -113,7 +114,7 @@ export default function ClosedTables({
           <thead>
             <tr>
               <th />
-              <th>Orders</th>
+              <th>Pedidos</th>
               <th>Total</th>
             </tr>
           </thead>
@@ -131,10 +132,10 @@ export default function ClosedTables({
               <th />
               <th>
                 <Input type="select" {...getInputProps('discount')}>
-                  <option value="1">---No discount---</option>
-                  <option value="0.9">10% friend discount</option>
-                  <option value="0.85">15% discount</option>
-                  <option value="0.8">20% family discount</option>
+                  <option value="1">---Sin descuento---</option>
+                  <option value="0.9">10% descuento amigo</option>
+                  <option value="0.85">15% descuento</option>
+                  <option value="0.8">20% descuento familia</option>
                 </Input>
               </th>
               <th>
@@ -148,12 +149,12 @@ export default function ClosedTables({
           <Row>
             <Col>
               {' '}
-              <h6 className="display-3">Totals</h6>
+              <h6 className="display-3">Totales</h6>
             </Col>
             <Col>
               {' '}
               <Form>
-                <Label>Total paid:</Label>
+                <Label>Total pagado:</Label>
                 <Input type="number" {...getInputProps('paid')} />
               </Form>
             </Col>
@@ -162,54 +163,54 @@ export default function ClosedTables({
           <Row>
             <Col>
               <p className="lead">
-                Amount per person: <strong>$ {amountPerPerson()}</strong>{' '}
+                Gasto por persona: <strong>$ {amountPerPerson()}</strong>{' '}
               </p>
             </Col>
             <Col>
-              <p>Change/Tips:$ {tips()}</p> <p>Tips: {tipsPercentage()}%</p>
+              <p>Cambio/Tips:$ {tips()}</p> <p>Tips: {tipsPercentage()}%</p>
             </Col>
           </Row>
 
           <Row className="lead">
             <Col />
             <Button color="dark" onClick={handleOpen} outline>
-              Edit
+              Editar
             </Button>{' '}
             <Col>
               <Button color="dark" onClick={toggle}>
-                Archive
+                Archivar
               </Button>
               <Modal isOpen={isOpen.modal} toggle={toggle}>
                 {!formValues.paid && (
                   <ModalHeader toggle={toggle}>
-                    Please complete the total paid form!
+                    Falta completar el total
                   </ModalHeader>
                 )}
                 {formValues.paid && (
-                  <ModalHeader toggle={toggle}>
-                    Are you sure you want to archive?
-                  </ModalHeader>
+                  <ModalHeader toggle={toggle}>⚠️ ARCHIVAR</ModalHeader>
                 )}
-                <ModalBody>This action cannot be reverted</ModalBody>
+                <ModalBody>
+                  No se puede volver a editar despues de archivar
+                </ModalBody>
                 <ModalBody>
                   <Row>
                     <Col>
                       {' '}
                       {formValues.paid && (
                         <p>
-                          <strong>Total paid:</strong> ${formValues.paid}{' '}
+                          <strong>Total pagado:</strong> ${formValues.paid}{' '}
                         </p>
                       )}
                     </Col>
                     <Col>
                       {formValues.discount && (
                         <p>
-                          <strong>Discount:</strong> {formValues.discount}{' '}
+                          <strong>Descuento:</strong> {formValues.discount}{' '}
                         </p>
                       )}
                       {formValues.paid && (
                         <p>
-                          <strong>Amount per person:</strong> $
+                          <strong>Cantidad de personas:</strong> $
                           {amountPerPerson()}{' '}
                         </p>
                       )}
@@ -219,7 +220,7 @@ export default function ClosedTables({
                 <ModalFooter>
                   {formValues.paid && (
                     <Button color="dark" onClick={handleArchive}>
-                      Yes! Archive
+                      Archivar!
                     </Button>
                   )}
                 </ModalFooter>

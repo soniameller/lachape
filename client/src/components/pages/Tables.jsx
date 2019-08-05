@@ -41,7 +41,7 @@ export default function Tables() {
               {/* <Card className="mt-1 mb-1" > */}
               <CardBody>
                 <Button tag={Link} to={'/tables/' + t._id}>
-                  T{t.tableNb}
+                  {t.tableNb}
                 </Button>
                 <CardSubtitle>
                   <small>23min...</small>{' '}

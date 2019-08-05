@@ -34,40 +34,44 @@ export default function DishEdit(props) {
       <form onSubmit={handleSubmit}>
         <Row className="my-4">
           <Col sm={3}>
-            <Label for="name">Name</Label>
+            <Label for="name">Nombre</Label>
           </Col>
           <Col>
-            <Input type="text" placeholder="Name" {...getInputProps('name')} />
+            <Input
+              type="text"
+              placeholder="Nombre"
+              {...getInputProps('name')}
+            />
           </Col>
         </Row>
         <Row className="my-4">
           <Col sm={3}>
-            <Label for="price">Price</Label>
+            <Label for="price">Precio</Label>
           </Col>
           <Col>
             <Input
               type="number"
-              placeholder="Price"
+              placeholder="Precio"
               {...getInputProps('price')}
             />
           </Col>
           <Col sm={3}>
-            <Label for="type">Type</Label>
+            <Label for="type">Tipo</Label>
           </Col>
           <Col>
             <Input type="select" {...getInputProps('type')}>
               <option value="" disabled>
-                ---Choose type---
+                --- Que es? ---
               </option>
-              <option value="Food">Food</option>
-              <option value="Drink">Drink</option>
-              <option value="Dessert">Dessert</option>
+              <option value="Food">Plato</option>
+              <option value="Drink">Bebidas</option>
+              <option value="Dessert">Postre</option>
             </Input>
           </Col>
         </Row>
         <Row className="my-4">
           <Col sm={3}>
-            <Label for="description">Description</Label>
+            <Label for="descripción">Descripción</Label>
           </Col>
           <Col>
             <Input
@@ -79,7 +83,7 @@ export default function DishEdit(props) {
         </Row>
 
         <Button className="my-4" color="dark" block>
-          Add Dish!
+          +
         </Button>
       </form>
 
