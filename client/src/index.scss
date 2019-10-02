@@ -31,10 +31,12 @@ $jumbotron-bg: rgba(233, 236, 239, 0.8);
   font-family: laChape;
   font-size: 35px;
 }
+
 .curvedFont--sm {
   font-family: laChape;
   font-size: 25px;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -56,23 +58,26 @@ body {
   font-size: 9px;
   margin-bottom: 5px;
 }
+
 .Menu__foodName {
   margin: 0;
 }
+
 .Menu__dishes {
   border-top: 1px solid white;
   padding: 10px 0px 0px 0px;
   margin: 10px 15px;
 }
-.Menu__img {
-  position: absolute;
-  transform: translate(-60%, -60%);
 
-  left: 100%;
-  // right: 100px;
-  top: 100%;
-  // bottom: 64.67%;
-}
+// .Menu__img {
+//   position: absolute;
+//   transform: translate(-60%, -60%);
+
+//   left: 100%;
+//   // right: 100px;
+//   top: 100%;
+//   // bottom: 64.67%;
+// }
 
 ul {
   margin: 0;
@@ -90,6 +95,7 @@ li {
   background-size: cover;
   height: 100vh;
 }
+
 .Background-img--home {
   background-image: url('https://i.imgur.com/n7NvGlz.png');
 }
@@ -108,12 +114,14 @@ li {
   background-size: cover;
   height: 150px;
 }
+
 .Dishes__img {
   background-image: url('https://i.imgur.com/cBkvasU.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 150px;
 }
+
 .History__img {
   background-image: url('https://i.imgur.com/nKZ0OFH.jpg');
   background-repeat: no-repeat;
@@ -127,6 +135,7 @@ li {
   background-size: cover;
   height: 100vh;
 }
+
 .Dish-details {
   background-image: url('https://i.imgur.com/FrnENBN.jpg');
   background-repeat: no-repeat;
@@ -155,6 +164,7 @@ li {
   display: flex;
   justify-content: center;
 }
+
 .background-plan {
   // background-image: url('https://i.imgur.com/umXG8ST.png');
   // background-repeat: no-repeat;
@@ -168,6 +178,7 @@ li {
   position: relative;
   // border: 2px solid red;
 }
+
 .background-plan__img {
   max-height: 100vh;
   max-width: 100vw;
@@ -189,82 +200,102 @@ li {
   // color: white;
   // background-color: rgba(255, 0, 0, 0.5);
 }
+
 .table-1 {
   top: 22.5%;
   left: 15%;
 }
+
 .table-2 {
   top: 31.5%;
   left: 23%;
 }
+
 .table-3 {
   top: 18%;
   left: 26%;
 }
+
 .table-4 {
   top: 27.5%;
   left: 34%;
 }
+
 .table-5 {
   top: 14%;
   left: 37%;
 }
+
 .table-6 {
   top: 23%;
   left: 46%;
 }
+
 .table-7 {
   top: 9.5%;
   left: 48.5%;
 }
+
 .table-8 {
   top: 19%;
   left: 57.5%;
 }
+
 .table-9 {
   top: 5.5%;
   left: 59.5%;
 }
+
 .table-10 {
   top: 15%;
   left: 67.5%;
 }
+
 .table-11 {
   top: 74%;
   left: 68%;
 }
+
 .table-12 {
   top: 78%;
   left: 30%;
 }
+
 .table-13 {
   top: 64.5%;
   left: 16.5%;
 }
+
 .table-14 {
   top: 53.5%;
   left: 53%;
 }
+
 .table-15 {
   top: 46.5%;
   left: 17.5%;
 }
+
 .table-16 {
   top: 44.5%;
   left: 31.5%;
 }
+
 .table-17 {
   top: 37.5%;
   left: 33.5%;
 }
+
 .table-18 {
   top: 36.5%;
   left: 55.5%;
 }
+
 .table-19 {
   top: 30%;
   left: 67%;
 }
+
 .table-20 {
   top: 23%;
   left: 77%;

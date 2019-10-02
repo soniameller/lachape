@@ -12,12 +12,12 @@ export default function Menu({ dishes }) {
   return (
     <div className="Background-img--cooks d-flex justify-content-center">
       <Container className="Menu text-center">
-        <img
+        {/* <img
           className="Menu__img"
           height="100px"
           src="https://i.imgur.com/h9euwj3.png"
           alt=""
-        />
+        /> */}
         <Row className="curvedFont d-flex justify-content-center m-2">Menu</Row>
         <Row>
           <Col className="Menu__dishes">

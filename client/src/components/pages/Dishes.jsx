@@ -44,13 +44,13 @@ export default function Dishes(props) {
     api.toggleActiveDish(dishId)
   }
 
-  let filterDishesUser = dishes.filter(
-    dish =>
-      ((formValues.food && dish.type === 'Food') ||
-        (formValues.dessert && dish.type === 'Dessert') ||
-        (formValues.drink && dish.type === 'Drink')) &&
-      (!formValues.active || dish.active)
-  )
+  // let filterDishesUser = dishes.filter(
+  //   dish =>
+  //     ((formValues.food && dish.type === 'Food') ||
+  //       (formValues.dessert && dish.type === 'Dessert') ||
+  //       (formValues.drink && dish.type === 'Drink')) &&
+  //     (!formValues.active || dish.active)
+  // )
 
   let foodFilter = dishes.filter(
     dish =>
