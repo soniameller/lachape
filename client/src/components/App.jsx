@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom'
 import MainNavbar from './MainNavbar'
 import Home from './pages/Home'
 import Dishes from './pages/Dishes'
-import Tables from './pages/Tables'
 import Tables2 from './pages/Tables2'
 import History from './pages/History'
 import DishDetail from './pages/DishDetail'
@@ -11,7 +10,6 @@ import DishEdit from './pages/DishEdit'
 import TableService from './pages/TableService'
 import TableCheck from './pages/TableCheck.jsx'
 import Drinks from './pages/Drinks.jsx'
-// import Menu from './pages/Menu.jsx'
 
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -24,7 +22,6 @@ export default function App() {
         <Route path="/" exact component={Home} />
         <Route path="/dishes" exact component={Dishes} />
         <Route path="/drinks" exact component={Drinks} />
-        {/* <Route path="/menu" exact component={Menu} /> */}
         <Route path="/dishes/:id" exact component={DishDetail} />
         <Route path="/edit-dish/:id" exact component={DishEdit} />
         <Route path="/tables" exact component={Tables2} />

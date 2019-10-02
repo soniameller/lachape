@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Form, Label, Container, Row, Col } from 'reactstrap'
+import { Table, Button, Label, Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks'
 import Menu from '../Menu'
@@ -8,7 +8,7 @@ import api from '../../api'
 
 export default function Dishes(props) {
   const [dishes, setDishes] = useState([])
-  const { formValues, setFormValues, getInputProps } = useForm({
+  const { formValues, getInputProps } = useForm({
     food: true,
     drink: true,
     dessert: true,

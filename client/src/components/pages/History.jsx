@@ -10,15 +10,13 @@ import {
   Input,
   Label,
   Container,
-  Row,
-  Col,
   Button,
 } from 'reactstrap'
 
 export default function History() {
   const [tables, setTables] = useState([])
 
-  const { formValues, setFormValues, getInputProps } = useForm({
+  const { formValues, getInputProps } = useForm({
     from: new Date().toISOString().substring(0, 10),
     to: new Date().toISOString().substring(0, 10),
   })

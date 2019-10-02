@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Button, Form, Label, Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 
 export default function Menu({ dishes }) {
   let activefood = [...dishes].filter(

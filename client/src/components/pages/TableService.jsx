@@ -11,7 +11,7 @@ export default function TableService(props) {
   const [dishes, setDishes] = useState([])
   const [tableSer, setTableSer] = useState(null)
   const tableId = props.match.params.id
-  const { formValues, setFormValues, getInputProps } = useForm()
+  const { formValues, getInputProps } = useForm()
 
   useEffect(() => {
     api.getActiveDishes().then(dishes => {
@@ -131,7 +131,6 @@ export default function TableService(props) {
   if (tableSer.state === 'open' && api.isLoggedIn()) {
     return (
       <div>
-        {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
         <div className="Tables__img text-white">
           <Container className="TableService pt-3">
             <Row>
@@ -170,15 +169,7 @@ export default function TableService(props) {
         </div>
         <Container>
           <Table>
-            {/* <thead>
-              <tr>
-                <th />
-                <th>Pedidos</th>
-                <th>Actions</th>
-              </tr>
-            </thead> */}
             <tbody>
-              {/* <pre>{JSON.stringify(tableSer, null, 2)}</pre> */}
               {tableSer &&
                 tableSer.orders.map(dish => (
                   <tr key={dish._id}>
@@ -199,19 +190,6 @@ export default function TableService(props) {
                       >
                         -
                       </Button>
-                      {/* <Button
-                        class="btn btn-square"
-                        onClick={() => handleDishAmount(dish._id, +1)}
-                        outline
-                      >
-                        +
-                      </Button>
-                      <Button
-                        onClick={() => handleDishAmount(dish._id, -1)}
-                        outline
-                      >
-                        -
-                      </Button> */}
                     </th>
                   </tr>
                 ))}
@@ -269,7 +247,6 @@ export default function TableService(props) {
                 tag={Link}
                 to={'/tables/' + tableSer._id}
                 onClick={closeTable}
-                // outline
               >
                 Cerrar mesa
               </Button>

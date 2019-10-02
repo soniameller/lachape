@@ -127,7 +127,7 @@ export default function ArchivedTables({
                 Borrar
               </Button>
               <Modal isOpen={isOpen.modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>⚠️ BORRAR ⚠️</ModalHeader>
+                <ModalHeader toggle={toggle}> ⚠️ BORRAR ⚠️</ModalHeader>
                 <ModalBody>Una vez borrado no vuelve amigues</ModalBody>
                 <ModalFooter>
                   <Button color="danger" onClick={handleDelete}>

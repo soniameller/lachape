@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Form, Label, Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import api from '../../api'
 
 export default function Menu() {
