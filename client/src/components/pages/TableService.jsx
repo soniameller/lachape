@@ -74,8 +74,6 @@ export default function TableService(props) {
   }
 
   function handleDishAmount(i, amount) {
-    console.log('what is i', i)
-    console.log('to make it clear', tableSer)
 
     api.editTable(tableId, {
       ...tableSer,
@@ -110,12 +108,10 @@ export default function TableService(props) {
     if (!tableSer.waitingSince) {
       api.startTrackingTable(tableId).then(data => {
         setTableSer({ ...tableSer, waitingSince: data.table.waitingSince })
-        console.log('table Service', tableSer)
       })
     } else {
       api.stopTrackingTable(tableId).then(data => {
         setTableSer({ ...tableSer, waitingSince: null })
-        console.log('table Service', tableSer)
       })
     }
   }

@@ -29,7 +29,6 @@ export default function Dishes(props) {
     api
       .addDish()
       .then(dish => {
-        console.log('Created dish', dish)
         props.history.push('/edit-dish/' + dish.dish._id)
       })
       .catch(err => console.log(err))

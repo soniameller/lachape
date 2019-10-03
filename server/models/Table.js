@@ -6,7 +6,6 @@ const tableSchema = new Schema(
     clientName: { type: String, default: '' },
     _creator: { type: Schema.Types.ObjectId, ref: 'User' },
     amountOfPeople: { type: Number, default: 0 },
-    waitingSince: { type: Date },
     tableNb: { type: Number },
     total: { type: Number, default: 0 },
     tips: { type: Number, default: 0 },

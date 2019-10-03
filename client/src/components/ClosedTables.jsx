@@ -60,7 +60,6 @@ export default function ClosedTables({
     api
       .archiveAndAddTable({ tableNb: tableSer.tableNb })
       .then(table => {
-        console.log('Created table', table)
         history.push('/tables')
       })
       .catch(err => console.log(err))
@@ -75,8 +74,6 @@ export default function ClosedTables({
       closedAt: new Date(),
     }
     api.editTable(tableSer._id, newTableSer).then(table => {
-      console.log('total with discount:', totalWithDiscount())
-      console.log('HISTORY:', newTableSer)
       setTableSer(newTableSer)
     })
   }, [formValues, tableSer.state])

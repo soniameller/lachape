@@ -44,7 +44,6 @@ export default function History() {
   })
 
   function getTablesTotal(value = 'total') {
-    // console.log(filteredTables)
     return filteredTables.reduce((counter, table) => counter + table[value], 0)
   }
 

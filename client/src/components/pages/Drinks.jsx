@@ -18,15 +18,19 @@ export default function Menu() {
     dish => dish.active && dish.type === 'Drink'
   )
 
+  // getDrinks(description){
+  // [...activeDrinks]
+  // }
+
   return (
     <div className="Background-img--cooks d-flex justify-content-center">
       <Container className="Menu text-center">
-        <img
+        {/* <img
           className="Menu__img"
           height="100px"
           src="https://i.imgur.com/h9euwj3.png"
           alt=""
-        />
+        /> */}
         <Row className="curvedFont d-flex justify-content-center m-2">
           - Bebidas -
         </Row>
@@ -36,7 +40,6 @@ export default function Menu() {
               {[...activeDrinks]
                 .filter(drink => drink.description === 'alcohol')
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
-
                 .map(food => (
                   <li key={food._id}>
                     <p className="Menu__foodName">

@@ -32,7 +32,6 @@ export default function Signup(props) {
     api
       .signup(data)
       .then(result => {
-        console.log('SUCCESS!')
         props.history.push('/') // Redirect to the home page
       })
       .catch(err => setState({ message: err.toString() }))

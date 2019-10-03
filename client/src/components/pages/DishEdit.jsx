@@ -9,7 +9,6 @@ export default function DishEdit(props) {
 
   useEffect(() => {
     api.getDish(props.match.params.id).then(dish => {
-      // console.log(dish)
       setFormValues({
         name: dish.name,
         price: dish.price,
@@ -23,7 +22,6 @@ export default function DishEdit(props) {
     event.preventDefault()
 
     api.editDish(dishId, formValues).then(dish => {
-      console.log(dish)
       props.history.push('/dishes/' + dish.dish._id)
     })
   }

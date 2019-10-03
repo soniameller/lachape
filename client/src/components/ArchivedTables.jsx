@@ -21,18 +21,14 @@ export default function ArchivedTables({
 }) {
   useEffect(() => {
     api.editTable(tableSer._id, tableSer).then(table => {
-      console.log('THE TABLES IS:', table)
       setTableSer({ ...tableSer })
     })
   }, [formValues])
 
   function handleDelete() {
-    console.log('click')
-    console.log('table service id', tableSer._id)
     api
       .deleteTable(tableSer._id)
       .then(table => {
-        console.log('Deleted table', table)
         history.push('/history')
       })
       .catch(err => console.log(err))

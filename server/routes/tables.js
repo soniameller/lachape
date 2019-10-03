@@ -16,7 +16,6 @@ router.get('/', isLoggedIn, (req, res, next) => {
 })
 
 router.get('/:_id', (req, res, next) => {
-  console.log(req.params._id)
   Table.findById(req.params._id)
     .populate('orders._dish')
     .then(table => {

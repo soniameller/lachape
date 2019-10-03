@@ -10,8 +10,6 @@ export default function TableCheck(props) {
     api
       .getTableId(tableId)
       .then(tableService => {
-        console.log('DEBUG table service check', tableService)
-        console.log('DEBUG Props check', props)
         setTableSer(tableService)
       })
       .catch(err => console.log(err))
