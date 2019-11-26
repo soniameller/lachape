@@ -25,13 +25,6 @@ let userDocs = [
     role: 'admin',
   }),
   new User({
-    email: 'bob@gmail.com',
-    password: bcrypt.hashSync('bob', bcrypt.genSaltSync(bcryptSalt)),
-    isValidated: true,
-    nickname: 'b',
-    role: 'employee',
-  }),
-  new User({
     email: 'sonia@lachape.com',
     password: bcrypt.hashSync('sm', bcrypt.genSaltSync(bcryptSalt)),
     isValidated: true,
@@ -67,6 +60,20 @@ let userDocs = [
     role: 'admin',
   }),
   new User({
+    email: 'sebastian@lachape.com',
+    password: bcrypt.hashSync('st', bcrypt.genSaltSync(bcryptSalt)),
+    isValidated: true,
+    nickname: 'Tebi',
+    role: 'admin',
+  }),
+  new User({
+    email: 'clara@lachape.com',
+    password: bcrypt.hashSync('cd', bcrypt.genSaltSync(bcryptSalt)),
+    isValidated: true,
+    nickname: 'Chola',
+    role: 'admin',
+  }),
+  new User({
     email: 'ana@lachape.com',
     password: bcrypt.hashSync('as', bcrypt.genSaltSync(bcryptSalt)),
     isValidated: true,
@@ -78,6 +85,13 @@ let userDocs = [
     password: bcrypt.hashSync('cm', bcrypt.genSaltSync(bcryptSalt)),
     isValidated: true,
     nickname: 'Custer',
+    role: 'admin',
+  }),
+  new User({
+    email: 'catalina@lachape.com',
+    password: bcrypt.hashSync('cs', bcrypt.genSaltSync(bcryptSalt)),
+    isValidated: true,
+    nickname: 'Catu',
     role: 'admin',
   }),
 ]

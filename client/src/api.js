@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
@@ -85,6 +84,7 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+
   getClosedTable(tableId) {
     return service
       .get('/tables/' + tableId + '?state=closed')
@@ -150,12 +150,14 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+
   getDishes() {
     return service
       .get('/dishes')
       .then(res => res.data)
       .catch(errHandler)
   },
+
   getActiveDishes() {
     return service
       .get('/dishes?active=true')

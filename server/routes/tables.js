@@ -15,15 +15,6 @@ router.get('/', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/:_id', (req, res, next) => {
-  Table.findById(req.params._id)
-    .populate('orders._dish')
-    .then(table => {
-      res.json(table)
-    })
-    .catch(err => next(err))
-})
-
 router.post('/', isLoggedIn, (req, res, next) => {
   let { clientName, amountOfPeople, tableNb, orders } = req.body
   Table.create({ clientName, amountOfPeople, tableNb, orders })
@@ -32,6 +23,15 @@ router.post('/', isLoggedIn, (req, res, next) => {
         tables,
         success: true,
       })
+    })
+    .catch(err => next(err))
+})
+
+router.get('/:_id', (req, res, next) => {
+  Table.findById(req.params._id)
+    .populate('orders._dish')
+    .then(table => {
+      res.json(table)
     })
     .catch(err => next(err))
 })
@@ -109,6 +109,7 @@ router.put('/:_id/startTracking', isLoggedIn, (req, res, next) => {
     })
     .catch(err => next(err))
 })
+
 router.put('/:_id/stopTracking', isLoggedIn, (req, res, next) => {
   Table.findByIdAndUpdate(
     req.params._id,

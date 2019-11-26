@@ -20,14 +20,18 @@ export default function App() {
       <MainNavbar />
       <Switch>
         <Route path="/" exact component={Home} />
+
         <Route path="/dishes" exact component={Dishes} />
         <Route path="/drinks" exact component={Drinks} />
         <Route path="/dishes/:id" exact component={DishDetail} />
         <Route path="/edit-dish/:id" exact component={DishEdit} />
+
         <Route path="/tables" exact component={Tables2} />
         <Route path="/tables/:id" exact component={TableService} />
         <Route path="/tables/:id/check" exact component={TableCheck} />
+
         <Route path="/history" component={History} />
+
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route render={() => <h2>404</h2>} />

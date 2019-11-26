@@ -11,6 +11,8 @@ import {
   Label,
   Container,
   Button,
+  Row,
+  Col,
 } from 'reactstrap'
 
 export default function History() {
@@ -63,14 +65,20 @@ export default function History() {
       <div className="History__img">
         <Container>
           <Form className="pt-3 text-center text-white" inline>
-            <FormGroup>
-              <Label for="from">Desde</Label>
-              <Input type="date" {...getInputProps('from')} />
-            </FormGroup>
-            <FormGroup>
-              <Label for="to">Hasta</Label>
-              <Input type="date" {...getInputProps('to')} />
-            </FormGroup>
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Label for="from">Desde</Label>
+                  <Input type="date" {...getInputProps('from')} />
+                </FormGroup>
+              </Col>
+              <Col>
+                <FormGroup>
+                  <Label for="to">Hasta</Label>
+                  <Input type="date" {...getInputProps('to')} />
+                </FormGroup>
+              </Col>
+            </Row>
           </Form>
         </Container>
       </div>
@@ -107,10 +115,6 @@ export default function History() {
                   >
                     M{table.tableNb}
                   </Button>
-                  {/* <Link className="text-dark" to={'/tables/' + table._id}>
-                    {' '}
-                    M{table.tableNb}
-                  </Link> */}
                 </td>
                 <td>{table.closedAt.substring(0, 10)}</td>
                 <td>$ {table.total}</td>

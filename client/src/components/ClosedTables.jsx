@@ -92,7 +92,7 @@ export default function ClosedTables({
       </pre> */}
           <Row>
             <Col>
-              <h1>Mesa {tableSer.tableNb}</h1>
+              <h3>Mesa {tableSer.tableNb}</h3>
             </Col>
           </Row>
           <Row>
@@ -160,7 +160,7 @@ export default function ClosedTables({
           <Row>
             <Col>
               <p className="lead">
-                Gasto por persona: <strong>$ {amountPerPerson()}</strong>{' '}
+                Gasto por persona: <strong>${amountPerPerson()}</strong>{' '}
               </p>
             </Col>
             <Col>

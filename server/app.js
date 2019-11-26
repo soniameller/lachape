@@ -53,7 +53,6 @@ app.use(
 )
 require('./passport')(app)
 
-app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api/dishes', require('./routes/dishes'))
 app.use('/api/tables', require('./routes/tables'))

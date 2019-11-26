@@ -74,7 +74,6 @@ export default function TableService(props) {
   }
 
   function handleDishAmount(i, amount) {
-
     api.editTable(tableId, {
       ...tableSer,
       orders: tableSer.orders
@@ -131,7 +130,7 @@ export default function TableService(props) {
           <Container className="TableService pt-3">
             <Row>
               <Col>
-                <h1>Mesa {tableSer.tableNb}</h1>
+                <h3>Mesa {tableSer.tableNb}</h3>
               </Col>
               <Col>
                 <Input
@@ -171,7 +170,7 @@ export default function TableService(props) {
                   <tr key={dish._id}>
                     <th>{dish.amount}</th>
                     <th>{dish._dish.name}</th>
-                    <th>
+                    <th className="px-0">
                       <Button
                         className="btn btn-default btn-circle"
                         onClick={() => handleDishAmount(dish._id, +1)}
@@ -179,6 +178,8 @@ export default function TableService(props) {
                       >
                         +
                       </Button>
+                    </th>
+                    <th className="px-0">
                       <Button
                         className="btn btn-default btn-circle"
                         onClick={() => handleDishAmount(dish._id, -1)}
@@ -244,7 +245,7 @@ export default function TableService(props) {
                 to={'/tables/' + tableSer._id}
                 onClick={closeTable}
               >
-                Cerrar mesa
+                Cerrar
               </Button>
             </Col>
             <Col />

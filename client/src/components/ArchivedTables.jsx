@@ -49,7 +49,7 @@ export default function ArchivedTables({
         <Container className="TableService pt-3">
           <Row>
             <Col>
-              <h1>Mesa {tableSer.tableNb}</h1>
+              <h3>Mesa {tableSer.tableNb}</h3>
             </Col>
           </Row>
           <Row>

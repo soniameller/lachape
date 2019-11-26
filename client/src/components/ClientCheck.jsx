@@ -23,13 +23,6 @@ export default function ClientCheck({
         </Row>
         <Jumbotron className="">
           <Table>
-            {/* <thead>
-              <tr>
-                <th />
-                <th>Orders</th>
-                <th>Total</th>
-              </tr>
-            </thead> */}
             <tbody>
               {tableSer &&
                 tableSer.orders.map(dish => (

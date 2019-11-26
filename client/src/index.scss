@@ -6,12 +6,11 @@ $jumbotron-bg: rgba(233, 236, 239, 0.8);
 
 @font-face {
   font-family: laChape;
-  // src: url('/fonts/learning_curve_bold_ot_tt.ttf');
   src: url('/fonts/BridgetScript.ttf');
 }
 
 // * {
-//   border: 1px dashed red;
+//   outline: 1px dashed red;
 // }
 
 //----PICTURES-----
@@ -69,16 +68,6 @@ body {
   margin: 10px 15px;
 }
 
-// .Menu__img {
-//   position: absolute;
-//   transform: translate(-60%, -60%);
-
-//   left: 100%;
-//   // right: 100px;
-//   top: 100%;
-//   // bottom: 64.67%;
-// }
-
 ul {
   margin: 0;
   padding: 0;
@@ -126,7 +115,7 @@ li {
   background-image: url('https://i.imgur.com/nKZ0OFH.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 150px;
+  min-height: 150px;
 }
 
 .Login {

@@ -82,7 +82,7 @@ export default function Dishes(props) {
             <Row>
               <Col>
                 <Button className="btn-dark" onClick={handleClick}>
-                  + Nuevo
+                  Nuevo
                 </Button>
               </Col>
               <Col>
@@ -92,8 +92,8 @@ export default function Dishes(props) {
                   className="text-white mt-3"
                   {...getInputProps('active')}
                 />
-                <Label className="ml-3 mt-2 text-white" for="active">
-                  ACTIVO
+                <Label className="ml-2 mt-2 text-white" for="active">
+                  Activo
                 </Label>
               </Col>
             </Row>
@@ -149,7 +149,7 @@ export default function Dishes(props) {
                       <small>{d.name}</small>
                     </td>
                     <td>
-                      <small>$ {d.price}</small>
+                      <small>${d.price}</small>
                     </td>
                     <td>
                       <Button
@@ -210,7 +210,7 @@ export default function Dishes(props) {
                       <small>{d.name}</small>
                     </td>
                     <td>
-                      <small>$ {d.price}</small>
+                      <small>${d.price}</small>
                     </td>
                     <td>
                       <Button
@@ -271,7 +271,7 @@ export default function Dishes(props) {
                       <small>{d.name}</small>
                     </td>
                     <td>
-                      <small>$ {d.price}</small>
+                      <small>${d.price}</small>
                     </td>
                     <td>
                       <Button
