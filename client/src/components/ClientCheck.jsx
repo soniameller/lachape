@@ -35,7 +35,7 @@ export default function ClientCheck({
 
               <tr>
                 <th />
-                <th>{formValues.discount}</th>
+                <th>{formValues.discount !== 1 && formValues.discount}</th>
                 <th>
                   <p>${tableSer && totalWithDiscount()}</p>{' '}
                 </th>
