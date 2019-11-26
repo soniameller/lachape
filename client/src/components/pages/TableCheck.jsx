@@ -47,7 +47,8 @@ export default function TableCheck(props) {
                 {tableSer &&
                   (tableSer.discount !== 1 && (
                     <th className="curvedFont--sm">
-                      {tableSer.discount * 100 - 100}% friend discount ♥︎{' '}
+                      {tableSer.discount !== 1 && tableSer.discount * 100 - 100}
+                      % friend discount ♥︎{' '}
                     </th>
                   ))}
                 {tableSer && (tableSer.discount === 1 && <th />)}
