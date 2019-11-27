@@ -31,6 +31,7 @@ export default function TableCheck(props) {
           </Col>
         </Row>
         <Jumbotron className="">
+          {JSON.stringify(tableSer)}
           <Table>
             <tbody>
               {tableSer &&
@@ -44,15 +45,11 @@ export default function TableCheck(props) {
 
               <tr>
                 <th />
-                {tableSer &&
-                  (tableSer.discount !== 1 && (
-                    <th className="curvedFont--sm">
-                      {tableSer.discount !== 1 && tableSer.discount * 100 - 100}
-                      % friend discount ♥︎{' '}
-                    </th>
-                  ))}
-                {tableSer && (tableSer.discount === 1 && <th />)}
-
+                {(tableSer && tableSer.discount && tableSer.discount !== 1 && (
+                  <th className="curvedFont--sm">
+                    {tableSer.discount * 100 - 100}% friend discount ♥︎{' '}
+                  </th>
+                )) || <th />}
                 <th>
                   <p>${tableSer && tableSer.total}</p>{' '}
                 </th>
