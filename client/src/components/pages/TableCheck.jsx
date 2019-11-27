@@ -31,7 +31,6 @@ export default function TableCheck(props) {
           </Col>
         </Row>
         <Jumbotron className="">
-          {JSON.stringify(tableSer)}
           <Table>
             <tbody>
               {tableSer &&
